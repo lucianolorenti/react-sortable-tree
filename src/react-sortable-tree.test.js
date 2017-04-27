@@ -3,7 +3,8 @@ import React, { PropTypes } from 'react';
 import { mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
 
-import { List, AutoSizer } from 'react-virtualized';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import List from 'react-virtualized/dist/commonjs/List';
 import SortableTree from './react-sortable-tree';
 import sortableTreeStyles from './react-sortable-tree.scss';
 import TreeNode from './tree-node';

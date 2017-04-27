@@ -1,6 +1,6 @@
 !function(root, factory) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone"), require("react-virtualized")) : "function" == typeof define && define.amd ? define([ "react", "lodash.isequal", "react-dnd", "react-dnd-html5-backend", "react-dnd-scrollzone", "react-virtualized" ], factory) : "object" == typeof exports ? exports.ReactSortableTree = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone"), require("react-virtualized")) : root.ReactSortableTree = factory(root.react, root["lodash.isequal"], root["react-dnd"], root["react-dnd-html5-backend"], root["react-dnd-scrollzone"], root["react-virtualized"]);
-}(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_26__, __WEBPACK_EXTERNAL_MODULE_27__, __WEBPACK_EXTERNAL_MODULE_28__, __WEBPACK_EXTERNAL_MODULE_29__, __WEBPACK_EXTERNAL_MODULE_30__) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : "function" == typeof define && define.amd ? define([ "react", "lodash.isequal", "react-dnd", "react-dnd-html5-backend", "react-dnd-scrollzone" ], factory) : "object" == typeof exports ? exports.ReactSortableTree = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : root.ReactSortableTree = factory(root.react, root["lodash.isequal"], root["react-dnd"], root["react-dnd-html5-backend"], root["react-dnd-scrollzone"]);
+}(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_51__, __WEBPACK_EXTERNAL_MODULE_52__, __WEBPACK_EXTERNAL_MODULE_53__, __WEBPACK_EXTERNAL_MODULE_54__) {
     /******/
     return function(modules) {
         /******/
@@ -77,7 +77,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.SortableTreeWithoutDndContext = void 0;
-        var _defaultHandlers = __webpack_require__(5);
+        var _defaultHandlers = __webpack_require__(6);
         Object.keys(_defaultHandlers).forEach(function(key) {
             "default" !== key && "__esModule" !== key && Object.defineProperty(exports, key, {
                 enumerable: !0,
@@ -86,7 +86,7 @@
                 }
             });
         });
-        var _treeDataUtils = __webpack_require__(1);
+        var _treeDataUtils = __webpack_require__(2);
         Object.keys(_treeDataUtils).forEach(function(key) {
             "default" !== key && "__esModule" !== key && Object.defineProperty(exports, key, {
                 enumerable: !0,
@@ -95,12 +95,16 @@
                 }
             });
         });
-        var _reactSortableTree = __webpack_require__(8), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree);
+        var _reactSortableTree = __webpack_require__(16), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree);
         exports.default = _reactSortableTree2.default, // Export the tree component without the react-dnd DragDropContext,
         // for when component is used with other components using react-dnd.
         // see: https://github.com/gaearon/react-dnd/issues/186
         exports.SortableTreeWithoutDndContext = _reactSortableTree.SortableTreeWithoutDndContext;
     }, /* 1 */
+    /***/
+    function(module, exports) {
+        module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+    }, /* 2 */
     /***/
     function(module, exports) {
         "use strict";
@@ -889,7 +893,7 @@
         exports.addNodeUnderParent = addNodeUnderParent, exports.insertNode = insertNode, 
         exports.getFlatDataFromTree = getFlatDataFromTree, exports.getTreeFromFlatData = getTreeFromFlatData, 
         exports.isDescendant = isDescendant, exports.getDepth = getDepth, exports.find = find;
-    }, /* 2 */
+    }, /* 3 */
     /***/
     function(module, exports, __webpack_require__) {
         /* WEBPACK VAR INJECTION */
@@ -941,8 +945,8 @@
                     }
                 }, list;
             };
-        }).call(exports, __webpack_require__(14).Buffer);
-    }, /* 3 */
+        }).call(exports, __webpack_require__(22).Buffer);
+    }, /* 4 */
     /***/
     function(module, exports, __webpack_require__) {
         function addStylesToDom(styles, options) {
@@ -1073,7 +1077,7 @@
             };
         }(function(styleTarget) {
             return document.querySelector(styleTarget);
-        }), singletonElement = null, singletonCounter = 0, styleElementsInsertedAtTop = [], fixUrls = __webpack_require__(21);
+        }), singletonElement = null, singletonCounter = 0, styleElementsInsertedAtTop = [], fixUrls = __webpack_require__(46);
         module.exports = function(list, options) {
             options = options || {}, options.attrs = "object" == typeof options.attrs ? options.attrs : {}, 
             // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
@@ -1106,11 +1110,23 @@
                 return textStore[index] = replacement, textStore.filter(Boolean).join("\n");
             };
         }();
-    }, /* 4 */
-    /***/
-    function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
     }, /* 5 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        function isValidElement(object) {
+            return "object" == typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+        }
+        /**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+        var factory = __webpack_require__(32), REACT_ELEMENT_TYPE = "function" == typeof Symbol && Symbol.for && Symbol.for("react.element") || 60103;
+        module.exports = factory(isValidElement);
+    }, /* 6 */
     /***/
     function(module, exports) {
         "use strict";
@@ -1145,7 +1161,7 @@
             return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
         };
         exports.defaultGetNodeKey = defaultGetNodeKey, exports.defaultSearchMethod = defaultSearchMethod;
-    }, /* 6 */
+    }, /* 7 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1181,8 +1197,226 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.memoizedInsertNode = memoizedInsertNode;
-        var _treeDataUtils = __webpack_require__(1), memoizedInsertArgsArray = [], memoizedInsertKeysArray = [], memoizedInsertResult = null;
-    }, /* 7 */
+        var _treeDataUtils = __webpack_require__(2), memoizedInsertArgsArray = [], memoizedInsertKeysArray = [], memoizedInsertResult = null;
+    }, /* 8 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+        /*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+        /* global define */
+        !function() {
+            "use strict";
+            function classNames() {
+                for (var classes = [], i = 0; i < arguments.length; i++) {
+                    var arg = arguments[i];
+                    if (arg) {
+                        var argType = typeof arg;
+                        if ("string" === argType || "number" === argType) classes.push(arg); else if (Array.isArray(arg)) classes.push(classNames.apply(null, arg)); else if ("object" === argType) for (var key in arg) hasOwn.call(arg, key) && arg[key] && classes.push(key);
+                    }
+                }
+                return classes.join(" ");
+            }
+            var hasOwn = {}.hasOwnProperty;
+            "undefined" != typeof module && module.exports ? module.exports = classNames : (__WEBPACK_AMD_DEFINE_ARRAY__ = [], 
+            __WEBPACK_AMD_DEFINE_RESULT__ = function() {
+                return classNames;
+            }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), // register as 'classnames', consistent with npm package name
+            !(void 0 !== __WEBPACK_AMD_DEFINE_RESULT__ && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)));
+        }();
+    }, /* 9 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * 
+	 */
+        function makeEmptyFunction(arg) {
+            return function() {
+                return arg;
+            };
+        }
+        /**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+        var emptyFunction = function() {};
+        emptyFunction.thatReturns = makeEmptyFunction, emptyFunction.thatReturnsFalse = makeEmptyFunction(!1), 
+        emptyFunction.thatReturnsTrue = makeEmptyFunction(!0), emptyFunction.thatReturnsNull = makeEmptyFunction(null), 
+        emptyFunction.thatReturnsThis = function() {
+            return this;
+        }, emptyFunction.thatReturnsArgument = function(arg) {
+            return arg;
+        }, module.exports = emptyFunction;
+    }, /* 10 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        /**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+        "use strict";
+        function invariant(condition, format, a, b, c, d, e, f) {
+            if (validateFormat(format), !condition) {
+                var error;
+                if (void 0 === format) error = new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings."); else {
+                    var args = [ a, b, c, d, e, f ], argIndex = 0;
+                    error = new Error(format.replace(/%s/g, function() {
+                        return args[argIndex++];
+                    })), error.name = "Invariant Violation";
+                }
+                // we don't care about invariant's own frame
+                throw error.framesToPop = 1, error;
+            }
+        }
+        /**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+        var validateFormat = function(format) {};
+        module.exports = invariant;
+    }, /* 11 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        /**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+        "use strict";
+        var emptyFunction = __webpack_require__(9), warning = emptyFunction;
+        module.exports = warning;
+    }, /* 12 */
+    /***/
+    function(module, exports) {
+        /**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+        "use strict";
+        var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
+        module.exports = ReactPropTypesSecret;
+    }, /* 13 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        /**
+	 * Default implementation of cellRangeRenderer used by Grid.
+	 * This renderer supports cell-caching while the user is scrolling.
+	 */
+        function defaultCellRangeRenderer(_ref) {
+            for (var cellCache = _ref.cellCache, cellRenderer = _ref.cellRenderer, columnSizeAndPositionManager = _ref.columnSizeAndPositionManager, columnStartIndex = _ref.columnStartIndex, columnStopIndex = _ref.columnStopIndex, deferredMeasurementCache = _ref.deferredMeasurementCache, horizontalOffsetAdjustment = _ref.horizontalOffsetAdjustment, isScrolling = _ref.isScrolling, parent = _ref.parent, rowSizeAndPositionManager = _ref.rowSizeAndPositionManager, rowStartIndex = _ref.rowStartIndex, rowStopIndex = _ref.rowStopIndex, styleCache = (_ref.scrollLeft, 
+            _ref.scrollTop, _ref.styleCache), verticalOffsetAdjustment = _ref.verticalOffsetAdjustment, visibleColumnIndices = _ref.visibleColumnIndices, visibleRowIndices = _ref.visibleRowIndices, deferredMode = "undefined" != typeof deferredMeasurementCache, renderedCells = [], areOffsetsAdjusted = columnSizeAndPositionManager.areOffsetsAdjusted() || rowSizeAndPositionManager.areOffsetsAdjusted(), canCacheStyle = !isScrolling || !areOffsetsAdjusted, rowIndex = rowStartIndex; rowIndex <= rowStopIndex; rowIndex++) for (var rowDatum = rowSizeAndPositionManager.getSizeAndPositionOfCell(rowIndex), columnIndex = columnStartIndex; columnIndex <= columnStopIndex; columnIndex++) {
+                var columnDatum = columnSizeAndPositionManager.getSizeAndPositionOfCell(columnIndex), isVisible = columnIndex >= visibleColumnIndices.start && columnIndex <= visibleColumnIndices.stop && rowIndex >= visibleRowIndices.start && rowIndex <= visibleRowIndices.stop, key = rowIndex + "-" + columnIndex, style = void 0;
+                // Cache style objects so shallow-compare doesn't re-render unnecessarily.
+                canCacheStyle && styleCache[key] ? style = styleCache[key] : // In deferred mode, cells will be initially rendered before we know their size.
+                // Don't interfere with CellMeasurer's measurements by setting an invalid size.
+                deferredMode && !deferredMeasurementCache.has(rowIndex, columnIndex) ? // Position not-yet-measured cells at top/left 0,0,
+                // And give them width/height of 'auto' so they can grow larger than the parent Grid if necessary.
+                // Positioning them further to the right/bottom influences their measured size.
+                style = {
+                    height: "auto",
+                    left: 0,
+                    position: "absolute",
+                    top: 0,
+                    width: "auto"
+                } : (style = {
+                    height: rowDatum.size,
+                    left: columnDatum.offset + horizontalOffsetAdjustment,
+                    position: "absolute",
+                    top: rowDatum.offset + verticalOffsetAdjustment,
+                    width: columnDatum.size
+                }, styleCache[key] = style);
+                var cellRendererParams = {
+                    columnIndex: columnIndex,
+                    isScrolling: isScrolling,
+                    isVisible: isVisible,
+                    key: key,
+                    parent: parent,
+                    rowIndex: rowIndex,
+                    style: style
+                }, renderedCell = void 0;
+                // Avoid re-creating cells while scrolling.
+                // This can lead to the same cell being created many times and can cause performance issues for "heavy" cells.
+                // If a scroll is in progress- cache and reuse cells.
+                // This cache will be thrown away once scrolling completes.
+                // However if we are scaling scroll positions and sizes, we should also avoid caching.
+                // This is because the offset changes slightly as scroll position changes and caching leads to stale values.
+                // For more info refer to issue #395
+                !isScrolling || horizontalOffsetAdjustment || verticalOffsetAdjustment ? renderedCell = cellRenderer(cellRendererParams) : (cellCache[key] || (cellCache[key] = cellRenderer(cellRendererParams)), 
+                renderedCell = cellCache[key]), null != renderedCell && renderedCell !== !1 && renderedCells.push(renderedCell);
+            }
+            return renderedCells;
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = defaultCellRangeRenderer;
+    }, /* 14 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Calculates the number of cells to overscan before and after a specified range.
+	 * This function ensures that overscanning doesn't exceed the available cells.
+	 *
+	 * @param direction One of SCROLL_DIRECTION_HORIZONTAL or SCROLL_DIRECTION_VERTICAL
+	 * @param cellCount Number of rows or columns in the current axis
+	 * @param scrollDirection One of SCROLL_DIRECTION_BACKWARD or SCROLL_DIRECTION_FORWARD
+	 * @param overscanCellsCount Maximum number of cells to over-render in either direction
+	 * @param startIndex Begin of range of visible cells
+	 * @param stopIndex End of range of visible cells
+	 */
+        function defaultOverscanIndicesGetter(_ref) {
+            var cellCount = (_ref.direction, _ref.cellCount), overscanCellsCount = _ref.overscanCellsCount, scrollDirection = _ref.scrollDirection, startIndex = _ref.startIndex, stopIndex = _ref.stopIndex, overscanStartIndex = void 0, overscanStopIndex = void 0;
+            switch (scrollDirection) {
+              case SCROLL_DIRECTION_FORWARD:
+                overscanStartIndex = startIndex, overscanStopIndex = stopIndex + overscanCellsCount;
+                break;
+
+              case SCROLL_DIRECTION_BACKWARD:
+                overscanStartIndex = startIndex - overscanCellsCount, overscanStopIndex = stopIndex;
+            }
+            return {
+                overscanStartIndex: Math.max(0, overscanStartIndex),
+                overscanStopIndex: Math.min(cellCount - 1, overscanStopIndex)
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = defaultOverscanIndicesGetter;
+        var SCROLL_DIRECTION_BACKWARD = exports.SCROLL_DIRECTION_BACKWARD = -1, SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_FORWARD = 1;
+        exports.SCROLL_DIRECTION_HORIZONTAL = "horizontal", exports.SCROLL_DIRECTION_VERTICAL = "vertical";
+    }, /* 15 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1235,7 +1469,7 @@
                 for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
             }
             return target;
-        }, _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _browserUtils = __webpack_require__(10), _nodeRendererDefault = __webpack_require__(23), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(1), styles = _nodeRendererDefault2.default;
+        }, _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _browserUtils = __webpack_require__(18), _nodeRendererDefault = __webpack_require__(48), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(2), styles = _nodeRendererDefault2.default;
         // Add extra classes in browsers that don't support flex
         _browserUtils.getIEVersion < 10 && (styles = _extends({}, _nodeRendererDefault2.default, {
             row: styles.row + " " + styles.row_NoFlex,
@@ -1374,7 +1608,7 @@
             isOver: _react.PropTypes.bool.isRequired,
             canDrop: _react.PropTypes.bool
         }, exports.default = NodeRendererDefault;
-    }, /* 8 */
+    }, /* 16 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1422,9 +1656,9 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _reactVirtualized = __webpack_require__(30), _lodash = __webpack_require__(26), _lodash2 = _interopRequireDefault(_lodash), _reactDndScrollzone = __webpack_require__(29), _reactDndScrollzone2 = _interopRequireDefault(_reactDndScrollzone);
-        __webpack_require__(22);
-        var _treeNode = __webpack_require__(9), _treeNode2 = _interopRequireDefault(_treeNode), _nodeRendererDefault = __webpack_require__(7), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(1), _memoizedTreeDataUtils = __webpack_require__(6), _genericUtils = __webpack_require__(12), _defaultHandlers = __webpack_require__(5), _dragAndDropUtils = __webpack_require__(11), _reactSortableTree = __webpack_require__(24), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree), dndTypeCounter = 1, ReactSortableTree = function(_Component) {
+        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _AutoSizer = __webpack_require__(34), _AutoSizer2 = _interopRequireDefault(_AutoSizer), _List = __webpack_require__(43), _List2 = _interopRequireDefault(_List), _lodash = __webpack_require__(51), _lodash2 = _interopRequireDefault(_lodash), _reactDndScrollzone = __webpack_require__(54), _reactDndScrollzone2 = _interopRequireDefault(_reactDndScrollzone);
+        __webpack_require__(47);
+        var _treeNode = __webpack_require__(17), _treeNode2 = _interopRequireDefault(_treeNode), _nodeRendererDefault = __webpack_require__(15), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(2), _memoizedTreeDataUtils = __webpack_require__(7), _genericUtils = __webpack_require__(20), _defaultHandlers = __webpack_require__(6), _dragAndDropUtils = __webpack_require__(19), _reactSortableTree = __webpack_require__(49), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree), dndTypeCounter = 1, ReactSortableTree = function(_Component) {
             function ReactSortableTree(props) {
                 _classCallCheck(this, ReactSortableTree);
                 var _this = _possibleConstructorReturn(this, (ReactSortableTree.__proto__ || Object.getPrototypeOf(ReactSortableTree)).call(this, props)), dndType = props.dndType, nodeContentRenderer = props.nodeContentRenderer, isVirtualized = props.isVirtualized, slideRegionSize = props.slideRegionSize, treeData = props.treeData;
@@ -1433,7 +1667,7 @@
                 return _this.dndType = dndType || "rst__" + dndTypeCounter++, _this.nodeContentRenderer = (0, 
                 _dragAndDropUtils.dndWrapSource)(nodeContentRenderer, _this.dndType), _this.treeNodeRenderer = (0, 
                 _dragAndDropUtils.dndWrapTarget)(_treeNode2.default, _this.dndType), isVirtualized && (_this.scrollZoneVirtualList = (0, 
-                _reactDndScrollzone2.default)(_reactVirtualized.List), _this.vStrength = (0, _reactDndScrollzone.createVerticalStrength)(slideRegionSize), 
+                _reactDndScrollzone2.default)(_List2.default), _this.vStrength = (0, _reactDndScrollzone.createVerticalStrength)(slideRegionSize), 
                 _this.hStrength = (0, _reactDndScrollzone.createHorizontalStrength)(slideRegionSize)), 
                 _this.state = {
                     draggingTreeData: null,
@@ -1656,7 +1890,7 @@
                         }, containerStyle);
                         var ScrollZoneVirtualList = this.scrollZoneVirtualList;
                         // Render list with react-virtualized
-                        list = _react2.default.createElement(_reactVirtualized.AutoSizer, null, function(_ref10) {
+                        list = _react2.default.createElement(_AutoSizer2.default, null, function(_ref10) {
                             var height = _ref10.height, width = _ref10.width;
                             return _react2.default.createElement(ScrollZoneVirtualList, _extends({}, scrollToInfo, {
                                 verticalStrength: _this3.vStrength,
@@ -1832,7 +2066,7 @@
         // see: https://github.com/gaearon/react-dnd/issues/186
         exports.SortableTreeWithoutDndContext = ReactSortableTree, exports.default = (0, 
         _dragAndDropUtils.dndWrapRoot)(ReactSortableTree);
-    }, /* 9 */
+    }, /* 17 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1885,7 +2119,7 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(4), _react2 = _interopRequireDefault(_react), _treeNode = __webpack_require__(25), _treeNode2 = _interopRequireDefault(_treeNode), TreeNode = function(_Component) {
+        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _treeNode = __webpack_require__(50), _treeNode2 = _interopRequireDefault(_treeNode), TreeNode = function(_Component) {
             function TreeNode() {
                 return _classCallCheck(this, TreeNode), _possibleConstructorReturn(this, (TreeNode.__proto__ || Object.getPrototypeOf(TreeNode)).apply(this, arguments));
             }
@@ -1984,7 +2218,7 @@
             // used in drag-and-drop-utils
             treeData: _react.PropTypes.arrayOf(_react.PropTypes.object)
         }, exports.default = TreeNode;
-    }, /* 10 */
+    }, /* 18 */
     /***/
     function(module, exports) {
         "use strict";
@@ -2000,7 +2234,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.getIEVersion = getIEVersion;
-    }, /* 11 */
+    }, /* 19 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -2076,7 +2310,7 @@
             value: !0
         }), exports.dndWrapSource = dndWrapSource, exports.dndWrapTarget = dndWrapTarget, 
         exports.dndWrapRoot = dndWrapRoot;
-        var _reactDnd = __webpack_require__(27), _reactDndHtml5Backend = __webpack_require__(28), _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend), _treeDataUtils = __webpack_require__(1), _memoizedTreeDataUtils = __webpack_require__(6), nodeDragSource = {
+        var _reactDnd = __webpack_require__(52), _reactDndHtml5Backend = __webpack_require__(53), _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend), _treeDataUtils = __webpack_require__(2), _memoizedTreeDataUtils = __webpack_require__(7), nodeDragSource = {
             beginDrag: function(props) {
                 return props.startDrag(props), {
                     node: props.node,
@@ -2113,7 +2347,7 @@
             },
             canDrop: canDrop
         };
-    }, /* 12 */
+    }, /* 20 */
     /***/
     function(module, exports) {
         "use strict";
@@ -2131,7 +2365,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.swapRows = swapRows;
-    }, /* 13 */
+    }, /* 21 */
     /***/
     function(module, exports) {
         "use strict";
@@ -2183,7 +2417,7 @@
         for (var lookup = [], revLookup = [], Arr = "undefined" != typeof Uint8Array ? Uint8Array : Array, code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", i = 0, len = code.length; i < len; ++i) lookup[i] = code[i], 
         revLookup[code.charCodeAt(i)] = i;
         revLookup["-".charCodeAt(0)] = 62, revLookup["_".charCodeAt(0)] = 63;
-    }, /* 14 */
+    }, /* 22 */
     /***/
     function(module, exports, __webpack_require__) {
         /* WEBPACK VAR INJECTION */
@@ -2655,7 +2889,7 @@
             function isnan(val) {
                 return val !== val;
             }
-            var base64 = __webpack_require__(13), ieee754 = __webpack_require__(19), isArray = __webpack_require__(20);
+            var base64 = __webpack_require__(21), ieee754 = __webpack_require__(29), isArray = __webpack_require__(30);
             exports.Buffer = Buffer, exports.SlowBuffer = SlowBuffer, exports.INSPECT_MAX_BYTES = 50, 
             /**
 	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
@@ -3053,16 +3287,16 @@
         }).call(exports, function() {
             return this;
         }());
-    }, /* 15 */
+    }, /* 23 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(2)(void 0), // imports
+        exports = module.exports = __webpack_require__(3)(void 0), // imports
         // module
         exports.push([ module.id, ".ReactVirtualized__Table__headerRow{font-weight:700;text-transform:uppercase}.ReactVirtualized__Table__headerRow,.ReactVirtualized__Table__row{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;-ms-flex-align:center;-webkit-box-align:center;align-items:center}.ReactVirtualized__Table__headerTruncatedText{display:inline-block;max-width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.ReactVirtualized__Table__headerColumn,.ReactVirtualized__Table__rowColumn{margin-right:10px;min-width:0}.ReactVirtualized__Table__rowColumn{text-overflow:ellipsis;white-space:nowrap}.ReactVirtualized__Table__headerColumn:first-of-type,.ReactVirtualized__Table__rowColumn:first-of-type{margin-left:10px}.ReactVirtualized__Table__sortableHeaderColumn{cursor:pointer}.ReactVirtualized__Table__sortableHeaderIconContainer{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-align:center;-webkit-box-align:center;align-items:center}.ReactVirtualized__Table__sortableHeaderIcon{-ms-flex:0 0 24px;-webkit-box-flex:0;flex:0 0 24px;height:1em;width:1em;fill:currentColor}", "" ]);
-    }, /* 16 */
+    }, /* 24 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(2)(void 0), // imports
+        exports = module.exports = __webpack_require__(3)(void 0), // imports
         // module
         exports.push([ module.id, '.rst__rowWrapper{padding:10px 10px 10px 0;height:100%;box-sizing:border-box}.rst__row{height:100%;white-space:nowrap;display:-webkit-box;display:-ms-flexbox;display:flex}.rst__row>*{box-sizing:border-box}.rst__rowCancelPad,.rst__rowLandingPad{border:none!important;box-shadow:none!important;outline:none!important}.rst__rowCancelPad *,.rst__rowLandingPad *{opacity:0!important}.rst__rowCancelPad:before,.rst__rowLandingPad:before{background-color:#add8e6;border:3px dashed #fff;content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1}.rst__rowCancelPad:before{background-color:#e6a8ad}.rst__rowSearchMatch{outline:3px solid #0080ff}.rst__rowSearchFocus{outline:3px solid #fc6421}.rst__loadingHandle,.rst__moveHandle,.rst__rowContents,.rst__rowLabel,.rst__rowLabel_NoFlex,.rst__rowToolbar,.rst__rowToolbar_NoFlex,.rst__toolbarButton{display:inline-block;vertical-align:middle}.rst__rowContents{position:relative;height:100%;border:1px solid #bbb;border-left:none;box-shadow:0 2px 2px -2px;padding:0 5px 0 10px;border-radius:2px;min-width:230px;-webkit-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;background-color:#fff}.rst__rowContentsDragDisabled{border-left:1px solid #bbb}.rst__rowLabel{padding-right:20px}.rst__rowLabel,.rst__rowToolbar{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto}.rst__rowToolbar{display:-webkit-box;display:-ms-flexbox;display:flex}.rst__loadingHandle,.rst__moveHandle{height:100%;width:44px;background:#d9d9d9 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PGcgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIuOSIgPjxwYXRoIGQ9Ik0xNCAxNS43aDE0LjQiLz48cGF0aCBkPSJNMTQgMjEuNGgxNC40Ii8+PHBhdGggZD0iTTE0IDI3LjFoMTQuNCIvPjwvZz4KPC9zdmc+") no-repeat 50%;border:1px solid #aaa;box-shadow:0 2px 2px -2px;cursor:move;border-radius:1px;z-index:1}.rst__loadingHandle{cursor:default;background:#d9d9d9}@-webkit-keyframes rst__pointFade{0%,19.999%,to{opacity:0}20%{opacity:1}}@keyframes rst__pointFade{0%,19.999%,to{opacity:0}20%{opacity:1}}.rst__loadingCircle{width:80%;height:80%;margin:10%;position:relative}.rst__loadingCirclePoint{width:100%;height:100%;position:absolute;left:0;top:0}.rst__loadingCirclePoint:before{content:"";display:block;margin:0 auto;width:11%;height:30%;background-color:#fff;border-radius:30%;-webkit-animation:rst__pointFade .8s infinite ease-in-out both;animation:rst__pointFade .8s infinite ease-in-out both}.rst__loadingCirclePoint:first-of-type{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}.rst__loadingCirclePoint:first-of-type:before,.rst__loadingCirclePoint:nth-of-type(7):before{-webkit-animation-delay:-.8s;animation-delay:-.8s}.rst__loadingCirclePoint:nth-of-type(2){-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg)}.rst__loadingCirclePoint:nth-of-type(8){-webkit-transform:rotate(210deg);-ms-transform:rotate(210deg);transform:rotate(210deg)}.rst__loadingCirclePoint:nth-of-type(2):before,.rst__loadingCirclePoint:nth-of-type(8):before{-webkit-animation-delay:-666.66667ms;animation-delay:-666.66667ms}.rst__loadingCirclePoint:nth-of-type(3){-webkit-transform:rotate(60deg);-ms-transform:rotate(60deg);transform:rotate(60deg)}.rst__loadingCirclePoint:nth-of-type(9){-webkit-transform:rotate(240deg);-ms-transform:rotate(240deg);transform:rotate(240deg)}.rst__loadingCirclePoint:nth-of-type(3):before,.rst__loadingCirclePoint:nth-of-type(9):before{-webkit-animation-delay:-.53333333s;animation-delay:-.53333333s}.rst__loadingCirclePoint:nth-of-type(4){-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}.rst__loadingCirclePoint:nth-of-type(10){-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}.rst__loadingCirclePoint:nth-of-type(4):before,.rst__loadingCirclePoint:nth-of-type(10):before{-webkit-animation-delay:-.4s;animation-delay:-.4s}.rst__loadingCirclePoint:nth-of-type(5){-webkit-transform:rotate(120deg);-ms-transform:rotate(120deg);transform:rotate(120deg)}.rst__loadingCirclePoint:nth-of-type(11){-webkit-transform:rotate(300deg);-ms-transform:rotate(300deg);transform:rotate(300deg)}.rst__loadingCirclePoint:nth-of-type(5):before,.rst__loadingCirclePoint:nth-of-type(11):before{-webkit-animation-delay:-.26666667s;animation-delay:-.26666667s}.rst__loadingCirclePoint:nth-of-type(6){-webkit-transform:rotate(150deg);-ms-transform:rotate(150deg);transform:rotate(150deg)}.rst__loadingCirclePoint:nth-of-type(12){-webkit-transform:rotate(330deg);-ms-transform:rotate(330deg);transform:rotate(330deg)}.rst__loadingCirclePoint:nth-of-type(6):before,.rst__loadingCirclePoint:nth-of-type(12):before{-webkit-animation-delay:-.13333333s;animation-delay:-.13333333s}.rst__loadingCirclePoint:nth-of-type(7){-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg)}.rst__loadingCirclePoint:nth-of-type(13){-webkit-transform:rotate(1turn);-ms-transform:rotate(1turn);transform:rotate(1turn)}.rst__loadingCirclePoint:nth-of-type(7):before,.rst__loadingCirclePoint:nth-of-type(13):before{-webkit-animation-delay:0ms;animation-delay:0ms}.rst__rowTitle{font-weight:700}.rst__rowTitleWithSubtitle{font-size:85%;display:block;height:.8rem}.rst__rowSubtitle{font-size:70%;line-height:1}.rst__collapseButton,.rst__expandButton{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;position:absolute;border-radius:100%;box-shadow:0 0 0 1px #000;width:16px;height:16px;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);cursor:pointer}.rst__collapseButton:focus,.rst__expandButton:focus{outline:none;box-shadow:0 0 0 1px #000,0 0 1px 3px #83bef9}.rst__collapseButton:hover:not(:active),.rst__expandButton:hover:not(:active){background-size:24px;height:20px;width:20px}.rst__collapseButton{background:#fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGNpcmNsZSBjeD0iOSIgY3k9IjkiIHI9IjgiIGZpbGw9IiNGRkYiLz48ZyBzdHJva2U9IiM5ODk4OTgiIHN0cm9rZS13aWR0aD0iMS45IiA+PHBhdGggZD0iTTQuNSA5aDkiLz48L2c+Cjwvc3ZnPg==") no-repeat 50%}.rst__expandButton{background:#fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGNpcmNsZSBjeD0iOSIgY3k9IjkiIHI9IjgiIGZpbGw9IiNGRkYiLz48ZyBzdHJva2U9IiM5ODk4OTgiIHN0cm9rZS13aWR0aD0iMS45IiA+PHBhdGggZD0iTTQuNSA5aDkiLz48cGF0aCBkPSJNOSA0LjV2OSIvPjwvZz4KPC9zdmc+") no-repeat 50%}.rst__row_NoFlex:before,.rst__rowContents_NoFlex:before{content:"";display:inline-block;vertical-align:middle;height:100%}.rst__rowContents_NoFlex{display:inline-block}.rst__rowContents_NoFlex:after{content:"";display:inline-block;width:100%}.rst__rowLabel_NoFlex{width:50%}.rst__rowToolbar_NoFlex{text-align:right;width:50%}.rst__lineChildren{height:100%;display:inline-block;position:absolute}.rst__lineChildren:after{content:"";position:absolute;background-color:#000;width:1px;left:50%;bottom:0;height:10px}', "" ]), 
         // exports
@@ -3094,10 +3328,10 @@
             rowContents_NoFlex: "rst__rowContents_NoFlex",
             lineChildren: "rst__lineChildren"
         };
-    }, /* 17 */
+    }, /* 25 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(2)(void 0), // imports
+        exports = module.exports = __webpack_require__(3)(void 0), // imports
         // module
         exports.push([ module.id, ".rst__tree{/*! This comment keeps Sass from deleting the empty rule */}.rst__virtualScrollOverride *{box-sizing:border-box}.ReactVirtualized__Grid__innerScrollContainer{overflow:visible!important}.ReactVirtualized__Grid{outline:none}", "" ]), 
         // exports
@@ -3105,10 +3339,10 @@
             tree: "rst__tree",
             virtualScrollOverride: "rst__virtualScrollOverride"
         };
-    }, /* 18 */
+    }, /* 26 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(2)(void 0), // imports
+        exports = module.exports = __webpack_require__(3)(void 0), // imports
         // module
         exports.push([ module.id, '.rst__node{min-width:100%;white-space:nowrap;position:relative}.rst__nodeContent{position:absolute;top:0;bottom:0}.rst__absoluteLineBlock,.rst__lineBlock{height:100%;position:relative;display:inline-block}.rst__absoluteLineBlock{position:absolute;top:0}.rst__lineFullVertical:after,.rst__lineHalfHorizontalRight:before,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{position:absolute;content:"";background-color:#000}.rst__lineHalfHorizontalRight:before{height:1px;top:50%;right:0;width:50%}.rst__lineFullVertical:after,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{width:1px;left:50%;top:0;height:100%}.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{top:0;height:50%}.rst__lineHalfVerticalBottom:after{top:auto;bottom:0}.rst__highlightLineVertical{z-index:3}.rst__highlightLineVertical:before{position:absolute;content:"";background-color:#36c2f6;width:8px;margin-left:-4px;left:50%;top:0;height:100%}@-webkit-keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}@keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}.rst__highlightLineVertical:after{content:"";position:absolute;height:0;margin-left:-4px;left:50%;top:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #fff;-webkit-animation:rst__arrow-pulse 1s infinite linear both;animation:rst__arrow-pulse 1s infinite linear both}.rst__highlightTopLeftCorner:before{z-index:3;content:"";position:absolute;border-top:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(50% + 4px);top:50%;margin-top:-4px;right:0;width:calc(50% + 4px)}.rst__highlightBottomLeftCorner{z-index:3}.rst__highlightBottomLeftCorner:before{content:"";position:absolute;border-bottom:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(100% + 4px);top:0;right:12px;width:calc(50% - 8px)}.rst__highlightBottomLeftCorner:after{content:"";position:absolute;height:0;right:0;top:100%;margin-top:-12px;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:12px solid #36c2f6}', "" ]), 
         // exports
@@ -3126,7 +3360,37 @@
             highlightTopLeftCorner: "rst__highlightTopLeftCorner",
             highlightBottomLeftCorner: "rst__highlightBottomLeftCorner"
         };
-    }, /* 19 */
+    }, /* 27 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = !("undefined" == typeof window || !window.document || !window.document.createElement), 
+        module.exports = exports.default;
+    }, /* 28 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = function(recalc) {
+            if ((!size || recalc) && _inDOM2.default) {
+                var scrollDiv = document.createElement("div");
+                scrollDiv.style.position = "absolute", scrollDiv.style.top = "-9999px", scrollDiv.style.width = "50px", 
+                scrollDiv.style.height = "50px", scrollDiv.style.overflow = "scroll", document.body.appendChild(scrollDiv), 
+                size = scrollDiv.offsetWidth - scrollDiv.clientWidth, document.body.removeChild(scrollDiv);
+            }
+            return size;
+        };
+        var _inDOM = __webpack_require__(27), _inDOM2 = _interopRequireDefault(_inDOM), size = void 0;
+        module.exports = exports.default;
+    }, /* 29 */
     /***/
     function(module, exports) {
         exports.read = function(buffer, offset, isLE, mLen, nBytes) {
@@ -3152,14 +3416,1652 @@
             e /= 256, eLen -= 8) ;
             buffer[offset + i - d] |= 128 * s;
         };
-    }, /* 20 */
+    }, /* 30 */
     /***/
     function(module, exports) {
         var toString = {}.toString;
         module.exports = Array.isArray || function(arr) {
             return "[object Array]" == toString.call(arr);
         };
-    }, /* 21 */
+    }, /* 31 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        /**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+        "use strict";
+        /**
+	 * Assert that the values match with the type specs.
+	 * Error messages are memorized and will only be shown once.
+	 *
+	 * @param {object} typeSpecs Map of name to a ReactPropType
+	 * @param {object} values Runtime values that need to be type-checked
+	 * @param {string} location e.g. "prop", "context", "child context"
+	 * @param {string} componentName Name of the component for error messages.
+	 * @param {?Function} getStack Returns the component stack.
+	 * @private
+	 */
+        function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+        }
+        __webpack_require__(10), __webpack_require__(11), __webpack_require__(12);
+        module.exports = checkPropTypes;
+    }, /* 32 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        /**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+        "use strict";
+        var invariant = (__webpack_require__(9), __webpack_require__(10)), checkPropTypes = (__webpack_require__(11), 
+        __webpack_require__(12), __webpack_require__(31));
+        module.exports = function(isValidElement) {
+            /*eslint-enable no-self-compare*/
+            /**
+	   * We use an Error-like object for backward compatibility as people may call
+	   * PropTypes directly and inspect their output. However, we don't use real
+	   * Errors anymore. We don't inspect their stack anyway, and creating them
+	   * is prohibitively expensive if they are created too often, such as what
+	   * happens in oneOfType() for any type before the one that matched.
+	   */
+            function PropTypeError(message) {
+                this.message = message, this.stack = "";
+            }
+            /* global Symbol */
+            var ReactPropTypes, productionTypeChecker = ("function" == typeof Symbol && Symbol.iterator, 
+            function() {
+                invariant(!1, "React.PropTypes type checking code is stripped in production.");
+            });
+            productionTypeChecker.isRequired = productionTypeChecker;
+            var getProductionTypeChecker = function() {
+                return productionTypeChecker;
+            };
+            // Keep in sync with development version above
+            // Make `instanceof Error` still work for returned errors.
+            return ReactPropTypes = {
+                array: productionTypeChecker,
+                bool: productionTypeChecker,
+                func: productionTypeChecker,
+                number: productionTypeChecker,
+                object: productionTypeChecker,
+                string: productionTypeChecker,
+                symbol: productionTypeChecker,
+                any: productionTypeChecker,
+                arrayOf: getProductionTypeChecker,
+                element: productionTypeChecker,
+                instanceOf: getProductionTypeChecker,
+                node: productionTypeChecker,
+                objectOf: getProductionTypeChecker,
+                oneOf: getProductionTypeChecker,
+                oneOfType: getProductionTypeChecker,
+                shape: getProductionTypeChecker
+            }, PropTypeError.prototype = Error.prototype, ReactPropTypes.checkPropTypes = checkPropTypes, 
+            ReactPropTypes.PropTypes = ReactPropTypes, ReactPropTypes;
+        };
+    }, /* 33 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        function _possibleConstructorReturn(self, call) {
+            if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !call || "object" != typeof call && "function" != typeof call ? self : call;
+        }
+        function _inherits(subClass, superClass) {
+            if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), _propTypes = __webpack_require__(5), _react = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(1)), _react2 = _interopRequireDefault(_react), _detectElementResize = __webpack_require__(45), _detectElementResize2 = _interopRequireDefault(_detectElementResize), AutoSizer = function(_PureComponent) {
+            function AutoSizer(props) {
+                _classCallCheck(this, AutoSizer);
+                var _this = _possibleConstructorReturn(this, (AutoSizer.__proto__ || Object.getPrototypeOf(AutoSizer)).call(this, props));
+                return _this.state = {
+                    height: 0,
+                    width: 0
+                }, _this._onResize = _this._onResize.bind(_this), _this._setRef = _this._setRef.bind(_this), 
+                _this;
+            }
+            return _inherits(AutoSizer, _PureComponent), _createClass(AutoSizer, [ {
+                key: "componentDidMount",
+                value: function() {
+                    // Delay access of parentNode until mount.
+                    // This handles edge-cases where the component has already been unmounted before its ref has been set,
+                    // As well as libraries like react-lite which have a slightly different lifecycle.
+                    this._parentNode = this._autoSizer.parentNode, // Defer requiring resize handler in order to support server-side rendering.
+                    // See issue #41
+                    this._detectElementResize = (0, _detectElementResize2.default)(), this._detectElementResize.addResizeListener(this._parentNode, this._onResize), 
+                    this._onResize();
+                }
+            }, {
+                key: "componentWillUnmount",
+                value: function() {
+                    this._detectElementResize && this._detectElementResize.removeResizeListener(this._parentNode, this._onResize);
+                }
+            }, {
+                key: "render",
+                value: function() {
+                    var _props = this.props, children = _props.children, disableHeight = _props.disableHeight, disableWidth = _props.disableWidth, _state = this.state, height = _state.height, width = _state.width, outerStyle = {
+                        overflow: "visible"
+                    };
+                    /**
+	       * TODO: Avoid rendering children before the initial measurements have been collected.
+	       * At best this would just be wasting cycles.
+	       * Add this check into version 10 though as it could break too many ref callbacks in version 9.
+	      if (
+	        height !== 0 &&
+	        width !== 0
+	      ) {
+	        child = children({ height, width })
+	      }
+	      */
+                    return disableHeight || (outerStyle.height = 0), disableWidth || (outerStyle.width = 0), 
+                    _react2.default.createElement("div", {
+                        ref: this._setRef,
+                        style: outerStyle
+                    }, children({
+                        height: height,
+                        width: width
+                    }));
+                }
+            }, {
+                key: "_onResize",
+                value: function() {
+                    var _props2 = this.props, disableHeight = _props2.disableHeight, disableWidth = _props2.disableWidth, onResize = _props2.onResize, height = this._parentNode.offsetHeight || 0, width = this._parentNode.offsetWidth || 0, style = window.getComputedStyle(this._parentNode) || {}, paddingLeft = parseInt(style.paddingLeft, 10) || 0, paddingRight = parseInt(style.paddingRight, 10) || 0, paddingTop = parseInt(style.paddingTop, 10) || 0, paddingBottom = parseInt(style.paddingBottom, 10) || 0, newHeight = height - paddingTop - paddingBottom, newWidth = width - paddingLeft - paddingRight;
+                    (!disableHeight && this.state.height !== newHeight || !disableWidth && this.state.width !== newWidth) && (this.setState({
+                        height: height - paddingTop - paddingBottom,
+                        width: width - paddingLeft - paddingRight
+                    }), onResize({
+                        height: height,
+                        width: width
+                    }));
+                }
+            }, {
+                key: "_setRef",
+                value: function(autoSizer) {
+                    this._autoSizer = autoSizer;
+                }
+            } ]), AutoSizer;
+        }(_react.PureComponent);
+        AutoSizer.defaultProps = {
+            onResize: function() {}
+        }, exports.default = AutoSizer;
+    }, /* 34 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.AutoSizer = exports.default = void 0;
+        var _AutoSizer2 = __webpack_require__(33), _AutoSizer3 = _interopRequireDefault(_AutoSizer2);
+        exports.default = _AutoSizer3.default, exports.AutoSizer = _AutoSizer3.default;
+    }, /* 35 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        function _possibleConstructorReturn(self, call) {
+            if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !call || "object" != typeof call && "function" != typeof call ? self : call;
+        }
+        function _inherits(subClass, superClass) {
+            if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = void 0;
+        var _extends = Object.assign || function(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
+            }
+            return target;
+        }, _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(5), _classnames = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(8)), _classnames2 = _interopRequireDefault(_classnames), _calculateSizeAndPositionDataAndUpdateScrollOffset = __webpack_require__(40), _calculateSizeAndPositionDataAndUpdateScrollOffset2 = _interopRequireDefault(_calculateSizeAndPositionDataAndUpdateScrollOffset), _ScalingCellSizeAndPositionManager = __webpack_require__(39), _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(_ScalingCellSizeAndPositionManager), _createCallbackMemoizer = __webpack_require__(44), _createCallbackMemoizer2 = _interopRequireDefault(_createCallbackMemoizer), _defaultOverscanIndicesGetter = __webpack_require__(14), _defaultOverscanIndicesGetter2 = _interopRequireDefault(_defaultOverscanIndicesGetter), _updateScrollIndexHelper = __webpack_require__(41), _updateScrollIndexHelper2 = _interopRequireDefault(_updateScrollIndexHelper), _defaultCellRangeRenderer = __webpack_require__(13), _defaultCellRangeRenderer2 = _interopRequireDefault(_defaultCellRangeRenderer), _scrollbarSize = __webpack_require__(28), _scrollbarSize2 = _interopRequireDefault(_scrollbarSize), DEFAULT_SCROLLING_RESET_TIME_INTERVAL = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150, SCROLL_POSITION_CHANGE_REASONS = {
+            OBSERVED: "observed",
+            REQUESTED: "requested"
+        }, Grid = function(_PureComponent) {
+            function Grid(props, context) {
+                _classCallCheck(this, Grid);
+                var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props, context));
+                _this.state = {
+                    isScrolling: !1,
+                    scrollDirectionHorizontal: _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD,
+                    scrollDirectionVertical: _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD,
+                    scrollLeft: 0,
+                    scrollTop: 0
+                }, // Invokes onSectionRendered callback only when start/stop row or column indices change
+                _this._onGridRenderedMemoizer = (0, _createCallbackMemoizer2.default)(), _this._onScrollMemoizer = (0, 
+                _createCallbackMemoizer2.default)(!1), // Bind functions to instance so they don't lose context when passed around
+                _this._debounceScrollEndedCallback = _this._debounceScrollEndedCallback.bind(_this), 
+                _this._invokeOnGridRenderedHelper = _this._invokeOnGridRenderedHelper.bind(_this), 
+                _this._onScroll = _this._onScroll.bind(_this), _this._setScrollingContainerRef = _this._setScrollingContainerRef.bind(_this), 
+                _this._columnWidthGetter = _this._wrapSizeGetter(props.columnWidth), _this._rowHeightGetter = _this._wrapSizeGetter(props.rowHeight), 
+                _this._deferredInvalidateColumnIndex = null, _this._deferredInvalidateRowIndex = null, 
+                _this._recomputeScrollLeftFlag = !1, _this._recomputeScrollTopFlag = !1;
+                var deferredMeasurementCache = props.deferredMeasurementCache, deferredMode = "undefined" != typeof deferredMeasurementCache;
+                // See defaultCellRangeRenderer() for more information on the usage of these caches
+                return _this._columnSizeAndPositionManager = new _ScalingCellSizeAndPositionManager2.default({
+                    batchAllCells: deferredMode && !deferredMeasurementCache.hasFixedHeight(),
+                    cellCount: props.columnCount,
+                    cellSizeGetter: function(params) {
+                        return _this._columnWidthGetter(params);
+                    },
+                    estimatedCellSize: _this._getEstimatedColumnSize(props)
+                }), _this._rowSizeAndPositionManager = new _ScalingCellSizeAndPositionManager2.default({
+                    batchAllCells: deferredMode && !deferredMeasurementCache.hasFixedWidth(),
+                    cellCount: props.rowCount,
+                    cellSizeGetter: function(params) {
+                        return _this._rowHeightGetter(params);
+                    },
+                    estimatedCellSize: _this._getEstimatedRowSize(props)
+                }), _this._cellCache = {}, _this._styleCache = {}, _this;
+            }
+            /**
+	   * Gets offsets for a given cell and alignment.
+	   */
+            return _inherits(Grid, _PureComponent), _createClass(Grid, [ {
+                key: "getOffsetForCell",
+                value: function() {
+                    var _ref = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, _ref$alignment = _ref.alignment, alignment = void 0 === _ref$alignment ? this.props.scrollToAlignment : _ref$alignment, _ref$columnIndex = _ref.columnIndex, columnIndex = void 0 === _ref$columnIndex ? this.props.scrollToColumn : _ref$columnIndex, _ref$rowIndex = _ref.rowIndex, rowIndex = void 0 === _ref$rowIndex ? this.props.scrollToRow : _ref$rowIndex, offsetProps = _extends({}, this.props, {
+                        scrollToAlignment: alignment,
+                        scrollToColumn: columnIndex,
+                        scrollToRow: rowIndex
+                    });
+                    return {
+                        scrollLeft: this._getCalculatedScrollLeft(offsetProps),
+                        scrollTop: this._getCalculatedScrollTop(offsetProps)
+                    };
+                }
+            }, {
+                key: "invalidateCellSizeAfterRender",
+                value: function(_ref2) {
+                    var columnIndex = _ref2.columnIndex, rowIndex = _ref2.rowIndex;
+                    this._deferredInvalidateColumnIndex = "number" == typeof this._deferredInvalidateColumnIndex ? Math.min(this._deferredInvalidateColumnIndex, columnIndex) : columnIndex, 
+                    this._deferredInvalidateRowIndex = "number" == typeof this._deferredInvalidateRowIndex ? Math.min(this._deferredInvalidateRowIndex, rowIndex) : rowIndex;
+                }
+            }, {
+                key: "measureAllCells",
+                value: function() {
+                    var _props = this.props, columnCount = _props.columnCount, rowCount = _props.rowCount;
+                    this._columnSizeAndPositionManager.getSizeAndPositionOfCell(columnCount - 1), this._rowSizeAndPositionManager.getSizeAndPositionOfCell(rowCount - 1);
+                }
+            }, {
+                key: "recomputeGridSize",
+                value: function() {
+                    var _ref3 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, _ref3$columnIndex = _ref3.columnIndex, columnIndex = void 0 === _ref3$columnIndex ? 0 : _ref3$columnIndex, _ref3$rowIndex = _ref3.rowIndex, rowIndex = void 0 === _ref3$rowIndex ? 0 : _ref3$rowIndex, _props2 = this.props, scrollToColumn = _props2.scrollToColumn, scrollToRow = _props2.scrollToRow;
+                    this._columnSizeAndPositionManager.resetCell(columnIndex), this._rowSizeAndPositionManager.resetCell(rowIndex), 
+                    // Cell sizes may be determined by a function property.
+                    // In this case the cDU handler can't know if they changed.
+                    // Store this flag to let the next cDU pass know it needs to recompute the scroll offset.
+                    this._recomputeScrollLeftFlag = scrollToColumn >= 0 && columnIndex <= scrollToColumn, 
+                    this._recomputeScrollTopFlag = scrollToRow >= 0 && rowIndex <= scrollToRow, // Clear cell cache in case we are scrolling;
+                    // Invalid row heights likely mean invalid cached content as well.
+                    this._cellCache = {}, this._styleCache = {}, this.forceUpdate();
+                }
+            }, {
+                key: "scrollToCell",
+                value: function(_ref4) {
+                    var columnIndex = _ref4.columnIndex, rowIndex = _ref4.rowIndex, columnCount = this.props.columnCount, props = this.props;
+                    // Don't adjust scroll offset for single-column grids (eg List, Table).
+                    // This can cause a funky scroll offset because of the vertical scrollbar width.
+                    columnCount > 1 && this._updateScrollLeftForScrollToColumn(_extends({}, props, {
+                        scrollToColumn: columnIndex
+                    })), this._updateScrollTopForScrollToRow(_extends({}, props, {
+                        scrollToRow: rowIndex
+                    }));
+                }
+            }, {
+                key: "scrollToPosition",
+                value: function() {
+                    var _ref5 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, scrollLeft = _ref5.scrollLeft, scrollTop = _ref5.scrollTop;
+                    this._setScrollPosition({
+                        scrollLeft: scrollLeft,
+                        scrollTop: scrollTop
+                    });
+                }
+            }, {
+                key: "componentDidMount",
+                value: function() {
+                    var _props3 = this.props, getScrollbarSize = _props3.getScrollbarSize, scrollLeft = _props3.scrollLeft, scrollToColumn = _props3.scrollToColumn, scrollTop = _props3.scrollTop, scrollToRow = _props3.scrollToRow;
+                    // If cell sizes have been invalidated (eg we are using CellMeasurer) then reset cached positions.
+                    // We must do this at the start of the method as we may calculate and update scroll position below.
+                    this._handleInvalidatedGridSize(), // If this component was first rendered server-side, scrollbar size will be undefined.
+                    // In that event we need to remeasure.
+                    this._scrollbarSizeMeasured || (this._scrollbarSize = getScrollbarSize(), this._scrollbarSizeMeasured = !0, 
+                    this.setState({})), (scrollLeft >= 0 || scrollTop >= 0) && this._setScrollPosition({
+                        scrollLeft: scrollLeft,
+                        scrollTop: scrollTop
+                    }), (scrollToColumn >= 0 || scrollToRow >= 0) && (this._updateScrollLeftForScrollToColumn(), 
+                    this._updateScrollTopForScrollToRow()), // Update onRowsRendered callback
+                    this._invokeOnGridRenderedHelper(), // Initialize onScroll callback
+                    this._invokeOnScrollMemoizer({
+                        scrollLeft: scrollLeft || 0,
+                        scrollTop: scrollTop || 0,
+                        totalColumnsWidth: this._columnSizeAndPositionManager.getTotalSize(),
+                        totalRowsHeight: this._rowSizeAndPositionManager.getTotalSize()
+                    });
+                }
+            }, {
+                key: "componentDidUpdate",
+                value: function(prevProps, prevState) {
+                    var _this2 = this, _props4 = this.props, autoHeight = _props4.autoHeight, autoWidth = _props4.autoWidth, columnCount = _props4.columnCount, height = _props4.height, rowCount = _props4.rowCount, scrollToAlignment = _props4.scrollToAlignment, scrollToColumn = _props4.scrollToColumn, scrollToRow = _props4.scrollToRow, width = _props4.width, _state = this.state, scrollLeft = _state.scrollLeft, scrollPositionChangeReason = _state.scrollPositionChangeReason, scrollTop = _state.scrollTop;
+                    // If cell sizes have been invalidated (eg we are using CellMeasurer) then reset cached positions.
+                    // We must do this at the start of the method as we may calculate and update scroll position below.
+                    this._handleInvalidatedGridSize();
+                    // Handle edge case where column or row count has only just increased over 0.
+                    // In this case we may have to restore a previously-specified scroll offset.
+                    // For more info see bvaughn/react-virtualized/issues/218
+                    var columnOrRowCountJustIncreasedFromZero = columnCount > 0 && 0 === prevProps.columnCount || rowCount > 0 && 0 === prevProps.rowCount;
+                    // Changes to :scrollLeft or :scrollTop should also notify :onScroll listeners
+                    if (// Make sure requested changes to :scrollLeft or :scrollTop get applied.
+                    // Assigning to scrollLeft/scrollTop tells the browser to interrupt any running scroll animations,
+                    // And to discard any pending async changes to the scroll position that may have happened in the meantime (e.g. on a separate scrolling thread).
+                    // So we only set these when we require an adjustment of the scroll position.
+                    // See issue #2 for more information.
+                    scrollPositionChangeReason === SCROLL_POSITION_CHANGE_REASONS.REQUESTED && (// @TRICKY :autoHeight and :autoWidth properties instructs Grid to leave :scrollTop and :scrollLeft management to an external HOC (eg WindowScroller).
+                    // In this case we should avoid checking scrollingContainer.scrollTop and scrollingContainer.scrollLeft since it forces layout/flow.
+                    !autoWidth && scrollLeft >= 0 && (scrollLeft !== prevState.scrollLeft && scrollLeft !== this._scrollingContainer.scrollLeft || columnOrRowCountJustIncreasedFromZero) && (this._scrollingContainer.scrollLeft = scrollLeft), 
+                    !autoHeight && scrollTop >= 0 && (scrollTop !== prevState.scrollTop && scrollTop !== this._scrollingContainer.scrollTop || columnOrRowCountJustIncreasedFromZero) && (this._scrollingContainer.scrollTop = scrollTop)), 
+                    // Update scroll offsets if the current :scrollToColumn or :scrollToRow values requires it
+                    // @TODO Do we also need this check or can the one in componentWillUpdate() suffice?
+                    this._recomputeScrollLeftFlag ? (this._recomputeScrollLeftFlag = !1, this._updateScrollLeftForScrollToColumn(this.props)) : (0, 
+                    _updateScrollIndexHelper2.default)({
+                        cellSizeAndPositionManager: this._columnSizeAndPositionManager,
+                        previousCellsCount: prevProps.columnCount,
+                        previousCellSize: prevProps.columnWidth,
+                        previousScrollToAlignment: prevProps.scrollToAlignment,
+                        previousScrollToIndex: prevProps.scrollToColumn,
+                        previousSize: prevProps.width,
+                        scrollOffset: scrollLeft,
+                        scrollToAlignment: scrollToAlignment,
+                        scrollToIndex: scrollToColumn,
+                        size: width,
+                        updateScrollIndexCallback: function(scrollToColumn) {
+                            return _this2._updateScrollLeftForScrollToColumn(_this2.props);
+                        }
+                    }), this._recomputeScrollTopFlag ? (this._recomputeScrollTopFlag = !1, this._updateScrollTopForScrollToRow(this.props)) : (0, 
+                    _updateScrollIndexHelper2.default)({
+                        cellSizeAndPositionManager: this._rowSizeAndPositionManager,
+                        previousCellsCount: prevProps.rowCount,
+                        previousCellSize: prevProps.rowHeight,
+                        previousScrollToAlignment: prevProps.scrollToAlignment,
+                        previousScrollToIndex: prevProps.scrollToRow,
+                        previousSize: prevProps.height,
+                        scrollOffset: scrollTop,
+                        scrollToAlignment: scrollToAlignment,
+                        scrollToIndex: scrollToRow,
+                        size: height,
+                        updateScrollIndexCallback: function(scrollToRow) {
+                            return _this2._updateScrollTopForScrollToRow(_this2.props);
+                        }
+                    }), // Update onRowsRendered callback if start/stop indices have changed
+                    this._invokeOnGridRenderedHelper(), scrollLeft !== prevState.scrollLeft || scrollTop !== prevState.scrollTop) {
+                        var totalRowsHeight = this._rowSizeAndPositionManager.getTotalSize(), totalColumnsWidth = this._columnSizeAndPositionManager.getTotalSize();
+                        this._invokeOnScrollMemoizer({
+                            scrollLeft: scrollLeft,
+                            scrollTop: scrollTop,
+                            totalColumnsWidth: totalColumnsWidth,
+                            totalRowsHeight: totalRowsHeight
+                        });
+                    }
+                }
+            }, {
+                key: "componentWillMount",
+                value: function() {
+                    var getScrollbarSize = this.props.getScrollbarSize;
+                    // If this component is being rendered server-side, getScrollbarSize() will return undefined.
+                    // We handle this case in componentDidMount()
+                    this._scrollbarSize = getScrollbarSize(), void 0 === this._scrollbarSize ? (this._scrollbarSizeMeasured = !1, 
+                    this._scrollbarSize = 0) : this._scrollbarSizeMeasured = !0, this._calculateChildrenToRender();
+                }
+            }, {
+                key: "componentWillUnmount",
+                value: function() {
+                    this._disablePointerEventsTimeoutId && clearTimeout(this._disablePointerEventsTimeoutId);
+                }
+            }, {
+                key: "componentWillReceiveProps",
+                value: function(nextProps) {
+                    var _this3 = this, _state2 = this.state, scrollLeft = _state2.scrollLeft, scrollTop = _state2.scrollTop;
+                    if (0 === nextProps.columnCount && 0 !== scrollLeft || 0 === nextProps.rowCount && 0 !== scrollTop) this._setScrollPosition({
+                        scrollLeft: 0,
+                        scrollTop: 0
+                    }); else if (nextProps.scrollLeft !== this.props.scrollLeft || nextProps.scrollTop !== this.props.scrollTop) {
+                        var newState = {};
+                        null != nextProps.scrollLeft && (newState.scrollLeft = nextProps.scrollLeft), null != nextProps.scrollTop && (newState.scrollTop = nextProps.scrollTop), 
+                        this._setScrollPosition(newState);
+                    }
+                    nextProps.columnWidth === this.props.columnWidth && nextProps.rowHeight === this.props.rowHeight || (this._styleCache = {}), 
+                    this._columnWidthGetter = this._wrapSizeGetter(nextProps.columnWidth), this._rowHeightGetter = this._wrapSizeGetter(nextProps.rowHeight), 
+                    this._columnSizeAndPositionManager.configure({
+                        cellCount: nextProps.columnCount,
+                        estimatedCellSize: this._getEstimatedColumnSize(nextProps)
+                    }), this._rowSizeAndPositionManager.configure({
+                        cellCount: nextProps.rowCount,
+                        estimatedCellSize: this._getEstimatedRowSize(nextProps)
+                    });
+                    var _props5 = this.props, columnCount = _props5.columnCount, rowCount = _props5.rowCount;
+                    // Special case when either cols or rows were 0
+                    // This would prevent any cells from rendering
+                    // So we need to reset row scroll if cols changed from 0 (and vice versa)
+                    0 !== columnCount && 0 !== rowCount || (columnCount = 0, rowCount = 0), // Update scroll offsets if the size or number of cells have changed, invalidating the previous value
+                    (0, _calculateSizeAndPositionDataAndUpdateScrollOffset2.default)({
+                        cellCount: columnCount,
+                        cellSize: this.props.columnWidth,
+                        computeMetadataCallback: function() {
+                            return _this3._columnSizeAndPositionManager.resetCell(0);
+                        },
+                        computeMetadataCallbackProps: nextProps,
+                        nextCellsCount: nextProps.columnCount,
+                        nextCellSize: nextProps.columnWidth,
+                        nextScrollToIndex: nextProps.scrollToColumn,
+                        scrollToIndex: this.props.scrollToColumn,
+                        updateScrollOffsetForScrollToIndex: function() {
+                            return _this3._updateScrollLeftForScrollToColumn(nextProps, _this3.state);
+                        }
+                    }), (0, _calculateSizeAndPositionDataAndUpdateScrollOffset2.default)({
+                        cellCount: rowCount,
+                        cellSize: this.props.rowHeight,
+                        computeMetadataCallback: function() {
+                            return _this3._rowSizeAndPositionManager.resetCell(0);
+                        },
+                        computeMetadataCallbackProps: nextProps,
+                        nextCellsCount: nextProps.rowCount,
+                        nextCellSize: nextProps.rowHeight,
+                        nextScrollToIndex: nextProps.scrollToRow,
+                        scrollToIndex: this.props.scrollToRow,
+                        updateScrollOffsetForScrollToIndex: function() {
+                            return _this3._updateScrollTopForScrollToRow(nextProps, _this3.state);
+                        }
+                    });
+                }
+            }, {
+                key: "componentWillUpdate",
+                value: function(nextProps, nextState) {
+                    this._calculateChildrenToRender(nextProps, nextState);
+                }
+            }, {
+                key: "render",
+                value: function() {
+                    var _props6 = this.props, autoContainerWidth = _props6.autoContainerWidth, autoHeight = _props6.autoHeight, autoWidth = _props6.autoWidth, className = _props6.className, containerStyle = _props6.containerStyle, height = _props6.height, id = _props6.id, noContentRenderer = _props6.noContentRenderer, role = _props6.role, style = _props6.style, tabIndex = _props6.tabIndex, width = _props6.width, isScrolling = this._isScrolling(), gridStyle = {
+                        boxSizing: "border-box",
+                        direction: "ltr",
+                        height: autoHeight ? "auto" : height,
+                        position: "relative",
+                        width: autoWidth ? "auto" : width,
+                        WebkitOverflowScrolling: "touch",
+                        willChange: "transform"
+                    }, totalColumnsWidth = this._columnSizeAndPositionManager.getTotalSize(), totalRowsHeight = this._rowSizeAndPositionManager.getTotalSize(), verticalScrollBarSize = totalRowsHeight > height ? this._scrollbarSize : 0, horizontalScrollBarSize = totalColumnsWidth > width ? this._scrollbarSize : 0;
+                    // Also explicitly init styles to 'auto' if scrollbars are required.
+                    // This works around an obscure edge case where external CSS styles have not yet been loaded,
+                    // But an initial scroll index of offset is set as an external prop.
+                    // Without this style, Grid would render the correct range of cells but would NOT update its internal offset.
+                    // This was originally reported via clauderic/react-infinite-calendar/issues/23
+                    gridStyle.overflowX = totalColumnsWidth + verticalScrollBarSize <= width ? "hidden" : "auto", 
+                    gridStyle.overflowY = totalRowsHeight + horizontalScrollBarSize <= height ? "hidden" : "auto";
+                    var childrenToDisplay = this._childrenToDisplay, showNoContentRenderer = 0 === childrenToDisplay.length && height > 0 && width > 0;
+                    return _react2.default.createElement("div", {
+                        ref: this._setScrollingContainerRef,
+                        "aria-label": this.props["aria-label"],
+                        className: (0, _classnames2.default)("ReactVirtualized__Grid", className),
+                        id: id,
+                        onScroll: this._onScroll,
+                        role: role,
+                        style: _extends({}, gridStyle, style),
+                        tabIndex: tabIndex
+                    }, childrenToDisplay.length > 0 && _react2.default.createElement("div", {
+                        className: "ReactVirtualized__Grid__innerScrollContainer",
+                        style: _extends({
+                            width: autoContainerWidth ? "auto" : totalColumnsWidth,
+                            height: totalRowsHeight,
+                            maxWidth: totalColumnsWidth,
+                            maxHeight: totalRowsHeight,
+                            overflow: "hidden",
+                            pointerEvents: isScrolling ? "none" : "",
+                            position: "relative"
+                        }, containerStyle)
+                    }, childrenToDisplay), showNoContentRenderer && noContentRenderer());
+                }
+            }, {
+                key: "_calculateChildrenToRender",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, cellRenderer = props.cellRenderer, cellRangeRenderer = props.cellRangeRenderer, columnCount = props.columnCount, deferredMeasurementCache = props.deferredMeasurementCache, height = props.height, overscanColumnCount = props.overscanColumnCount, overscanIndicesGetter = props.overscanIndicesGetter, overscanRowCount = props.overscanRowCount, rowCount = props.rowCount, width = props.width, scrollDirectionHorizontal = state.scrollDirectionHorizontal, scrollDirectionVertical = state.scrollDirectionVertical, scrollLeft = state.scrollLeft, scrollTop = state.scrollTop, isScrolling = this._isScrolling(props, state);
+                    // Render only enough columns and rows to cover the visible area of the grid.
+                    if (this._childrenToDisplay = [], height > 0 && width > 0) {
+                        var visibleColumnIndices = this._columnSizeAndPositionManager.getVisibleCellRange({
+                            containerSize: width,
+                            offset: scrollLeft
+                        }), visibleRowIndices = this._rowSizeAndPositionManager.getVisibleCellRange({
+                            containerSize: height,
+                            offset: scrollTop
+                        }), horizontalOffsetAdjustment = this._columnSizeAndPositionManager.getOffsetAdjustment({
+                            containerSize: width,
+                            offset: scrollLeft
+                        }), verticalOffsetAdjustment = this._rowSizeAndPositionManager.getOffsetAdjustment({
+                            containerSize: height,
+                            offset: scrollTop
+                        });
+                        // Store for _invokeOnGridRenderedHelper()
+                        this._renderedColumnStartIndex = visibleColumnIndices.start, this._renderedColumnStopIndex = visibleColumnIndices.stop, 
+                        this._renderedRowStartIndex = visibleRowIndices.start, this._renderedRowStopIndex = visibleRowIndices.stop;
+                        var overscanColumnIndices = overscanIndicesGetter({
+                            direction: "horizontal",
+                            cellCount: columnCount,
+                            overscanCellsCount: overscanColumnCount,
+                            scrollDirection: scrollDirectionHorizontal,
+                            startIndex: this._renderedColumnStartIndex,
+                            stopIndex: this._renderedColumnStopIndex
+                        }), overscanRowIndices = overscanIndicesGetter({
+                            direction: "vertical",
+                            cellCount: rowCount,
+                            overscanCellsCount: overscanRowCount,
+                            scrollDirection: scrollDirectionVertical,
+                            startIndex: this._renderedRowStartIndex,
+                            stopIndex: this._renderedRowStopIndex
+                        });
+                        // Store for _invokeOnGridRenderedHelper()
+                        this._columnStartIndex = overscanColumnIndices.overscanStartIndex, this._columnStopIndex = overscanColumnIndices.overscanStopIndex, 
+                        this._rowStartIndex = overscanRowIndices.overscanStartIndex, this._rowStopIndex = overscanRowIndices.overscanStopIndex, 
+                        this._childrenToDisplay = cellRangeRenderer({
+                            cellCache: this._cellCache,
+                            cellRenderer: cellRenderer,
+                            columnSizeAndPositionManager: this._columnSizeAndPositionManager,
+                            columnStartIndex: this._columnStartIndex,
+                            columnStopIndex: this._columnStopIndex,
+                            deferredMeasurementCache: deferredMeasurementCache,
+                            horizontalOffsetAdjustment: horizontalOffsetAdjustment,
+                            isScrolling: isScrolling,
+                            parent: this,
+                            rowSizeAndPositionManager: this._rowSizeAndPositionManager,
+                            rowStartIndex: this._rowStartIndex,
+                            rowStopIndex: this._rowStopIndex,
+                            scrollLeft: scrollLeft,
+                            scrollTop: scrollTop,
+                            styleCache: this._styleCache,
+                            verticalOffsetAdjustment: verticalOffsetAdjustment,
+                            visibleColumnIndices: visibleColumnIndices,
+                            visibleRowIndices: visibleRowIndices
+                        });
+                    }
+                }
+            }, {
+                key: "_debounceScrollEnded",
+                value: function() {
+                    var scrollingResetTimeInterval = this.props.scrollingResetTimeInterval;
+                    this._disablePointerEventsTimeoutId && clearTimeout(this._disablePointerEventsTimeoutId), 
+                    this._disablePointerEventsTimeoutId = setTimeout(this._debounceScrollEndedCallback, scrollingResetTimeInterval);
+                }
+            }, {
+                key: "_debounceScrollEndedCallback",
+                value: function() {
+                    this._disablePointerEventsTimeoutId = null;
+                    var styleCache = this._styleCache;
+                    // Reset cell and style caches once scrolling stops.
+                    // This makes Grid simpler to use (since cells commonly change).
+                    // And it keeps the caches from growing too large.
+                    // Performance is most sensitive when a user is scrolling.
+                    this._cellCache = {}, this._styleCache = {};
+                    // Copy over the visible cell styles so avoid unnecessary re-render.
+                    for (var rowIndex = this._rowStartIndex; rowIndex <= this._rowStopIndex; rowIndex++) for (var columnIndex = this._columnStartIndex; columnIndex <= this._columnStopIndex; columnIndex++) {
+                        var key = rowIndex + "-" + columnIndex;
+                        this._styleCache[key] = styleCache[key];
+                    }
+                    this.setState({
+                        isScrolling: !1
+                    });
+                }
+            }, {
+                key: "_getEstimatedColumnSize",
+                value: function(props) {
+                    return "number" == typeof props.columnWidth ? props.columnWidth : props.estimatedColumnSize;
+                }
+            }, {
+                key: "_getEstimatedRowSize",
+                value: function(props) {
+                    return "number" == typeof props.rowHeight ? props.rowHeight : props.estimatedRowSize;
+                }
+            }, {
+                key: "_handleInvalidatedGridSize",
+                value: function() {
+                    if ("number" == typeof this._deferredInvalidateColumnIndex) {
+                        var columnIndex = this._deferredInvalidateColumnIndex, rowIndex = this._deferredInvalidateRowIndex;
+                        this._deferredInvalidateColumnIndex = null, this._deferredInvalidateRowIndex = null, 
+                        this.recomputeGridSize({
+                            columnIndex: columnIndex,
+                            rowIndex: rowIndex
+                        });
+                    }
+                }
+            }, {
+                key: "_invokeOnGridRenderedHelper",
+                value: function() {
+                    var onSectionRendered = this.props.onSectionRendered;
+                    this._onGridRenderedMemoizer({
+                        callback: onSectionRendered,
+                        indices: {
+                            columnOverscanStartIndex: this._columnStartIndex,
+                            columnOverscanStopIndex: this._columnStopIndex,
+                            columnStartIndex: this._renderedColumnStartIndex,
+                            columnStopIndex: this._renderedColumnStopIndex,
+                            rowOverscanStartIndex: this._rowStartIndex,
+                            rowOverscanStopIndex: this._rowStopIndex,
+                            rowStartIndex: this._renderedRowStartIndex,
+                            rowStopIndex: this._renderedRowStopIndex
+                        }
+                    });
+                }
+            }, {
+                key: "_invokeOnScrollMemoizer",
+                value: function(_ref6) {
+                    var _this4 = this, scrollLeft = _ref6.scrollLeft, scrollTop = _ref6.scrollTop, totalColumnsWidth = _ref6.totalColumnsWidth, totalRowsHeight = _ref6.totalRowsHeight;
+                    this._onScrollMemoizer({
+                        callback: function(_ref7) {
+                            var scrollLeft = _ref7.scrollLeft, scrollTop = _ref7.scrollTop, _props7 = _this4.props, height = _props7.height, onScroll = _props7.onScroll, width = _props7.width;
+                            onScroll({
+                                clientHeight: height,
+                                clientWidth: width,
+                                scrollHeight: totalRowsHeight,
+                                scrollLeft: scrollLeft,
+                                scrollTop: scrollTop,
+                                scrollWidth: totalColumnsWidth
+                            });
+                        },
+                        indices: {
+                            scrollLeft: scrollLeft,
+                            scrollTop: scrollTop
+                        }
+                    });
+                }
+            }, {
+                key: "_isScrolling",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state;
+                    // If isScrolling is defined in props, use it to override the value in state
+                    // This is a performance optimization for WindowScroller + Grid
+                    return Object.hasOwnProperty.call(props, "isScrolling") ? props.isScrolling : state.isScrolling;
+                }
+            }, {
+                key: "_setScrollingContainerRef",
+                value: function(ref) {
+                    this._scrollingContainer = ref;
+                }
+            }, {
+                key: "_setScrollPosition",
+                value: function(_ref8) {
+                    var scrollLeft = _ref8.scrollLeft, scrollTop = _ref8.scrollTop, newState = {
+                        scrollPositionChangeReason: SCROLL_POSITION_CHANGE_REASONS.REQUESTED
+                    };
+                    scrollLeft >= 0 && (newState.scrollDirectionHorizontal = scrollLeft > this.state.scrollLeft ? _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD : _defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD, 
+                    newState.scrollLeft = scrollLeft), scrollTop >= 0 && (newState.scrollDirectionVertical = scrollTop > this.state.scrollTop ? _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD : _defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD, 
+                    newState.scrollTop = scrollTop), (scrollLeft >= 0 && scrollLeft !== this.state.scrollLeft || scrollTop >= 0 && scrollTop !== this.state.scrollTop) && this.setState(newState);
+                }
+            }, {
+                key: "_wrapPropertyGetter",
+                value: function(value) {
+                    return "function" == typeof value ? value : function() {
+                        return value;
+                    };
+                }
+            }, {
+                key: "_wrapSizeGetter",
+                value: function(size) {
+                    return this._wrapPropertyGetter(size);
+                }
+            }, {
+                key: "_getCalculatedScrollLeft",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, columnCount = props.columnCount, height = props.height, scrollToAlignment = props.scrollToAlignment, scrollToColumn = props.scrollToColumn, width = props.width, scrollLeft = state.scrollLeft;
+                    if (scrollToColumn >= 0 && columnCount > 0) {
+                        var targetIndex = Math.max(0, Math.min(columnCount - 1, scrollToColumn)), totalRowsHeight = this._rowSizeAndPositionManager.getTotalSize(), scrollBarSize = totalRowsHeight > height ? this._scrollbarSize : 0;
+                        return this._columnSizeAndPositionManager.getUpdatedOffsetForIndex({
+                            align: scrollToAlignment,
+                            containerSize: width - scrollBarSize,
+                            currentOffset: scrollLeft,
+                            targetIndex: targetIndex
+                        });
+                    }
+                }
+            }, {
+                key: "_updateScrollLeftForScrollToColumn",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, scrollLeft = state.scrollLeft, calculatedScrollLeft = this._getCalculatedScrollLeft(props, state);
+                    calculatedScrollLeft >= 0 && scrollLeft !== calculatedScrollLeft && this._setScrollPosition({
+                        scrollLeft: calculatedScrollLeft
+                    });
+                }
+            }, {
+                key: "_getCalculatedScrollTop",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, height = props.height, rowCount = props.rowCount, scrollToAlignment = props.scrollToAlignment, scrollToRow = props.scrollToRow, width = props.width, scrollTop = state.scrollTop;
+                    if (scrollToRow >= 0 && rowCount > 0) {
+                        var targetIndex = Math.max(0, Math.min(rowCount - 1, scrollToRow)), totalColumnsWidth = this._columnSizeAndPositionManager.getTotalSize(), scrollBarSize = totalColumnsWidth > width ? this._scrollbarSize : 0;
+                        return this._rowSizeAndPositionManager.getUpdatedOffsetForIndex({
+                            align: scrollToAlignment,
+                            containerSize: height - scrollBarSize,
+                            currentOffset: scrollTop,
+                            targetIndex: targetIndex
+                        });
+                    }
+                }
+            }, {
+                key: "_updateScrollTopForScrollToRow",
+                value: function() {
+                    var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, scrollTop = state.scrollTop, calculatedScrollTop = this._getCalculatedScrollTop(props, state);
+                    calculatedScrollTop >= 0 && scrollTop !== calculatedScrollTop && this._setScrollPosition({
+                        scrollTop: calculatedScrollTop
+                    });
+                }
+            }, {
+                key: "_onScroll",
+                value: function(event) {
+                    // In certain edge-cases React dispatches an onScroll event with an invalid target.scrollLeft / target.scrollTop.
+                    // This invalid event can be detected by comparing event.target to this component's scrollable DOM element.
+                    // See issue #404 for more information.
+                    if (event.target === this._scrollingContainer && !(event.target.scrollTop < 0)) // On iOS, we can arrive at negative offsets by swiping past the start.
+                    // To prevent flicker here, we make playing in the negative offset zone cause nothing to happen.
+                    {
+                        // Prevent pointer events from interrupting a smooth scroll
+                        this._debounceScrollEnded();
+                        var _props8 = this.props, autoHeight = _props8.autoHeight, autoWidth = _props8.autoWidth, height = _props8.height, width = _props8.width, _event$target = event.target, eventScrollLeft = _event$target.scrollLeft, eventScrollTop = _event$target.scrollTop, scrollbarSize = this._scrollbarSize, totalRowsHeight = this._rowSizeAndPositionManager.getTotalSize(), totalColumnsWidth = this._columnSizeAndPositionManager.getTotalSize(), scrollLeft = Math.min(Math.max(0, totalColumnsWidth - width + scrollbarSize), eventScrollLeft), scrollTop = Math.min(Math.max(0, totalRowsHeight - height + scrollbarSize), eventScrollTop);
+                        // Certain devices (like Apple touchpad) rapid-fire duplicate events.
+                        // Don't force a re-render if this is the case.
+                        // The mouse may move faster then the animation frame does.
+                        // Use requestAnimationFrame to avoid over-updating.
+                        if (this.state.scrollLeft !== scrollLeft || this.state.scrollTop !== scrollTop) {
+                            // Track scrolling direction so we can more efficiently overscan rows to reduce empty space around the edges while scrolling.
+                            // Don't change direction for an axis unless scroll offset has changed.
+                            var scrollDirectionHorizontal = scrollLeft !== this.state.scrollLeft ? scrollLeft > this.state.scrollLeft ? _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD : _defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD : this.state.scrollDirectionHorizontal, scrollDirectionVertical = scrollTop !== this.state.scrollTop ? scrollTop > this.state.scrollTop ? _defaultOverscanIndicesGetter.SCROLL_DIRECTION_FORWARD : _defaultOverscanIndicesGetter.SCROLL_DIRECTION_BACKWARD : this.state.scrollDirectionVertical, newState = {
+                                isScrolling: !0,
+                                scrollDirectionHorizontal: scrollDirectionHorizontal,
+                                scrollDirectionVertical: scrollDirectionVertical,
+                                scrollPositionChangeReason: SCROLL_POSITION_CHANGE_REASONS.OBSERVED
+                            };
+                            autoHeight || (newState.scrollTop = scrollTop), autoWidth || (newState.scrollLeft = scrollLeft), 
+                            this.setState(newState);
+                        }
+                        this._invokeOnScrollMemoizer({
+                            scrollLeft: scrollLeft,
+                            scrollTop: scrollTop,
+                            totalColumnsWidth: totalColumnsWidth,
+                            totalRowsHeight: totalRowsHeight
+                        });
+                    }
+                }
+            } ]), Grid;
+        }(_react.PureComponent);
+        Grid.defaultProps = {
+            "aria-label": "grid",
+            cellRangeRenderer: _defaultCellRangeRenderer2.default,
+            estimatedColumnSize: 100,
+            estimatedRowSize: 30,
+            getScrollbarSize: _scrollbarSize2.default,
+            noContentRenderer: function() {
+                return null;
+            },
+            onScroll: function() {
+                return null;
+            },
+            onSectionRendered: function() {
+                return null;
+            },
+            overscanColumnCount: 0,
+            overscanIndicesGetter: _defaultOverscanIndicesGetter2.default,
+            overscanRowCount: 10,
+            role: "grid",
+            scrollingResetTimeInterval: DEFAULT_SCROLLING_RESET_TIME_INTERVAL,
+            scrollToAlignment: "auto",
+            scrollToColumn: -1,
+            scrollToRow: -1,
+            style: {},
+            tabIndex: 0
+        }, exports.default = Grid;
+    }, /* 36 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Calculates the number of cells to overscan before and after a specified range.
+	 * This function ensures that overscanning doesn't exceed the available cells.
+	 *
+	 * @param direction One of SCROLL_DIRECTION_HORIZONTAL or SCROLL_DIRECTION_VERTICAL
+	 * @param cellCount Number of rows or columns in the current axis
+	 * @param scrollDirection One of SCROLL_DIRECTION_BACKWARD or SCROLL_DIRECTION_FORWARD
+	 * @param overscanCellsCount Maximum number of cells to over-render in either direction
+	 * @param startIndex Begin of range of visible cells
+	 * @param stopIndex End of range of visible cells
+	 */
+        function defaultOverscanIndicesGetter(_ref) {
+            var cellCount = (_ref.direction, _ref.cellCount), overscanCellsCount = _ref.overscanCellsCount, scrollDirection = _ref.scrollDirection, startIndex = _ref.startIndex, stopIndex = _ref.stopIndex, overscanStartIndex = void 0, overscanStopIndex = void 0;
+            switch (// Make sure we render at least 1 cell extra before and after (except near boundaries)
+            // This is necessary in order to support keyboard navigation (TAB/SHIFT+TAB) in some cases
+            // For more info see issues #625
+            overscanCellsCount = Math.max(1, overscanCellsCount), scrollDirection) {
+              case SCROLL_DIRECTION_FORWARD:
+                overscanStartIndex = startIndex - 1, overscanStopIndex = stopIndex + overscanCellsCount;
+                break;
+
+              case SCROLL_DIRECTION_BACKWARD:
+                overscanStartIndex = startIndex - overscanCellsCount, overscanStopIndex = stopIndex + 1;
+            }
+            return {
+                overscanStartIndex: Math.max(0, overscanStartIndex),
+                overscanStopIndex: Math.min(cellCount - 1, overscanStopIndex)
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = defaultOverscanIndicesGetter;
+        var SCROLL_DIRECTION_BACKWARD = exports.SCROLL_DIRECTION_BACKWARD = -1, SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_FORWARD = 1;
+        exports.SCROLL_DIRECTION_HORIZONTAL = "horizontal", exports.SCROLL_DIRECTION_VERTICAL = "vertical";
+    }, /* 37 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.defaultOverscanIndicesGetter = exports.defaultCellRangeRenderer = exports.accessibilityOverscanIndicesGetter = exports.Grid = exports.default = void 0;
+        var _Grid2 = __webpack_require__(35), _Grid3 = _interopRequireDefault(_Grid2), _accessibilityOverscanIndicesGetter2 = __webpack_require__(36), _accessibilityOverscanIndicesGetter3 = _interopRequireDefault(_accessibilityOverscanIndicesGetter2), _defaultCellRangeRenderer2 = __webpack_require__(13), _defaultCellRangeRenderer3 = _interopRequireDefault(_defaultCellRangeRenderer2), _defaultOverscanIndicesGetter2 = __webpack_require__(14), _defaultOverscanIndicesGetter3 = _interopRequireDefault(_defaultOverscanIndicesGetter2);
+        exports.default = _Grid3.default, exports.Grid = _Grid3.default, exports.accessibilityOverscanIndicesGetter = _accessibilityOverscanIndicesGetter3.default, 
+        exports.defaultCellRangeRenderer = _defaultCellRangeRenderer3.default, exports.defaultOverscanIndicesGetter = _defaultOverscanIndicesGetter3.default;
+    }, /* 38 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), CellSizeAndPositionManager = function() {
+            function CellSizeAndPositionManager(_ref) {
+                var _ref$batchAllCells = _ref.batchAllCells, batchAllCells = void 0 !== _ref$batchAllCells && _ref$batchAllCells, cellCount = _ref.cellCount, cellSizeGetter = _ref.cellSizeGetter, estimatedCellSize = _ref.estimatedCellSize;
+                _classCallCheck(this, CellSizeAndPositionManager), this._batchAllCells = batchAllCells, 
+                this._cellSizeGetter = cellSizeGetter, this._cellCount = cellCount, this._estimatedCellSize = estimatedCellSize, 
+                // Cache of size and position data for cells, mapped by cell index.
+                // Note that invalid values may exist in this map so only rely on cells up to this._lastMeasuredIndex
+                this._cellSizeAndPositionData = {}, // Measurements for cells up to this index can be trusted; cells afterward should be estimated.
+                this._lastMeasuredIndex = -1, // Used in deferred mode to track which cells have been queued for measurement.
+                this._lastBatchedIndex = -1;
+            }
+            return _createClass(CellSizeAndPositionManager, [ {
+                key: "areOffsetsAdjusted",
+                value: function() {
+                    return !1;
+                }
+            }, {
+                key: "configure",
+                value: function(_ref2) {
+                    var cellCount = _ref2.cellCount, estimatedCellSize = _ref2.estimatedCellSize;
+                    this._cellCount = cellCount, this._estimatedCellSize = estimatedCellSize;
+                }
+            }, {
+                key: "getCellCount",
+                value: function() {
+                    return this._cellCount;
+                }
+            }, {
+                key: "getEstimatedCellSize",
+                value: function() {
+                    return this._estimatedCellSize;
+                }
+            }, {
+                key: "getLastMeasuredIndex",
+                value: function() {
+                    return this._lastMeasuredIndex;
+                }
+            }, {
+                key: "getOffsetAdjustment",
+                value: function(_ref3) {
+                    _ref3.containerSize, _ref3.offset;
+                    return 0;
+                }
+            }, {
+                key: "getSizeAndPositionOfCell",
+                value: function(index) {
+                    if (index < 0 || index >= this._cellCount) throw Error("Requested index " + index + " is outside of range 0.." + this._cellCount);
+                    if (index > this._lastMeasuredIndex) for (var lastMeasuredCellSizeAndPosition = this.getSizeAndPositionOfLastMeasuredCell(), _offset = lastMeasuredCellSizeAndPosition.offset + lastMeasuredCellSizeAndPosition.size, i = this._lastMeasuredIndex + 1; i <= index; i++) {
+                        var _size = this._cellSizeGetter({
+                            index: i
+                        });
+                        // undefined or NaN probably means a logic error in the size getter.
+                        // null means we're using CellMeasurer and haven't yet measured a given index.
+                        if (void 0 === _size || isNaN(_size)) throw Error("Invalid size returned for cell " + i + " of value " + _size);
+                        null === _size ? (this._cellSizeAndPositionData[i] = {
+                            offset: _offset,
+                            size: 0
+                        }, this._lastBatchedIndex = index) : (this._cellSizeAndPositionData[i] = {
+                            offset: _offset,
+                            size: _size
+                        }, _offset += _size, this._lastMeasuredIndex = index);
+                    }
+                    return this._cellSizeAndPositionData[index];
+                }
+            }, {
+                key: "getSizeAndPositionOfLastMeasuredCell",
+                value: function() {
+                    return this._lastMeasuredIndex >= 0 ? this._cellSizeAndPositionData[this._lastMeasuredIndex] : {
+                        offset: 0,
+                        size: 0
+                    };
+                }
+            }, {
+                key: "getTotalSize",
+                value: function() {
+                    var lastMeasuredCellSizeAndPosition = this.getSizeAndPositionOfLastMeasuredCell();
+                    return lastMeasuredCellSizeAndPosition.offset + lastMeasuredCellSizeAndPosition.size + (this._cellCount - this._lastMeasuredIndex - 1) * this._estimatedCellSize;
+                }
+            }, {
+                key: "getUpdatedOffsetForIndex",
+                value: function(_ref4) {
+                    var _ref4$align = _ref4.align, align = void 0 === _ref4$align ? "auto" : _ref4$align, containerSize = _ref4.containerSize, currentOffset = _ref4.currentOffset, targetIndex = _ref4.targetIndex;
+                    if (containerSize <= 0) return 0;
+                    var datum = this.getSizeAndPositionOfCell(targetIndex), maxOffset = datum.offset, minOffset = maxOffset - containerSize + datum.size, idealOffset = void 0;
+                    switch (align) {
+                      case "start":
+                        idealOffset = maxOffset;
+                        break;
+
+                      case "end":
+                        idealOffset = minOffset;
+                        break;
+
+                      case "center":
+                        idealOffset = maxOffset - (containerSize - datum.size) / 2;
+                        break;
+
+                      default:
+                        idealOffset = Math.max(minOffset, Math.min(maxOffset, currentOffset));
+                    }
+                    var totalSize = this.getTotalSize();
+                    return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
+                }
+            }, {
+                key: "getVisibleCellRange",
+                value: function(params) {
+                    // Advanced use-cases (eg CellMeasurer) require batched measurements to determine accurate sizes.
+                    // eg we can't know a row's height without measuring the height of all columns within that row.
+                    if (this._batchAllCells) return {
+                        start: 0,
+                        stop: this._cellCount - 1
+                    };
+                    var containerSize = params.containerSize, offset = params.offset, totalSize = this.getTotalSize();
+                    if (0 === totalSize) return {};
+                    var maxOffset = offset + containerSize, start = this._findNearestCell(offset), datum = this.getSizeAndPositionOfCell(start);
+                    offset = datum.offset + datum.size;
+                    for (var stop = start; offset < maxOffset && stop < this._cellCount - 1; ) stop++, 
+                    offset += this.getSizeAndPositionOfCell(stop).size;
+                    return {
+                        start: start,
+                        stop: stop
+                    };
+                }
+            }, {
+                key: "resetCell",
+                value: function(index) {
+                    this._lastMeasuredIndex = Math.min(this._lastMeasuredIndex, index - 1);
+                }
+            }, {
+                key: "_binarySearch",
+                value: function(_ref5) {
+                    for (var high = _ref5.high, low = _ref5.low, offset = _ref5.offset, middle = void 0, currentOffset = void 0; low <= high; ) {
+                        if (middle = low + Math.floor((high - low) / 2), currentOffset = this.getSizeAndPositionOfCell(middle).offset, 
+                        currentOffset === offset) return middle;
+                        currentOffset < offset ? low = middle + 1 : currentOffset > offset && (high = middle - 1);
+                    }
+                    if (low > 0) return low - 1;
+                }
+            }, {
+                key: "_exponentialSearch",
+                value: function(_ref6) {
+                    for (var index = _ref6.index, offset = _ref6.offset, interval = 1; index < this._cellCount && this.getSizeAndPositionOfCell(index).offset < offset; ) index += interval, 
+                    interval *= 2;
+                    return this._binarySearch({
+                        high: Math.min(index, this._cellCount - 1),
+                        low: Math.floor(index / 2),
+                        offset: offset
+                    });
+                }
+            }, {
+                key: "_findNearestCell",
+                value: function(offset) {
+                    if (isNaN(offset)) throw Error("Invalid offset " + offset + " specified");
+                    // Our search algorithms find the nearest match at or below the specified offset.
+                    // So make sure the offset is at least 0 or no match will be found.
+                    offset = Math.max(0, offset);
+                    var lastMeasuredCellSizeAndPosition = this.getSizeAndPositionOfLastMeasuredCell(), lastMeasuredIndex = Math.max(0, this._lastMeasuredIndex);
+                    return lastMeasuredCellSizeAndPosition.offset >= offset ? this._binarySearch({
+                        high: lastMeasuredIndex,
+                        low: 0,
+                        offset: offset
+                    }) : this._exponentialSearch({
+                        index: lastMeasuredIndex,
+                        offset: offset
+                    });
+                }
+            } ]), CellSizeAndPositionManager;
+        }();
+        exports.default = CellSizeAndPositionManager;
+    }, /* 39 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function _objectWithoutProperties(obj, keys) {
+            var target = {};
+            for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]);
+            return target;
+        }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.DEFAULT_MAX_SCROLL_SIZE = void 0;
+        var _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), _CellSizeAndPositionManager = __webpack_require__(38), _CellSizeAndPositionManager2 = _interopRequireDefault(_CellSizeAndPositionManager), DEFAULT_MAX_SCROLL_SIZE = exports.DEFAULT_MAX_SCROLL_SIZE = 15e5, ScalingCellSizeAndPositionManager = function() {
+            function ScalingCellSizeAndPositionManager(_ref) {
+                var _ref$maxScrollSize = _ref.maxScrollSize, maxScrollSize = void 0 === _ref$maxScrollSize ? DEFAULT_MAX_SCROLL_SIZE : _ref$maxScrollSize, params = _objectWithoutProperties(_ref, [ "maxScrollSize" ]);
+                _classCallCheck(this, ScalingCellSizeAndPositionManager), // Favor composition over inheritance to simplify IE10 support
+                this._cellSizeAndPositionManager = new _CellSizeAndPositionManager2.default(params), 
+                this._maxScrollSize = maxScrollSize;
+            }
+            return _createClass(ScalingCellSizeAndPositionManager, [ {
+                key: "areOffsetsAdjusted",
+                value: function() {
+                    return this._cellSizeAndPositionManager.getTotalSize() > this._maxScrollSize;
+                }
+            }, {
+                key: "configure",
+                value: function(params) {
+                    this._cellSizeAndPositionManager.configure(params);
+                }
+            }, {
+                key: "getCellCount",
+                value: function() {
+                    return this._cellSizeAndPositionManager.getCellCount();
+                }
+            }, {
+                key: "getEstimatedCellSize",
+                value: function() {
+                    return this._cellSizeAndPositionManager.getEstimatedCellSize();
+                }
+            }, {
+                key: "getLastMeasuredIndex",
+                value: function() {
+                    return this._cellSizeAndPositionManager.getLastMeasuredIndex();
+                }
+            }, {
+                key: "getOffsetAdjustment",
+                value: function(_ref2) {
+                    var containerSize = _ref2.containerSize, offset = _ref2.offset, totalSize = this._cellSizeAndPositionManager.getTotalSize(), safeTotalSize = this.getTotalSize(), offsetPercentage = this._getOffsetPercentage({
+                        containerSize: containerSize,
+                        offset: offset,
+                        totalSize: safeTotalSize
+                    });
+                    return Math.round(offsetPercentage * (safeTotalSize - totalSize));
+                }
+            }, {
+                key: "getSizeAndPositionOfCell",
+                value: function(index) {
+                    return this._cellSizeAndPositionManager.getSizeAndPositionOfCell(index);
+                }
+            }, {
+                key: "getSizeAndPositionOfLastMeasuredCell",
+                value: function() {
+                    return this._cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell();
+                }
+            }, {
+                key: "getTotalSize",
+                value: function() {
+                    return Math.min(this._maxScrollSize, this._cellSizeAndPositionManager.getTotalSize());
+                }
+            }, {
+                key: "getUpdatedOffsetForIndex",
+                value: function(_ref3) {
+                    var _ref3$align = _ref3.align, align = void 0 === _ref3$align ? "auto" : _ref3$align, containerSize = _ref3.containerSize, currentOffset = _ref3.currentOffset, targetIndex = _ref3.targetIndex, totalSize = _ref3.totalSize;
+                    currentOffset = this._safeOffsetToOffset({
+                        containerSize: containerSize,
+                        offset: currentOffset
+                    });
+                    var offset = this._cellSizeAndPositionManager.getUpdatedOffsetForIndex({
+                        align: align,
+                        containerSize: containerSize,
+                        currentOffset: currentOffset,
+                        targetIndex: targetIndex,
+                        totalSize: totalSize
+                    });
+                    return this._offsetToSafeOffset({
+                        containerSize: containerSize,
+                        offset: offset
+                    });
+                }
+            }, {
+                key: "getVisibleCellRange",
+                value: function(_ref4) {
+                    var containerSize = _ref4.containerSize, offset = _ref4.offset;
+                    return offset = this._safeOffsetToOffset({
+                        containerSize: containerSize,
+                        offset: offset
+                    }), this._cellSizeAndPositionManager.getVisibleCellRange({
+                        containerSize: containerSize,
+                        offset: offset
+                    });
+                }
+            }, {
+                key: "resetCell",
+                value: function(index) {
+                    this._cellSizeAndPositionManager.resetCell(index);
+                }
+            }, {
+                key: "_getOffsetPercentage",
+                value: function(_ref5) {
+                    var containerSize = _ref5.containerSize, offset = _ref5.offset, totalSize = _ref5.totalSize;
+                    return totalSize <= containerSize ? 0 : offset / (totalSize - containerSize);
+                }
+            }, {
+                key: "_offsetToSafeOffset",
+                value: function(_ref6) {
+                    var containerSize = _ref6.containerSize, offset = _ref6.offset, totalSize = this._cellSizeAndPositionManager.getTotalSize(), safeTotalSize = this.getTotalSize();
+                    if (totalSize === safeTotalSize) return offset;
+                    var offsetPercentage = this._getOffsetPercentage({
+                        containerSize: containerSize,
+                        offset: offset,
+                        totalSize: totalSize
+                    });
+                    return Math.round(offsetPercentage * (safeTotalSize - containerSize));
+                }
+            }, {
+                key: "_safeOffsetToOffset",
+                value: function(_ref7) {
+                    var containerSize = _ref7.containerSize, offset = _ref7.offset, totalSize = this._cellSizeAndPositionManager.getTotalSize(), safeTotalSize = this.getTotalSize();
+                    if (totalSize === safeTotalSize) return offset;
+                    var offsetPercentage = this._getOffsetPercentage({
+                        containerSize: containerSize,
+                        offset: offset,
+                        totalSize: safeTotalSize
+                    });
+                    return Math.round(offsetPercentage * (totalSize - containerSize));
+                }
+            } ]), ScalingCellSizeAndPositionManager;
+        }();
+        exports.default = ScalingCellSizeAndPositionManager;
+    }, /* 40 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Helper method that determines when to recalculate row or column metadata.
+	 *
+	 * @param cellCount Number of rows or columns in the current axis
+	 * @param cellsSize Width or height of cells for the current axis
+	 * @param computeMetadataCallback Method to invoke if cell metadata should be recalculated
+	 * @param computeMetadataCallbackProps Parameters to pass to :computeMetadataCallback
+	 * @param nextCellsCount Newly updated number of rows or columns in the current axis
+	 * @param nextCellsSize Newly updated width or height of cells for the current axis
+	 * @param nextScrollToIndex Newly updated scroll-to-index
+	 * @param scrollToIndex Scroll-to-index
+	 * @param updateScrollOffsetForScrollToIndex Callback to invoke if the scroll position should be recalculated
+	 */
+        function calculateSizeAndPositionDataAndUpdateScrollOffset(_ref) {
+            var cellCount = _ref.cellCount, cellSize = _ref.cellSize, computeMetadataCallback = _ref.computeMetadataCallback, computeMetadataCallbackProps = _ref.computeMetadataCallbackProps, nextCellsCount = _ref.nextCellsCount, nextCellSize = _ref.nextCellSize, nextScrollToIndex = _ref.nextScrollToIndex, scrollToIndex = _ref.scrollToIndex, updateScrollOffsetForScrollToIndex = _ref.updateScrollOffsetForScrollToIndex;
+            // Don't compare cell sizes if they are functions because inline functions would cause infinite loops.
+            // In that event users should use the manual recompute methods to inform of changes.
+            cellCount === nextCellsCount && ("number" != typeof cellSize && "number" != typeof nextCellSize || cellSize === nextCellSize) || (computeMetadataCallback(computeMetadataCallbackProps), 
+            // Updated cell metadata may have hidden the previous scrolled-to item.
+            // In this case we should also update the scrollTop to ensure it stays visible.
+            scrollToIndex >= 0 && scrollToIndex === nextScrollToIndex && updateScrollOffsetForScrollToIndex());
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = calculateSizeAndPositionDataAndUpdateScrollOffset;
+    }, /* 41 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Helper function that determines when to update scroll offsets to ensure that a scroll-to-index remains visible.
+	 * This function also ensures that the scroll ofset isn't past the last column/row of cells.
+	 *
+	 * @param cellsSize Width or height of cells for the current axis
+	 * @param cellSizeAndPositionManager Manages size and position metadata of cells
+	 * @param previousCellsCount Previous number of rows or columns
+	 * @param previousCellsSize Previous width or height of cells
+	 * @param previousScrollToIndex Previous scroll-to-index
+	 * @param previousSize Previous width or height of the virtualized container
+	 * @param scrollOffset Current scrollLeft or scrollTop
+	 * @param scrollToIndex Scroll-to-index
+	 * @param size Width or height of the virtualized container
+	 * @param updateScrollIndexCallback Callback to invoke with an scroll-to-index value
+	 */
+        function updateScrollIndexHelper(_ref) {
+            var cellSize = _ref.cellSize, cellSizeAndPositionManager = _ref.cellSizeAndPositionManager, previousCellsCount = _ref.previousCellsCount, previousCellSize = _ref.previousCellSize, previousScrollToAlignment = _ref.previousScrollToAlignment, previousScrollToIndex = _ref.previousScrollToIndex, previousSize = _ref.previousSize, scrollOffset = _ref.scrollOffset, scrollToAlignment = _ref.scrollToAlignment, scrollToIndex = _ref.scrollToIndex, size = _ref.size, updateScrollIndexCallback = _ref.updateScrollIndexCallback, cellCount = cellSizeAndPositionManager.getCellCount(), hasScrollToIndex = scrollToIndex >= 0 && scrollToIndex < cellCount, sizeHasChanged = size !== previousSize || !previousCellSize || "number" == typeof cellSize && cellSize !== previousCellSize;
+            // If we have a new scroll target OR if height/row-height has changed,
+            // We should ensure that the scroll target is visible.
+            hasScrollToIndex && (sizeHasChanged || scrollToAlignment !== previousScrollToAlignment || scrollToIndex !== previousScrollToIndex) ? updateScrollIndexCallback(scrollToIndex) : !hasScrollToIndex && cellCount > 0 && (size < previousSize || cellCount < previousCellsCount) && scrollOffset > cellSizeAndPositionManager.getTotalSize() - size && updateScrollIndexCallback(cellCount - 1);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = updateScrollIndexHelper;
+    }, /* 42 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        function _objectWithoutProperties(obj, keys) {
+            var target = {};
+            for (var i in obj) keys.indexOf(i) >= 0 || Object.prototype.hasOwnProperty.call(obj, i) && (target[i] = obj[i]);
+            return target;
+        }
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+        }
+        function _possibleConstructorReturn(self, call) {
+            if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !call || "object" != typeof call && "function" != typeof call ? self : call;
+        }
+        function _inherits(subClass, superClass) {
+            if ("function" != typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+            subClass.prototype = Object.create(superClass && superClass.prototype, {
+                constructor: {
+                    value: subClass,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        });
+        var _extends = Object.assign || function(target) {
+            for (var i = 1; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
+            }
+            return target;
+        }, _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, 
+                    "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
+                Constructor;
+            };
+        }(), _Grid = __webpack_require__(37), _Grid2 = _interopRequireDefault(_Grid), _propTypes = __webpack_require__(5), _react = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(1)), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(8), _classnames2 = _interopRequireDefault(_classnames), List = function(_PureComponent) {
+            function List(props, context) {
+                _classCallCheck(this, List);
+                var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props, context));
+                return _this._cellRenderer = _this._cellRenderer.bind(_this), _this._onScroll = _this._onScroll.bind(_this), 
+                _this._onSectionRendered = _this._onSectionRendered.bind(_this), _this._setRef = _this._setRef.bind(_this), 
+                _this;
+            }
+            return _inherits(List, _PureComponent), _createClass(List, [ {
+                key: "forceUpdateGrid",
+                value: function() {
+                    this.Grid.forceUpdate();
+                }
+            }, {
+                key: "measureAllRows",
+                value: function() {
+                    this.Grid.measureAllCells();
+                }
+            }, {
+                key: "recomputeRowHeights",
+                value: function() {
+                    var index = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                    this.Grid.recomputeGridSize({
+                        rowIndex: index
+                    });
+                }
+            }, {
+                key: "getOffsetForRow",
+                value: function(_ref) {
+                    var alignment = _ref.alignment, index = _ref.index, _Grid$getOffsetForCel = this.Grid.getOffsetForCell({
+                        alignment: alignment,
+                        rowIndex: index
+                    }), scrollTop = _Grid$getOffsetForCel.scrollTop;
+                    return scrollTop;
+                }
+            }, {
+                key: "scrollToPosition",
+                value: function() {
+                    var scrollTop = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                    this.Grid.scrollToPosition({
+                        scrollTop: scrollTop
+                    });
+                }
+            }, {
+                key: "scrollToRow",
+                value: function() {
+                    var index = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
+                    this.Grid.scrollToCell({
+                        columnIndex: 0,
+                        rowIndex: index
+                    });
+                }
+            }, {
+                key: "render",
+                value: function() {
+                    var _props = this.props, className = _props.className, noRowsRenderer = _props.noRowsRenderer, scrollToIndex = _props.scrollToIndex, width = _props.width, classNames = (0, 
+                    _classnames2.default)("ReactVirtualized__List", className);
+                    return _react2.default.createElement(_Grid2.default, _extends({}, this.props, {
+                        autoContainerWidth: !0,
+                        cellRenderer: this._cellRenderer,
+                        className: classNames,
+                        columnWidth: width,
+                        columnCount: 1,
+                        noContentRenderer: noRowsRenderer,
+                        onScroll: this._onScroll,
+                        onSectionRendered: this._onSectionRendered,
+                        ref: this._setRef,
+                        scrollToRow: scrollToIndex
+                    }));
+                }
+            }, {
+                key: "_cellRenderer",
+                value: function(_ref2) {
+                    var rowIndex = _ref2.rowIndex, style = _ref2.style, rest = _objectWithoutProperties(_ref2, [ "rowIndex", "style" ]), rowRenderer = this.props.rowRenderer, _Object$getOwnPropert = Object.getOwnPropertyDescriptor(style, "width"), writable = _Object$getOwnPropert.writable;
+                    // By default, List cells should be 100% width.
+                    // This prevents them from flowing under a scrollbar (if present).
+                    return writable && (style.width = "100%"), rowRenderer(_extends({
+                        index: rowIndex,
+                        style: style
+                    }, rest));
+                }
+            }, {
+                key: "_setRef",
+                value: function(ref) {
+                    this.Grid = ref;
+                }
+            }, {
+                key: "_onScroll",
+                value: function(_ref3) {
+                    var clientHeight = _ref3.clientHeight, scrollHeight = _ref3.scrollHeight, scrollTop = _ref3.scrollTop, onScroll = this.props.onScroll;
+                    onScroll({
+                        clientHeight: clientHeight,
+                        scrollHeight: scrollHeight,
+                        scrollTop: scrollTop
+                    });
+                }
+            }, {
+                key: "_onSectionRendered",
+                value: function(_ref4) {
+                    var rowOverscanStartIndex = _ref4.rowOverscanStartIndex, rowOverscanStopIndex = _ref4.rowOverscanStopIndex, rowStartIndex = _ref4.rowStartIndex, rowStopIndex = _ref4.rowStopIndex, onRowsRendered = this.props.onRowsRendered;
+                    onRowsRendered({
+                        overscanStartIndex: rowOverscanStartIndex,
+                        overscanStopIndex: rowOverscanStopIndex,
+                        startIndex: rowStartIndex,
+                        stopIndex: rowStopIndex
+                    });
+                }
+            } ]), List;
+        }(_react.PureComponent);
+        List.defaultProps = {
+            estimatedRowSize: 30,
+            noRowsRenderer: function() {
+                return null;
+            },
+            onRowsRendered: function() {
+                return null;
+            },
+            onScroll: function() {
+                return null;
+            },
+            overscanIndicesGetter: _Grid.accessibilityOverscanIndicesGetter,
+            overscanRowCount: 10,
+            scrollToAlignment: "auto",
+            scrollToIndex: -1,
+            style: {}
+        }, exports.default = List;
+    }, /* 43 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.List = exports.default = void 0;
+        var _List2 = __webpack_require__(42), _List3 = _interopRequireDefault(_List2);
+        exports.default = _List3.default, exports.List = _List3.default;
+    }, /* 44 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Helper utility that updates the specified callback whenever any of the specified indices have changed.
+	 */
+        function createCallbackMemoizer() {
+            var requireAllKeys = !(arguments.length > 0 && void 0 !== arguments[0]) || arguments[0], cachedIndices = {};
+            return function(_ref) {
+                var callback = _ref.callback, indices = _ref.indices, keys = Object.keys(indices), allInitialized = !requireAllKeys || keys.every(function(key) {
+                    var value = indices[key];
+                    return Array.isArray(value) ? value.length > 0 : value >= 0;
+                }), indexChanged = keys.length !== Object.keys(cachedIndices).length || keys.some(function(key) {
+                    var cachedValue = cachedIndices[key], value = indices[key];
+                    return Array.isArray(value) ? cachedValue.join(",") !== value.join(",") : cachedValue !== value;
+                });
+                cachedIndices = indices, allInitialized && indexChanged && callback(indices);
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = createCallbackMemoizer;
+    }, /* 45 */
+    /***/
+    function(module, exports) {
+        "use strict";
+        /**
+	 * Detect Element Resize.
+	 * https://github.com/sdecima/javascript-detect-element-resize
+	 * Sebastian Decima
+	 *
+	 * Forked from version 0.5.3; includes the following modifications:
+	 * 1) Guard against unsafe 'window' and 'document' references (to support SSR).
+	 * 2) Defer initialization code via a top-level function wrapper (to support SSR).
+	 * 3) Avoid unnecessary reflows by not measuring size for scroll events bubbling from children.
+	 **/
+        function createDetectElementResize() {
+            // Check `document` and `window` in case of server-side rendering
+            var _window;
+            _window = "undefined" != typeof window ? window : "undefined" != typeof self ? self : this;
+            var attachEvent = "undefined" != typeof document && document.attachEvent;
+            if (!attachEvent) {
+                var requestFrame = function() {
+                    var raf = _window.requestAnimationFrame || _window.mozRequestAnimationFrame || _window.webkitRequestAnimationFrame || function(fn) {
+                        return _window.setTimeout(fn, 20);
+                    };
+                    return function(fn) {
+                        return raf(fn);
+                    };
+                }(), cancelFrame = function() {
+                    var cancel = _window.cancelAnimationFrame || _window.mozCancelAnimationFrame || _window.webkitCancelAnimationFrame || _window.clearTimeout;
+                    return function(id) {
+                        return cancel(id);
+                    };
+                }(), resetTriggers = function(element) {
+                    var triggers = element.__resizeTriggers__, expand = triggers.firstElementChild, contract = triggers.lastElementChild, expandChild = expand.firstElementChild;
+                    contract.scrollLeft = contract.scrollWidth, contract.scrollTop = contract.scrollHeight, 
+                    expandChild.style.width = expand.offsetWidth + 1 + "px", expandChild.style.height = expand.offsetHeight + 1 + "px", 
+                    expand.scrollLeft = expand.scrollWidth, expand.scrollTop = expand.scrollHeight;
+                }, checkTriggers = function(element) {
+                    return element.offsetWidth != element.__resizeLast__.width || element.offsetHeight != element.__resizeLast__.height;
+                }, scrollListener = function(e) {
+                    // Don't measure (which forces) reflow for scrolls that happen inside of children!
+                    if (!(e.target.className.indexOf("contract-trigger") < 0 && e.target.className.indexOf("expand-trigger") < 0)) {
+                        var element = this;
+                        resetTriggers(this), this.__resizeRAF__ && cancelFrame(this.__resizeRAF__), this.__resizeRAF__ = requestFrame(function() {
+                            checkTriggers(element) && (element.__resizeLast__.width = element.offsetWidth, element.__resizeLast__.height = element.offsetHeight, 
+                            element.__resizeListeners__.forEach(function(fn) {
+                                fn.call(element, e);
+                            }));
+                        });
+                    }
+                }, animation = !1, animationstring = "animation", keyframeprefix = "", animationstartevent = "animationstart", domPrefixes = "Webkit Moz O ms".split(" "), startEvents = "webkitAnimationStart animationstart oAnimationStart MSAnimationStart".split(" "), pfx = "", elm = document.createElement("fakeelement");
+                if (void 0 !== elm.style.animationName && (animation = !0), animation === !1) for (var i = 0; i < domPrefixes.length; i++) if (void 0 !== elm.style[domPrefixes[i] + "AnimationName"]) {
+                    pfx = domPrefixes[i], animationstring = pfx + "Animation", keyframeprefix = "-" + pfx.toLowerCase() + "-", 
+                    animationstartevent = startEvents[i], animation = !0;
+                    break;
+                }
+                var animationName = "resizeanim", animationKeyframes = "@" + keyframeprefix + "keyframes " + animationName + " { from { opacity: 0; } to { opacity: 0; } } ", animationStyle = keyframeprefix + "animation: 1ms " + animationName + "; ";
+            }
+            var createStyles = function() {
+                if (!document.getElementById("detectElementResize")) {
+                    //opacity:0 works around a chrome bug https://code.google.com/p/chromium/issues/detail?id=286360
+                    var css = (animationKeyframes ? animationKeyframes : "") + ".resize-triggers { " + (animationStyle ? animationStyle : "") + 'visibility: hidden; opacity: 0; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: " "; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; z-index: -1; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }', head = document.head || document.getElementsByTagName("head")[0], style = document.createElement("style");
+                    style.id = "detectElementResize", style.type = "text/css", style.styleSheet ? style.styleSheet.cssText = css : style.appendChild(document.createTextNode(css)), 
+                    head.appendChild(style);
+                }
+            }, addResizeListener = function(element, fn) {
+                if (attachEvent) element.attachEvent("onresize", fn); else {
+                    if (!element.__resizeTriggers__) {
+                        var elementStyle = _window.getComputedStyle(element);
+                        elementStyle && "static" == elementStyle.position && (element.style.position = "relative"), 
+                        createStyles(), element.__resizeLast__ = {}, element.__resizeListeners__ = [], (element.__resizeTriggers__ = document.createElement("div")).className = "resize-triggers", 
+                        element.__resizeTriggers__.innerHTML = '<div class="expand-trigger"><div></div></div><div class="contract-trigger"></div>', 
+                        element.appendChild(element.__resizeTriggers__), resetTriggers(element), element.addEventListener("scroll", scrollListener, !0), 
+                        /* Listen for a css animation to detect element display/re-attach */
+                        animationstartevent && (element.__resizeTriggers__.__animationListener__ = function(e) {
+                            e.animationName == animationName && resetTriggers(element);
+                        }, element.__resizeTriggers__.addEventListener(animationstartevent, element.__resizeTriggers__.__animationListener__));
+                    }
+                    element.__resizeListeners__.push(fn);
+                }
+            }, removeResizeListener = function(element, fn) {
+                if (attachEvent) element.detachEvent("onresize", fn); else if (element.__resizeListeners__.splice(element.__resizeListeners__.indexOf(fn), 1), 
+                !element.__resizeListeners__.length) {
+                    element.removeEventListener("scroll", scrollListener, !0), element.__resizeTriggers__.__animationListener__ && (element.__resizeTriggers__.removeEventListener(animationstartevent, element.__resizeTriggers__.__animationListener__), 
+                    element.__resizeTriggers__.__animationListener__ = null);
+                    try {
+                        element.__resizeTriggers__ = !element.removeChild(element.__resizeTriggers__);
+                    } catch (e) {}
+                }
+            };
+            return {
+                addResizeListener: addResizeListener,
+                removeResizeListener: removeResizeListener
+            };
+        }
+        Object.defineProperty(exports, "__esModule", {
+            value: !0
+        }), exports.default = createDetectElementResize;
+    }, /* 46 */
     /***/
     function(module, exports) {
         /**
@@ -3199,74 +5101,70 @@
             // send back the fixed css
             return fixedCss;
         };
-    }, /* 22 */
+    }, /* 47 */
     /***/
     function(module, exports, __webpack_require__) {
         // style-loader: Adds some css to the DOM by adding a <style> tag
         // load the styles
-        var content = __webpack_require__(15);
+        var content = __webpack_require__(23);
         "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
         // add the styles to the DOM
-        __webpack_require__(3)(content, {
+        __webpack_require__(4)(content, {
             insertAt: "top"
         });
         content.locals && (module.exports = content.locals);
-    }, /* 23 */
+    }, /* 48 */
     /***/
     function(module, exports, __webpack_require__) {
         // style-loader: Adds some css to the DOM by adding a <style> tag
         // load the styles
-        var content = __webpack_require__(16);
+        var content = __webpack_require__(24);
         "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
         // add the styles to the DOM
-        __webpack_require__(3)(content, {
+        __webpack_require__(4)(content, {
             insertAt: "top"
         });
         content.locals && (module.exports = content.locals);
-    }, /* 24 */
+    }, /* 49 */
     /***/
     function(module, exports, __webpack_require__) {
         // style-loader: Adds some css to the DOM by adding a <style> tag
         // load the styles
-        var content = __webpack_require__(17);
+        var content = __webpack_require__(25);
         "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
         // add the styles to the DOM
-        __webpack_require__(3)(content, {
+        __webpack_require__(4)(content, {
             insertAt: "top"
         });
         content.locals && (module.exports = content.locals);
-    }, /* 25 */
+    }, /* 50 */
     /***/
     function(module, exports, __webpack_require__) {
         // style-loader: Adds some css to the DOM by adding a <style> tag
         // load the styles
-        var content = __webpack_require__(18);
+        var content = __webpack_require__(26);
         "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
         // add the styles to the DOM
-        __webpack_require__(3)(content, {
+        __webpack_require__(4)(content, {
             insertAt: "top"
         });
         content.locals && (module.exports = content.locals);
-    }, /* 26 */
+    }, /* 51 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_26__;
-    }, /* 27 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_51__;
+    }, /* 52 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_27__;
-    }, /* 28 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_52__;
+    }, /* 53 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_28__;
-    }, /* 29 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_53__;
+    }, /* 54 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_29__;
-    }, /* 30 */
-    /***/
-    function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_30__;
+        module.exports = __WEBPACK_EXTERNAL_MODULE_54__;
     } ]);
 });
 //# sourceMappingURL=react-sortable-tree.js.map

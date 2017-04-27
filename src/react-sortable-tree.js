@@ -5,7 +5,8 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { AutoSizer, List } from 'react-virtualized';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import List from 'react-virtualized/dist/commonjs/List';
 import isEqual from 'lodash.isequal';
 import withScrolling, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrollzone';
 import 'react-virtualized/styles.css';
