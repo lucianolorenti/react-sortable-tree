@@ -1,6 +1,6 @@
 !function(root, factory) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : "function" == typeof define && define.amd ? define([ "react", "lodash.isequal", "react-dnd", "react-dnd-html5-backend", "react-dnd-scrollzone" ], factory) : "object" == typeof exports ? exports.ReactSortableTree = factory(require("react"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : root.ReactSortableTree = factory(root.react, root["lodash.isequal"], root["react-dnd"], root["react-dnd-html5-backend"], root["react-dnd-scrollzone"]);
-}(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_51__, __WEBPACK_EXTERNAL_MODULE_52__, __WEBPACK_EXTERNAL_MODULE_53__, __WEBPACK_EXTERNAL_MODULE_54__) {
+    "object" == typeof exports && "object" == typeof module ? module.exports = factory(require("react"), require("prop-types"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : "function" == typeof define && define.amd ? define([ "react", "prop-types", "lodash.isequal", "react-dnd", "react-dnd-html5-backend", "react-dnd-scrollzone" ], factory) : "object" == typeof exports ? exports.ReactSortableTree = factory(require("react"), require("prop-types"), require("lodash.isequal"), require("react-dnd"), require("react-dnd-html5-backend"), require("react-dnd-scrollzone")) : root.ReactSortableTree = factory(root.react, root["prop-types"], root["lodash.isequal"], root["react-dnd"], root["react-dnd-html5-backend"], root["react-dnd-scrollzone"]);
+}(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_99__, __WEBPACK_EXTERNAL_MODULE_100__, __WEBPACK_EXTERNAL_MODULE_101__, __WEBPACK_EXTERNAL_MODULE_102__) {
     /******/
     return function(modules) {
         /******/
@@ -77,7 +77,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.SortableTreeWithoutDndContext = void 0;
-        var _defaultHandlers = __webpack_require__(6);
+        var _defaultHandlers = __webpack_require__(20);
         Object.keys(_defaultHandlers).forEach(function(key) {
             "default" !== key && "__esModule" !== key && Object.defineProperty(exports, key, {
                 enumerable: !0,
@@ -86,7 +86,7 @@
                 }
             });
         });
-        var _treeDataUtils = __webpack_require__(2);
+        var _treeDataUtils = __webpack_require__(4);
         Object.keys(_treeDataUtils).forEach(function(key) {
             "default" !== key && "__esModule" !== key && Object.defineProperty(exports, key, {
                 enumerable: !0,
@@ -95,16 +95,29 @@
                 }
             });
         });
-        var _reactSortableTree = __webpack_require__(16), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree);
+        var _reactSortableTree = __webpack_require__(38), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree);
         exports.default = _reactSortableTree2.default, // Export the tree component without the react-dnd DragDropContext,
         // for when component is used with other components using react-dnd.
         // see: https://github.com/gaearon/react-dnd/issues/186
         exports.SortableTreeWithoutDndContext = _reactSortableTree.SortableTreeWithoutDndContext;
     }, /* 1 */
     /***/
-    function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+    function(module, exports, __webpack_require__) {
+        var store = __webpack_require__(31)("wks"), uid = __webpack_require__(32), Symbol = __webpack_require__(2).Symbol, USE_SYMBOL = "function" == typeof Symbol, $exports = module.exports = function(name) {
+            return store[name] || (store[name] = USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)("Symbol." + name));
+        };
+        $exports.store = store;
     }, /* 2 */
+    /***/
+    function(module, exports) {
+        // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+        var global = module.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
+        "number" == typeof __g && (__g = global);
+    }, /* 3 */
+    /***/
+    function(module, exports) {
+        module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+    }, /* 4 */
     /***/
     function(module, exports) {
         "use strict";
@@ -893,240 +906,212 @@
         exports.addNodeUnderParent = addNodeUnderParent, exports.insertNode = insertNode, 
         exports.getFlatDataFromTree = getFlatDataFromTree, exports.getTreeFromFlatData = getTreeFromFlatData, 
         exports.isDescendant = isDescendant, exports.getDepth = getDepth, exports.find = find;
-    }, /* 3 */
+    }, /* 5 */
+    /***/
+    function(module, exports) {
+        var core = module.exports = {
+            version: "2.4.0"
+        };
+        "number" == typeof __e && (__e = core);
+    }, /* 6 */
     /***/
     function(module, exports, __webpack_require__) {
-        /* WEBPACK VAR INJECTION */
-        (function(Buffer) {
-            function cssWithMappingToString(item, useSourceMap) {
-                var content = item[1] || "", cssMapping = item[3];
-                if (!cssMapping) return content;
-                if (useSourceMap) {
-                    var sourceMapping = toComment(cssMapping), sourceURLs = cssMapping.sources.map(function(source) {
-                        return "/*# sourceURL=" + cssMapping.sourceRoot + source + " */";
-                    });
-                    return [ content ].concat(sourceURLs).concat([ sourceMapping ]).join("\n");
-                }
-                return [ content ].join("\n");
-            }
-            // Adapted from convert-source-map (MIT)
-            function toComment(sourceMap) {
-                var base64 = new Buffer(JSON.stringify(sourceMap)).toString("base64"), data = "sourceMappingURL=data:application/json;charset=utf-8;base64," + base64;
-                return "/*# " + data + " */";
-            }
-            /*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-            // css base code, injected by the css-loader
-            module.exports = function(useSourceMap) {
-                var list = [];
-                // return the list of modules as css string
-                // import a list of modules into the list
-                return list.toString = function() {
-                    return this.map(function(item) {
-                        var content = cssWithMappingToString(item, useSourceMap);
-                        return item[2] ? "@media " + item[2] + "{" + content + "}" : content;
-                    }).join("");
-                }, list.i = function(modules, mediaQuery) {
-                    "string" == typeof modules && (modules = [ [ null, modules, "" ] ]);
-                    for (var alreadyImportedModules = {}, i = 0; i < this.length; i++) {
-                        var id = this[i][0];
-                        "number" == typeof id && (alreadyImportedModules[id] = !0);
-                    }
-                    for (i = 0; i < modules.length; i++) {
-                        var item = modules[i];
-                        // skip already imported module
-                        // this implementation is not 100% perfect for weird media query combinations
-                        //  when a module is imported multiple times with different media queries.
-                        //  I hope this will never occur (Hey this way we have smaller bundles)
-                        "number" == typeof item[0] && alreadyImportedModules[item[0]] || (mediaQuery && !item[2] ? item[2] = mediaQuery : mediaQuery && (item[2] = "(" + item[2] + ") and (" + mediaQuery + ")"), 
-                        list.push(item));
-                    }
-                }, list;
-            };
-        }).call(exports, __webpack_require__(22).Buffer);
-    }, /* 4 */
+        var dP = __webpack_require__(16), createDesc = __webpack_require__(29);
+        module.exports = __webpack_require__(10) ? function(object, key, value) {
+            return dP.f(object, key, createDesc(1, value));
+        } : function(object, key, value) {
+            return object[key] = value, object;
+        };
+    }, /* 7 */
+    /***/
+    function(module, exports) {
+        module.exports = {};
+    }, /* 8 */
+    /***/
+    function(module, exports) {
+        module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+    }, /* 9 */
     /***/
     function(module, exports, __webpack_require__) {
-        function addStylesToDom(styles, options) {
-            for (var i = 0; i < styles.length; i++) {
-                var item = styles[i], domStyle = stylesInDom[item.id];
-                if (domStyle) {
-                    domStyle.refs++;
-                    for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j](item.parts[j]);
-                    for (;j < item.parts.length; j++) domStyle.parts.push(addStyle(item.parts[j], options));
-                } else {
-                    for (var parts = [], j = 0; j < item.parts.length; j++) parts.push(addStyle(item.parts[j], options));
-                    stylesInDom[item.id] = {
-                        id: item.id,
-                        refs: 1,
-                        parts: parts
-                    };
+        var isObject = __webpack_require__(15);
+        module.exports = function(it) {
+            if (!isObject(it)) throw TypeError(it + " is not an object!");
+            return it;
+        };
+    }, /* 10 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // Thank's IE8 for his funny defineProperty
+        module.exports = !__webpack_require__(27)(function() {
+            return 7 != Object.defineProperty({}, "a", {
+                get: function() {
+                    return 7;
                 }
-            }
-        }
-        function listToStyles(list) {
-            for (var styles = [], newStyles = {}, i = 0; i < list.length; i++) {
-                var item = list[i], id = item[0], css = item[1], media = item[2], sourceMap = item[3], part = {
-                    css: css,
-                    media: media,
-                    sourceMap: sourceMap
-                };
-                newStyles[id] ? newStyles[id].parts.push(part) : styles.push(newStyles[id] = {
-                    id: id,
-                    parts: [ part ]
+            }).a;
+        });
+    }, /* 11 */
+    /***/
+    function(module, exports) {
+        var hasOwnProperty = {}.hasOwnProperty;
+        module.exports = function(it, key) {
+            return hasOwnProperty.call(it, key);
+        };
+    }, /* 12 */
+    /***/
+    function(module, exports) {
+        function cssWithMappingToString(item, useSourceMap) {
+            var content = item[1] || "", cssMapping = item[3];
+            if (!cssMapping) return content;
+            if (useSourceMap && "function" == typeof btoa) {
+                var sourceMapping = toComment(cssMapping), sourceURLs = cssMapping.sources.map(function(source) {
+                    return "/*# sourceURL=" + cssMapping.sourceRoot + source + " */";
                 });
+                return [ content ].concat(sourceURLs).concat([ sourceMapping ]).join("\n");
             }
-            return styles;
+            return [ content ].join("\n");
         }
-        function insertStyleElement(options, styleElement) {
-            var styleTarget = getElement(options.insertInto);
-            if (!styleTarget) throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-            var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
-            if ("top" === options.insertAt) lastStyleElementInsertedAtTop ? lastStyleElementInsertedAtTop.nextSibling ? styleTarget.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling) : styleTarget.appendChild(styleElement) : styleTarget.insertBefore(styleElement, styleTarget.firstChild), 
-            styleElementsInsertedAtTop.push(styleElement); else {
-                if ("bottom" !== options.insertAt) throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
-                styleTarget.appendChild(styleElement);
-            }
-        }
-        function removeStyleElement(styleElement) {
-            styleElement.parentNode.removeChild(styleElement);
-            var idx = styleElementsInsertedAtTop.indexOf(styleElement);
-            idx >= 0 && styleElementsInsertedAtTop.splice(idx, 1);
-        }
-        function createStyleElement(options) {
-            var styleElement = document.createElement("style");
-            return options.attrs.type = "text/css", attachTagAttrs(styleElement, options.attrs), 
-            insertStyleElement(options, styleElement), styleElement;
-        }
-        function createLinkElement(options) {
-            var linkElement = document.createElement("link");
-            return options.attrs.type = "text/css", options.attrs.rel = "stylesheet", attachTagAttrs(linkElement, options.attrs), 
-            insertStyleElement(options, linkElement), linkElement;
-        }
-        function attachTagAttrs(element, attrs) {
-            Object.keys(attrs).forEach(function(key) {
-                element.setAttribute(key, attrs[key]);
-            });
-        }
-        function addStyle(obj, options) {
-            var styleElement, update, remove;
-            if (options.singleton) {
-                var styleIndex = singletonCounter++;
-                styleElement = singletonElement || (singletonElement = createStyleElement(options)), 
-                update = applyToSingletonTag.bind(null, styleElement, styleIndex, !1), remove = applyToSingletonTag.bind(null, styleElement, styleIndex, !0);
-            } else obj.sourceMap && "function" == typeof URL && "function" == typeof URL.createObjectURL && "function" == typeof URL.revokeObjectURL && "function" == typeof Blob && "function" == typeof btoa ? (styleElement = createLinkElement(options), 
-            update = updateLink.bind(null, styleElement, options), remove = function() {
-                removeStyleElement(styleElement), styleElement.href && URL.revokeObjectURL(styleElement.href);
-            }) : (styleElement = createStyleElement(options), update = applyToTag.bind(null, styleElement), 
-            remove = function() {
-                removeStyleElement(styleElement);
-            });
-            return update(obj), function(newObj) {
-                if (newObj) {
-                    if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) return;
-                    update(obj = newObj);
-                } else remove();
-            };
-        }
-        function applyToSingletonTag(styleElement, index, remove, obj) {
-            var css = remove ? "" : obj.css;
-            if (styleElement.styleSheet) styleElement.styleSheet.cssText = replaceText(index, css); else {
-                var cssNode = document.createTextNode(css), childNodes = styleElement.childNodes;
-                childNodes[index] && styleElement.removeChild(childNodes[index]), childNodes.length ? styleElement.insertBefore(cssNode, childNodes[index]) : styleElement.appendChild(cssNode);
-            }
-        }
-        function applyToTag(styleElement, obj) {
-            var css = obj.css, media = obj.media;
-            if (media && styleElement.setAttribute("media", media), styleElement.styleSheet) styleElement.styleSheet.cssText = css; else {
-                for (;styleElement.firstChild; ) styleElement.removeChild(styleElement.firstChild);
-                styleElement.appendChild(document.createTextNode(css));
-            }
-        }
-        function updateLink(linkElement, options, obj) {
-            var css = obj.css, sourceMap = obj.sourceMap, autoFixUrls = void 0 === options.convertToAbsoluteUrls && sourceMap;
-            (options.convertToAbsoluteUrls || autoFixUrls) && (css = fixUrls(css)), sourceMap && (// http://stackoverflow.com/a/26603875
-            css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */");
-            var blob = new Blob([ css ], {
-                type: "text/css"
-            }), oldSrc = linkElement.href;
-            linkElement.href = URL.createObjectURL(blob), oldSrc && URL.revokeObjectURL(oldSrc);
+        // Adapted from convert-source-map (MIT)
+        function toComment(sourceMap) {
+            // eslint-disable-next-line no-undef
+            var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), data = "sourceMappingURL=data:application/json;charset=utf-8;base64," + base64;
+            return "/*# " + data + " */";
         }
         /*
 		MIT License http://www.opensource.org/licenses/mit-license.php
 		Author Tobias Koppers @sokra
 	*/
-        var stylesInDom = {}, memoize = function(fn) {
-            var memo;
-            return function() {
-                return "undefined" == typeof memo && (memo = fn.apply(this, arguments)), memo;
-            };
-        }, isOldIE = memoize(function() {
-            // Test for IE <= 9 as proposed by Browserhacks
-            // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-            // Tests for existence of standard globals is to allow style-loader 
-            // to operate correctly into non-standard environments
-            // @see https://github.com/webpack-contrib/style-loader/issues/177
-            return window && document && document.all && !window.atob;
-        }), getElement = function(fn) {
-            var memo = {};
-            return function(selector) {
-                return "undefined" == typeof memo[selector] && (memo[selector] = fn.call(this, selector)), 
-                memo[selector];
-            };
-        }(function(styleTarget) {
-            return document.querySelector(styleTarget);
-        }), singletonElement = null, singletonCounter = 0, styleElementsInsertedAtTop = [], fixUrls = __webpack_require__(46);
-        module.exports = function(list, options) {
-            options = options || {}, options.attrs = "object" == typeof options.attrs ? options.attrs : {}, 
-            // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-            // tags it will allow on a page
-            "undefined" == typeof options.singleton && (options.singleton = isOldIE()), // By default, add <style> tags to the <head> element
-            "undefined" == typeof options.insertInto && (options.insertInto = "head"), // By default, add <style> tags to the bottom of the target
-            "undefined" == typeof options.insertAt && (options.insertAt = "bottom");
-            var styles = listToStyles(list);
-            return addStylesToDom(styles, options), function(newList) {
-                for (var mayRemove = [], i = 0; i < styles.length; i++) {
-                    var item = styles[i], domStyle = stylesInDom[item.id];
-                    domStyle.refs--, mayRemove.push(domStyle);
+        // css base code, injected by the css-loader
+        module.exports = function(useSourceMap) {
+            var list = [];
+            // return the list of modules as css string
+            // import a list of modules into the list
+            return list.toString = function() {
+                return this.map(function(item) {
+                    var content = cssWithMappingToString(item, useSourceMap);
+                    return item[2] ? "@media " + item[2] + "{" + content + "}" : content;
+                }).join("");
+            }, list.i = function(modules, mediaQuery) {
+                "string" == typeof modules && (modules = [ [ null, modules, "" ] ]);
+                for (var alreadyImportedModules = {}, i = 0; i < this.length; i++) {
+                    var id = this[i][0];
+                    "number" == typeof id && (alreadyImportedModules[id] = !0);
                 }
-                if (newList) {
-                    var newStyles = listToStyles(newList);
-                    addStylesToDom(newStyles, options);
+                for (i = 0; i < modules.length; i++) {
+                    var item = modules[i];
+                    // skip already imported module
+                    // this implementation is not 100% perfect for weird media query combinations
+                    //  when a module is imported multiple times with different media queries.
+                    //  I hope this will never occur (Hey this way we have smaller bundles)
+                    "number" == typeof item[0] && alreadyImportedModules[item[0]] || (mediaQuery && !item[2] ? item[2] = mediaQuery : mediaQuery && (item[2] = "(" + item[2] + ") and (" + mediaQuery + ")"), 
+                    list.push(item));
                 }
-                for (var i = 0; i < mayRemove.length; i++) {
-                    var domStyle = mayRemove[i];
-                    if (0 === domStyle.refs) {
-                        for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-                        delete stylesInDom[domStyle.id];
-                    }
-                }
-            };
+            }, list;
         };
-        var replaceText = function() {
-            var textStore = [];
-            return function(index, replacement) {
-                return textStore[index] = replacement, textStore.filter(Boolean).join("\n");
-            };
-        }();
-    }, /* 5 */
+    }, /* 13 */
     /***/
     function(module, exports, __webpack_require__) {
-        function isValidElement(object) {
-            return "object" == typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        // Base64 encoding and decoding - The "Unicode Problem"
+        // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
+        function b64EncodeUnicode(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+                return String.fromCharCode("0x" + p1);
+            }));
         }
         /**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
+	 * Remove style/link elements for specified node IDs
+	 * if they are no longer referenced by UI components.
 	 */
-        var factory = __webpack_require__(32), REACT_ELEMENT_TYPE = "function" == typeof Symbol && Symbol.for && Symbol.for("react.element") || 60103;
-        module.exports = factory(isValidElement);
-    }, /* 6 */
+        function removeCss(ids) {
+            ids.forEach(function(id) {
+                if (--inserted[id] <= 0) {
+                    var elem = document.getElementById(prefix + id);
+                    elem && elem.parentNode.removeChild(elem);
+                }
+            });
+        }
+        /**
+	 * Example:
+	 *   // Insert CSS styles object generated by `css-loader` into DOM
+	 *   var removeCss = insertCss([[1, 'body { color: red; }']]);
+	 *
+	 *   // Remove it from the DOM
+	 *   removeCss();
+	 */
+        function insertCss(styles) {
+            for (var _ref = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, _ref$replace = _ref.replace, replace = void 0 !== _ref$replace && _ref$replace, _ref$prepend = _ref.prepend, prepend = void 0 !== _ref$prepend && _ref$prepend, ids = [], i = 0; i < styles.length; i++) {
+                var _styles$i = (0, _slicedToArray3.default)(styles[i], 4), moduleId = _styles$i[0], css = _styles$i[1], media = _styles$i[2], sourceMap = _styles$i[3], id = moduleId + "-" + i;
+                if (ids.push(id), !inserted[id] || replace) {
+                    inserted[id] = 1;
+                    var elem = document.getElementById(prefix + id), create = !1;
+                    elem || (create = !0, elem = document.createElement("style"), elem.setAttribute("type", "text/css"), 
+                    elem.id = prefix + id, media && elem.setAttribute("media", media));
+                    var cssText = css;
+                    sourceMap && "function" == typeof btoa && (// skip IE9 and below, see http://caniuse.com/atob-btoa
+                    cssText += "\n/*# sourceMappingURL=data:application/json;base64," + b64EncodeUnicode((0, 
+                    _stringify2.default)(sourceMap)) + "*/", cssText += "\n/*# sourceURL=" + sourceMap.file + "?" + id + "*/"), 
+                    "textContent" in elem ? elem.textContent = cssText : elem.styleSheet.cssText = cssText, 
+                    create && (prepend ? document.head.insertBefore(elem, document.head.childNodes[0]) : document.head.appendChild(elem));
+                } else inserted[id]++;
+            }
+            return removeCss.bind(null, ids);
+        }
+        var _stringify = __webpack_require__(45), _stringify2 = _interopRequireDefault(_stringify), _slicedToArray2 = __webpack_require__(46), _slicedToArray3 = _interopRequireDefault(_slicedToArray2), prefix = "s", inserted = {};
+        module.exports = insertCss;
+    }, /* 14 */
+    /***/
+    function(module, exports) {
+        // 7.2.1 RequireObjectCoercible(argument)
+        module.exports = function(it) {
+            if (void 0 == it) throw TypeError("Can't call method on  " + it);
+            return it;
+        };
+    }, /* 15 */
+    /***/
+    function(module, exports) {
+        module.exports = function(it) {
+            return "object" == typeof it ? null !== it : "function" == typeof it;
+        };
+    }, /* 16 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var anObject = __webpack_require__(9), IE8_DOM_DEFINE = __webpack_require__(56), toPrimitive = __webpack_require__(71), dP = Object.defineProperty;
+        exports.f = __webpack_require__(10) ? Object.defineProperty : function(O, P, Attributes) {
+            if (anObject(O), P = toPrimitive(P, !0), anObject(Attributes), IE8_DOM_DEFINE) try {
+                return dP(O, P, Attributes);
+            } catch (e) {}
+            if ("get" in Attributes || "set" in Attributes) throw TypeError("Accessors not supported!");
+            return "value" in Attributes && (O[P] = Attributes.value), O;
+        };
+    }, /* 17 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var shared = __webpack_require__(31)("keys"), uid = __webpack_require__(32);
+        module.exports = function(key) {
+            return shared[key] || (shared[key] = uid(key));
+        };
+    }, /* 18 */
+    /***/
+    function(module, exports) {
+        // 7.1.4 ToInteger
+        var ceil = Math.ceil, floor = Math.floor;
+        module.exports = function(it) {
+            return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+        };
+    }, /* 19 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // to indexed object, toObject with fallback for non-array-like ES3 strings
+        var IObject = __webpack_require__(57), defined = __webpack_require__(14);
+        module.exports = function(it) {
+            return IObject(defined(it));
+        };
+    }, /* 20 */
     /***/
     function(module, exports) {
         "use strict";
@@ -1161,7 +1146,7 @@
             return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
         };
         exports.defaultGetNodeKey = defaultGetNodeKey, exports.defaultSearchMethod = defaultSearchMethod;
-    }, /* 7 */
+    }, /* 21 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1197,8 +1182,8 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.memoizedInsertNode = memoizedInsertNode;
-        var _treeDataUtils = __webpack_require__(2), memoizedInsertArgsArray = [], memoizedInsertKeysArray = [], memoizedInsertResult = null;
-    }, /* 8 */
+        var _treeDataUtils = __webpack_require__(4), memoizedInsertArgsArray = [], memoizedInsertKeysArray = [], memoizedInsertResult = null;
+    }, /* 22 */
     /***/
     function(module, exports, __webpack_require__) {
         var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
@@ -1227,106 +1212,157 @@
             }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), // register as 'classnames', consistent with npm package name
             !(void 0 !== __WEBPACK_AMD_DEFINE_RESULT__ && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)));
         }();
-    }, /* 9 */
-    /***/
-    function(module, exports) {
-        "use strict";
-        /**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * 
-	 */
-        function makeEmptyFunction(arg) {
-            return function() {
-                return arg;
-            };
-        }
-        /**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
-	 */
-        var emptyFunction = function() {};
-        emptyFunction.thatReturns = makeEmptyFunction, emptyFunction.thatReturnsFalse = makeEmptyFunction(!1), 
-        emptyFunction.thatReturnsTrue = makeEmptyFunction(!0), emptyFunction.thatReturnsNull = makeEmptyFunction(null), 
-        emptyFunction.thatReturnsThis = function() {
-            return this;
-        }, emptyFunction.thatReturnsArgument = function(arg) {
-            return arg;
-        }, module.exports = emptyFunction;
-    }, /* 10 */
+    }, /* 23 */
     /***/
     function(module, exports, __webpack_require__) {
-        /**
-	 * Copyright (c) 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
-        "use strict";
-        function invariant(condition, format, a, b, c, d, e, f) {
-            if (validateFormat(format), !condition) {
-                var error;
-                if (void 0 === format) error = new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings."); else {
-                    var args = [ a, b, c, d, e, f ], argIndex = 0;
-                    error = new Error(format.replace(/%s/g, function() {
-                        return args[argIndex++];
-                    })), error.name = "Invariant Violation";
-                }
-                // we don't care about invariant's own frame
-                throw error.framesToPop = 1, error;
+        // getting tag from 19.1.3.6 Object.prototype.toString()
+        var cof = __webpack_require__(24), TAG = __webpack_require__(1)("toStringTag"), ARG = "Arguments" == cof(function() {
+            return arguments;
+        }()), tryGet = function(it, key) {
+            try {
+                return it[key];
+            } catch (e) {}
+        };
+        module.exports = function(it) {
+            var O, T, B;
+            return void 0 === it ? "Undefined" : null === it ? "Null" : "string" == typeof (T = tryGet(O = Object(it), TAG)) ? T : ARG ? cof(O) : "Object" == (B = cof(O)) && "function" == typeof O.callee ? "Arguments" : B;
+        };
+    }, /* 24 */
+    /***/
+    function(module, exports) {
+        var toString = {}.toString;
+        module.exports = function(it) {
+            return toString.call(it).slice(8, -1);
+        };
+    }, /* 25 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var isObject = __webpack_require__(15), document = __webpack_require__(2).document, is = isObject(document) && isObject(document.createElement);
+        module.exports = function(it) {
+            return is ? document.createElement(it) : {};
+        };
+    }, /* 26 */
+    /***/
+    function(module, exports) {
+        // IE 8- don't enum bug keys
+        module.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",");
+    }, /* 27 */
+    /***/
+    function(module, exports) {
+        module.exports = function(exec) {
+            try {
+                return !!exec();
+            } catch (e) {
+                return !0;
             }
-        }
-        /**
-	 * Use invariant() to assert state which your program assumes to be true.
-	 *
-	 * Provide sprintf-style format (only %s is supported) and arguments
-	 * to provide information about what broke and what you were
-	 * expecting.
-	 *
-	 * The invariant message will be stripped in production, but the invariant
-	 * will remain to ensure logic does not differ in production.
-	 */
-        var validateFormat = function(format) {};
-        module.exports = invariant;
-    }, /* 11 */
+        };
+    }, /* 28 */
     /***/
     function(module, exports, __webpack_require__) {
-        /**
-	 * Copyright 2014-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 */
         "use strict";
-        var emptyFunction = __webpack_require__(9), warning = emptyFunction;
-        module.exports = warning;
-    }, /* 12 */
+        var LIBRARY = __webpack_require__(60), $export = __webpack_require__(54), redefine = __webpack_require__(66), hide = __webpack_require__(6), has = __webpack_require__(11), Iterators = __webpack_require__(7), $iterCreate = __webpack_require__(58), setToStringTag = __webpack_require__(30), getPrototypeOf = __webpack_require__(63), ITERATOR = __webpack_require__(1)("iterator"), BUGGY = !([].keys && "next" in [].keys()), FF_ITERATOR = "@@iterator", KEYS = "keys", VALUES = "values", returnThis = function() {
+            return this;
+        };
+        module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+            $iterCreate(Constructor, NAME, next);
+            var methods, key, IteratorPrototype, getMethod = function(kind) {
+                if (!BUGGY && kind in proto) return proto[kind];
+                switch (kind) {
+                  case KEYS:
+                    return function() {
+                        return new Constructor(this, kind);
+                    };
+
+                  case VALUES:
+                    return function() {
+                        return new Constructor(this, kind);
+                    };
+                }
+                return function() {
+                    return new Constructor(this, kind);
+                };
+            }, TAG = NAME + " Iterator", DEF_VALUES = DEFAULT == VALUES, VALUES_BUG = !1, proto = Base.prototype, $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT], $default = $native || getMethod(DEFAULT), $entries = DEFAULT ? DEF_VALUES ? getMethod("entries") : $default : void 0, $anyNative = "Array" == NAME ? proto.entries || $native : $native;
+            if (// Fix native
+            $anyNative && (IteratorPrototype = getPrototypeOf($anyNative.call(new Base())), 
+            IteratorPrototype !== Object.prototype && (// Set @@toStringTag to native iterators
+            setToStringTag(IteratorPrototype, TAG, !0), // fix for some old engines
+            LIBRARY || has(IteratorPrototype, ITERATOR) || hide(IteratorPrototype, ITERATOR, returnThis))), 
+            // fix Array#{values, @@iterator}.name in V8 / FF
+            DEF_VALUES && $native && $native.name !== VALUES && (VALUES_BUG = !0, $default = function() {
+                return $native.call(this);
+            }), // Define iterator
+            LIBRARY && !FORCED || !BUGGY && !VALUES_BUG && proto[ITERATOR] || hide(proto, ITERATOR, $default), 
+            // Plug for library
+            Iterators[NAME] = $default, Iterators[TAG] = returnThis, DEFAULT) if (methods = {
+                values: DEF_VALUES ? $default : getMethod(VALUES),
+                keys: IS_SET ? $default : getMethod(KEYS),
+                entries: $entries
+            }, FORCED) for (key in methods) key in proto || redefine(proto, key, methods[key]); else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+            return methods;
+        };
+    }, /* 29 */
     /***/
     function(module, exports) {
-        /**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
+        module.exports = function(bitmap, value) {
+            return {
+                enumerable: !(1 & bitmap),
+                configurable: !(2 & bitmap),
+                writable: !(4 & bitmap),
+                value: value
+            };
+        };
+    }, /* 30 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var def = __webpack_require__(16).f, has = __webpack_require__(11), TAG = __webpack_require__(1)("toStringTag");
+        module.exports = function(it, tag, stat) {
+            it && !has(it = stat ? it : it.prototype, TAG) && def(it, TAG, {
+                configurable: !0,
+                value: tag
+            });
+        };
+    }, /* 31 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var global = __webpack_require__(2), SHARED = "__core-js_shared__", store = global[SHARED] || (global[SHARED] = {});
+        module.exports = function(key) {
+            return store[key] || (store[key] = {});
+        };
+    }, /* 32 */
+    /***/
+    function(module, exports) {
+        var id = 0, px = Math.random();
+        module.exports = function(key) {
+            return "Symbol(".concat(void 0 === key ? "" : key, ")_", (++id + px).toString(36));
+        };
+    }, /* 33 */
+    /***/
+    function(module, exports, __webpack_require__) {
         "use strict";
-        var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
-        module.exports = ReactPropTypesSecret;
-    }, /* 13 */
+        var $at = __webpack_require__(67)(!0);
+        // 21.1.3.27 String.prototype[@@iterator]()
+        __webpack_require__(28)(String, "String", function(iterated) {
+            this._t = String(iterated), // target
+            this._i = 0;
+        }, function() {
+            var point, O = this._t, index = this._i;
+            return index >= O.length ? {
+                value: void 0,
+                done: !0
+            } : (point = $at(O, index), this._i += point.length, {
+                value: point,
+                done: !1
+            });
+        });
+    }, /* 34 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        __webpack_require__(75);
+        for (var global = __webpack_require__(2), hide = __webpack_require__(6), Iterators = __webpack_require__(7), TO_STRING_TAG = __webpack_require__(1)("toStringTag"), collections = [ "NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList" ], i = 0; i < 5; i++) {
+            var NAME = collections[i], Collection = global[NAME], proto = Collection && Collection.prototype;
+            proto && !proto[TO_STRING_TAG] && hide(proto, TO_STRING_TAG, NAME), Iterators[NAME] = Iterators.Array;
+        }
+    }, /* 35 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1381,7 +1417,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.default = defaultCellRangeRenderer;
-    }, /* 14 */
+    }, /* 36 */
     /***/
     function(module, exports) {
         "use strict";
@@ -1416,7 +1452,7 @@
         }), exports.default = defaultOverscanIndicesGetter;
         var SCROLL_DIRECTION_BACKWARD = exports.SCROLL_DIRECTION_BACKWARD = -1, SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_FORWARD = 1;
         exports.SCROLL_DIRECTION_HORIZONTAL = "horizontal", exports.SCROLL_DIRECTION_VERTICAL = "vertical";
-    }, /* 15 */
+    }, /* 37 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1469,7 +1505,7 @@
                 for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
             }
             return target;
-        }, _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _browserUtils = __webpack_require__(18), _nodeRendererDefault = __webpack_require__(48), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(2), styles = _nodeRendererDefault2.default;
+        }, _react = __webpack_require__(3), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(8), _propTypes2 = _interopRequireDefault(_propTypes), _browserUtils = __webpack_require__(40), _nodeRendererDefault = __webpack_require__(83), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(4), styles = _nodeRendererDefault2.default;
         // Add extra classes in browsers that don't support flex
         _browserUtils.getIEVersion < 10 && (styles = _extends({}, _nodeRendererDefault2.default, {
             row: styles.row + " " + styles.row_NoFlex,
@@ -1580,35 +1616,35 @@
             } ]), NodeRendererDefault;
         }(_react.Component);
         NodeRendererDefault.propTypes = {
-            node: _react.PropTypes.object.isRequired,
-            path: _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([ _react.PropTypes.string, _react.PropTypes.number ])).isRequired,
-            treeIndex: _react.PropTypes.number.isRequired,
-            isSearchMatch: _react.PropTypes.bool,
-            isSearchFocus: _react.PropTypes.bool,
-            canDrag: _react.PropTypes.bool,
-            scaffoldBlockPxWidth: _react.PropTypes.number.isRequired,
-            toggleChildrenVisibility: _react.PropTypes.func,
-            buttons: _react.PropTypes.arrayOf(_react.PropTypes.node),
-            className: _react.PropTypes.string,
-            style: _react.PropTypes.object,
+            node: _propTypes2.default.object.isRequired,
+            path: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([ _propTypes2.default.string, _propTypes2.default.number ])).isRequired,
+            treeIndex: _propTypes2.default.number.isRequired,
+            isSearchMatch: _propTypes2.default.bool,
+            isSearchFocus: _propTypes2.default.bool,
+            canDrag: _propTypes2.default.bool,
+            scaffoldBlockPxWidth: _propTypes2.default.number.isRequired,
+            toggleChildrenVisibility: _propTypes2.default.func,
+            buttons: _propTypes2.default.arrayOf(_propTypes2.default.node),
+            className: _propTypes2.default.string,
+            style: _propTypes2.default.object,
             // Drag and drop API functions
             // Drag source
-            connectDragPreview: _react.PropTypes.func.isRequired,
-            connectDragSource: _react.PropTypes.func.isRequired,
-            parentNode: _react.PropTypes.object,
+            connectDragPreview: _propTypes2.default.func.isRequired,
+            connectDragSource: _propTypes2.default.func.isRequired,
+            parentNode: _propTypes2.default.object,
             // Needed for drag-and-drop utils
-            startDrag: _react.PropTypes.func.isRequired,
+            startDrag: _propTypes2.default.func.isRequired,
             // Needed for drag-and-drop utils
-            endDrag: _react.PropTypes.func.isRequired,
+            endDrag: _propTypes2.default.func.isRequired,
             // Needed for drag-and-drop utils
-            isDragging: _react.PropTypes.bool.isRequired,
-            didDrop: _react.PropTypes.bool.isRequired,
-            draggedNode: _react.PropTypes.object,
+            isDragging: _propTypes2.default.bool.isRequired,
+            didDrop: _propTypes2.default.bool.isRequired,
+            draggedNode: _propTypes2.default.object,
             // Drop target
-            isOver: _react.PropTypes.bool.isRequired,
-            canDrop: _react.PropTypes.bool
+            isOver: _propTypes2.default.bool.isRequired,
+            canDrop: _propTypes2.default.bool
         }, exports.default = NodeRendererDefault;
-    }, /* 16 */
+    }, /* 38 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -1656,9 +1692,9 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _AutoSizer = __webpack_require__(34), _AutoSizer2 = _interopRequireDefault(_AutoSizer), _List = __webpack_require__(43), _List2 = _interopRequireDefault(_List), _lodash = __webpack_require__(51), _lodash2 = _interopRequireDefault(_lodash), _reactDndScrollzone = __webpack_require__(54), _reactDndScrollzone2 = _interopRequireDefault(_reactDndScrollzone);
-        __webpack_require__(47);
-        var _treeNode = __webpack_require__(17), _treeNode2 = _interopRequireDefault(_treeNode), _nodeRendererDefault = __webpack_require__(15), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(2), _memoizedTreeDataUtils = __webpack_require__(7), _genericUtils = __webpack_require__(20), _defaultHandlers = __webpack_require__(6), _dragAndDropUtils = __webpack_require__(19), _reactSortableTree = __webpack_require__(49), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree), dndTypeCounter = 1, ReactSortableTree = function(_Component) {
+        }(), _react = __webpack_require__(3), _react2 = _interopRequireDefault(_react), _AutoSizer = __webpack_require__(87), _AutoSizer2 = _interopRequireDefault(_AutoSizer), _List = __webpack_require__(96), _List2 = _interopRequireDefault(_List), _lodash = __webpack_require__(99), _lodash2 = _interopRequireDefault(_lodash), _reactDndScrollzone = __webpack_require__(102), _reactDndScrollzone2 = _interopRequireDefault(_reactDndScrollzone);
+        __webpack_require__(82);
+        var _treeNode = __webpack_require__(39), _treeNode2 = _interopRequireDefault(_treeNode), _nodeRendererDefault = __webpack_require__(37), _nodeRendererDefault2 = _interopRequireDefault(_nodeRendererDefault), _treeDataUtils = __webpack_require__(4), _memoizedTreeDataUtils = __webpack_require__(21), _genericUtils = __webpack_require__(42), _defaultHandlers = __webpack_require__(20), _dragAndDropUtils = __webpack_require__(41), _reactSortableTree = __webpack_require__(84), _reactSortableTree2 = _interopRequireDefault(_reactSortableTree), dndTypeCounter = 1, ReactSortableTree = function(_Component) {
             function ReactSortableTree(props) {
                 _classCallCheck(this, ReactSortableTree);
                 var _this = _possibleConstructorReturn(this, (ReactSortableTree.__proto__ || Object.getPrototypeOf(ReactSortableTree)).call(this, props)), dndType = props.dndType, nodeContentRenderer = props.nodeContentRenderer, isVirtualized = props.isVirtualized, slideRegionSize = props.slideRegionSize, treeData = props.treeData;
@@ -1794,9 +1830,9 @@
             }, {
                 key: "dragHover",
                 value: function(_ref5) {
-                    var draggedNode = _ref5.node, depth = _ref5.depth, minimumTreeIndex = _ref5.minimumTreeIndex, addedResult = (0, 
+                    var draggedNode = _ref5.node, depth = _ref5.depth, minimumTreeIndex = _ref5.minimumTreeIndex, draggingTreeData = this.state.draggingTreeData || this.props.treeData, addedResult = (0, 
                     _memoizedTreeDataUtils.memoizedInsertNode)({
-                        treeData: this.state.draggingTreeData,
+                        treeData: draggingTreeData,
                         newNode: draggedNode,
                         depth: depth,
                         minimumTreeIndex: minimumTreeIndex,
@@ -1812,7 +1848,7 @@
                         swapLength: swapLength,
                         swapDepth: depth,
                         draggingTreeData: (0, _treeDataUtils.changeNodeAtPath)({
-                            treeData: this.state.draggingTreeData,
+                            treeData: draggingTreeData,
                             path: expandedParentPath.slice(0, -1),
                             newNode: function(_ref6) {
                                 var node = _ref6.node;
@@ -2066,7 +2102,7 @@
         // see: https://github.com/gaearon/react-dnd/issues/186
         exports.SortableTreeWithoutDndContext = ReactSortableTree, exports.default = (0, 
         _dragAndDropUtils.dndWrapRoot)(ReactSortableTree);
-    }, /* 17 */
+    }, /* 39 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -2119,7 +2155,7 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _treeNode = __webpack_require__(50), _treeNode2 = _interopRequireDefault(_treeNode), TreeNode = function(_Component) {
+        }(), _react = __webpack_require__(3), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(8), _propTypes2 = _interopRequireDefault(_propTypes), _treeNode = __webpack_require__(85), _treeNode2 = _interopRequireDefault(_treeNode), TreeNode = function(_Component) {
             function TreeNode() {
                 return _classCallCheck(this, TreeNode), _possibleConstructorReturn(this, (TreeNode.__proto__ || Object.getPrototypeOf(TreeNode)).apply(this, arguments));
             }
@@ -2191,34 +2227,34 @@
             } ]), TreeNode;
         }(_react.Component);
         TreeNode.propTypes = {
-            treeIndex: _react.PropTypes.number.isRequired,
-            node: _react.PropTypes.object.isRequired,
-            path: _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([ _react.PropTypes.string, _react.PropTypes.number ])).isRequired,
-            swapFrom: _react.PropTypes.number,
-            swapDepth: _react.PropTypes.number,
-            swapLength: _react.PropTypes.number,
-            scaffoldBlockPxWidth: _react.PropTypes.number.isRequired,
-            lowerSiblingCounts: _react.PropTypes.array.isRequired,
-            listIndex: _react.PropTypes.number.isRequired,
-            children: _react.PropTypes.node,
+            treeIndex: _propTypes2.default.number.isRequired,
+            node: _propTypes2.default.object.isRequired,
+            path: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([ _propTypes2.default.string, _propTypes2.default.number ])).isRequired,
+            swapFrom: _propTypes2.default.number,
+            swapDepth: _propTypes2.default.number,
+            swapLength: _propTypes2.default.number,
+            scaffoldBlockPxWidth: _propTypes2.default.number.isRequired,
+            lowerSiblingCounts: _propTypes2.default.array.isRequired,
+            listIndex: _propTypes2.default.number.isRequired,
+            children: _propTypes2.default.node,
             // Drop target
-            connectDropTarget: _react.PropTypes.func.isRequired,
-            isOver: _react.PropTypes.bool.isRequired,
-            canDrop: _react.PropTypes.bool,
-            draggedNode: _react.PropTypes.object,
-            customCanDrop: _react.PropTypes.func,
+            connectDropTarget: _propTypes2.default.func.isRequired,
+            isOver: _propTypes2.default.bool.isRequired,
+            canDrop: _propTypes2.default.bool,
+            draggedNode: _propTypes2.default.object,
+            customCanDrop: _propTypes2.default.func,
             // used in drag-and-drop-utils
-            dragHover: _react.PropTypes.func.isRequired,
+            dragHover: _propTypes2.default.func.isRequired,
             // used in drag-and-drop-utils
-            getNodeKey: _react.PropTypes.func,
+            getNodeKey: _propTypes2.default.func,
             // used in drag-and-drop-utils
-            getPrevRow: _react.PropTypes.func,
+            getPrevRow: _propTypes2.default.func,
             // used in drag-and-drop-utils
-            maxDepth: _react.PropTypes.number,
+            maxDepth: _propTypes2.default.number,
             // used in drag-and-drop-utils
-            treeData: _react.PropTypes.arrayOf(_react.PropTypes.object)
+            treeData: _propTypes2.default.arrayOf(_propTypes2.default.object)
         }, exports.default = TreeNode;
-    }, /* 18 */
+    }, /* 40 */
     /***/
     function(module, exports) {
         "use strict";
@@ -2234,7 +2270,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.getIEVersion = getIEVersion;
-    }, /* 19 */
+    }, /* 41 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -2274,8 +2310,10 @@
                     node: node,
                     prevPath: monitor.getItem().path,
                     prevParent: monitor.getItem().parentNode,
+                    prevTreeIndex: monitor.getItem().treeIndex,
                     nextPath: addedResult.path,
-                    nextParent: addedResult.parentNode
+                    nextParent: addedResult.parentNode,
+                    nextTreeIndex: addedResult.treeIndex
                 });
             }
             return !0;
@@ -2310,12 +2348,13 @@
             value: !0
         }), exports.dndWrapSource = dndWrapSource, exports.dndWrapTarget = dndWrapTarget, 
         exports.dndWrapRoot = dndWrapRoot;
-        var _reactDnd = __webpack_require__(52), _reactDndHtml5Backend = __webpack_require__(53), _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend), _treeDataUtils = __webpack_require__(2), _memoizedTreeDataUtils = __webpack_require__(7), nodeDragSource = {
+        var _reactDnd = __webpack_require__(100), _reactDndHtml5Backend = __webpack_require__(101), _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend), _treeDataUtils = __webpack_require__(4), _memoizedTreeDataUtils = __webpack_require__(21), nodeDragSource = {
             beginDrag: function(props) {
                 return props.startDrag(props), {
                     node: props.node,
                     parentNode: props.parentNode,
-                    path: props.path
+                    path: props.path,
+                    treeIndex: props.treeIndex
                 };
             },
             endDrag: function(props, monitor) {
@@ -2347,7 +2386,7 @@
             },
             canDrop: canDrop
         };
-    }, /* 20 */
+    }, /* 42 */
     /***/
     function(module, exports) {
         "use strict";
@@ -2365,938 +2404,386 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.swapRows = swapRows;
-    }, /* 21 */
+    }, /* 43 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = {
+            default: __webpack_require__(47),
+            __esModule: !0
+        };
+    }, /* 44 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = {
+            default: __webpack_require__(48),
+            __esModule: !0
+        };
+    }, /* 45 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = {
+            default: __webpack_require__(49),
+            __esModule: !0
+        };
+    }, /* 46 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
+            };
+        }
+        exports.__esModule = !0;
+        var _isIterable2 = __webpack_require__(44), _isIterable3 = _interopRequireDefault(_isIterable2), _getIterator2 = __webpack_require__(43), _getIterator3 = _interopRequireDefault(_getIterator2);
+        exports.default = function() {
+            function sliceIterator(arr, i) {
+                var _arr = [], _n = !0, _d = !1, _e = void 0;
+                try {
+                    for (var _s, _i = (0, _getIterator3.default)(arr); !(_n = (_s = _i.next()).done) && (_arr.push(_s.value), 
+                    !i || _arr.length !== i); _n = !0) ;
+                } catch (err) {
+                    _d = !0, _e = err;
+                } finally {
+                    try {
+                        !_n && _i.return && _i.return();
+                    } finally {
+                        if (_d) throw _e;
+                    }
+                }
+                return _arr;
+            }
+            return function(arr, i) {
+                if (Array.isArray(arr)) return arr;
+                if ((0, _isIterable3.default)(Object(arr))) return sliceIterator(arr, i);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance");
+            };
+        }();
+    }, /* 47 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        __webpack_require__(34), __webpack_require__(33), module.exports = __webpack_require__(73);
+    }, /* 48 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        __webpack_require__(34), __webpack_require__(33), module.exports = __webpack_require__(74);
+    }, /* 49 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var core = __webpack_require__(5), $JSON = core.JSON || (core.JSON = {
+            stringify: JSON.stringify
+        });
+        module.exports = function(it) {
+            // eslint-disable-line no-unused-vars
+            return $JSON.stringify.apply($JSON, arguments);
+        };
+    }, /* 50 */
     /***/
     function(module, exports) {
-        "use strict";
-        function placeHoldersCount(b64) {
-            var len = b64.length;
-            if (len % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
-            // the number of equal signs (place holders)
-            // if there are two placeholders, than the two characters before it
-            // represent one byte
-            // if there is only one, then the three characters before it represent 2 bytes
-            // this is just a cheap hack to not do indexOf twice
-            return "=" === b64[len - 2] ? 2 : "=" === b64[len - 1] ? 1 : 0;
-        }
-        function byteLength(b64) {
-            // base64 is 4/3 + up to two characters of the original data
-            return 3 * b64.length / 4 - placeHoldersCount(b64);
-        }
-        function toByteArray(b64) {
-            var i, j, l, tmp, placeHolders, arr, len = b64.length;
-            placeHolders = placeHoldersCount(b64), arr = new Arr(3 * len / 4 - placeHolders), 
-            // if there are placeholders, only get up to the last complete 4 chars
-            l = placeHolders > 0 ? len - 4 : len;
-            var L = 0;
-            for (i = 0, j = 0; i < l; i += 4, j += 3) tmp = revLookup[b64.charCodeAt(i)] << 18 | revLookup[b64.charCodeAt(i + 1)] << 12 | revLookup[b64.charCodeAt(i + 2)] << 6 | revLookup[b64.charCodeAt(i + 3)], 
-            arr[L++] = tmp >> 16 & 255, arr[L++] = tmp >> 8 & 255, arr[L++] = 255 & tmp;
-            return 2 === placeHolders ? (tmp = revLookup[b64.charCodeAt(i)] << 2 | revLookup[b64.charCodeAt(i + 1)] >> 4, 
-            arr[L++] = 255 & tmp) : 1 === placeHolders && (tmp = revLookup[b64.charCodeAt(i)] << 10 | revLookup[b64.charCodeAt(i + 1)] << 4 | revLookup[b64.charCodeAt(i + 2)] >> 2, 
-            arr[L++] = tmp >> 8 & 255, arr[L++] = 255 & tmp), arr;
-        }
-        function tripletToBase64(num) {
-            return lookup[num >> 18 & 63] + lookup[num >> 12 & 63] + lookup[num >> 6 & 63] + lookup[63 & num];
-        }
-        function encodeChunk(uint8, start, end) {
-            for (var tmp, output = [], i = start; i < end; i += 3) tmp = (uint8[i] << 16) + (uint8[i + 1] << 8) + uint8[i + 2], 
-            output.push(tripletToBase64(tmp));
-            return output.join("");
-        }
-        function fromByteArray(uint8) {
-            // must be multiple of 3
-            // go through the array every three bytes, we'll deal with trailing stuff later
-            for (var tmp, len = uint8.length, extraBytes = len % 3, output = "", parts = [], maxChunkLength = 16383, i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) parts.push(encodeChunk(uint8, i, i + maxChunkLength > len2 ? len2 : i + maxChunkLength));
-            // pad the end with zeros, but make sure to not forget the extra bytes
-            return 1 === extraBytes ? (tmp = uint8[len - 1], output += lookup[tmp >> 2], output += lookup[tmp << 4 & 63], 
-            output += "==") : 2 === extraBytes && (tmp = (uint8[len - 2] << 8) + uint8[len - 1], 
-            output += lookup[tmp >> 10], output += lookup[tmp >> 4 & 63], output += lookup[tmp << 2 & 63], 
-            output += "="), parts.push(output), parts.join("");
-        }
-        exports.byteLength = byteLength, exports.toByteArray = toByteArray, exports.fromByteArray = fromByteArray;
-        for (var lookup = [], revLookup = [], Arr = "undefined" != typeof Uint8Array ? Uint8Array : Array, code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", i = 0, len = code.length; i < len; ++i) lookup[i] = code[i], 
-        revLookup[code.charCodeAt(i)] = i;
-        revLookup["-".charCodeAt(0)] = 62, revLookup["_".charCodeAt(0)] = 63;
-    }, /* 22 */
+        module.exports = function(it) {
+            if ("function" != typeof it) throw TypeError(it + " is not a function!");
+            return it;
+        };
+    }, /* 51 */
+    /***/
+    function(module, exports) {
+        module.exports = function() {};
+    }, /* 52 */
     /***/
     function(module, exports, __webpack_require__) {
-        /* WEBPACK VAR INJECTION */
-        (function(global) {
-            /*!
-	 * The buffer module from node.js, for the browser.
-	 *
-	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
-	 * @license  MIT
-	 */
-            /* eslint-disable no-proto */
-            "use strict";
-            function typedArraySupport() {
-                try {
-                    var arr = new Uint8Array(1);
-                    // typed array instances can be augmented
-                    // chrome 9-10 lack `subarray`
-                    return arr.__proto__ = {
-                        __proto__: Uint8Array.prototype,
-                        foo: function() {
-                            return 42;
-                        }
-                    }, 42 === arr.foo() && "function" == typeof arr.subarray && 0 === arr.subarray(1, 1).byteLength;
-                } catch (e) {
-                    return !1;
-                }
-            }
-            function kMaxLength() {
-                return Buffer.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
-            }
-            function createBuffer(that, length) {
-                if (kMaxLength() < length) throw new RangeError("Invalid typed array length");
-                // Return an augmented `Uint8Array` instance, for best performance
-                // Fallback: Return an object instance of the Buffer class
-                return Buffer.TYPED_ARRAY_SUPPORT ? (that = new Uint8Array(length), that.__proto__ = Buffer.prototype) : (null === that && (that = new Buffer(length)), 
-                that.length = length), that;
-            }
-            /**
-	 * The Buffer constructor returns instances of `Uint8Array` that have their
-	 * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
-	 * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
-	 * and the `Uint8Array` methods. Square bracket notation works as expected -- it
-	 * returns a single octet.
-	 *
-	 * The `Uint8Array` prototype remains unmodified.
-	 */
-            function Buffer(arg, encodingOrOffset, length) {
-                if (!(Buffer.TYPED_ARRAY_SUPPORT || this instanceof Buffer)) return new Buffer(arg, encodingOrOffset, length);
-                // Common case.
-                if ("number" == typeof arg) {
-                    if ("string" == typeof encodingOrOffset) throw new Error("If encoding is specified then the first argument must be a string");
-                    return allocUnsafe(this, arg);
-                }
-                return from(this, arg, encodingOrOffset, length);
-            }
-            function from(that, value, encodingOrOffset, length) {
-                if ("number" == typeof value) throw new TypeError('"value" argument must not be a number');
-                return "undefined" != typeof ArrayBuffer && value instanceof ArrayBuffer ? fromArrayBuffer(that, value, encodingOrOffset, length) : "string" == typeof value ? fromString(that, value, encodingOrOffset) : fromObject(that, value);
-            }
-            function assertSize(size) {
-                if ("number" != typeof size) throw new TypeError('"size" argument must be a number');
-                if (size < 0) throw new RangeError('"size" argument must not be negative');
-            }
-            function alloc(that, size, fill, encoding) {
-                return assertSize(size), size <= 0 ? createBuffer(that, size) : void 0 !== fill ? "string" == typeof encoding ? createBuffer(that, size).fill(fill, encoding) : createBuffer(that, size).fill(fill) : createBuffer(that, size);
-            }
-            function allocUnsafe(that, size) {
-                if (assertSize(size), that = createBuffer(that, size < 0 ? 0 : 0 | checked(size)), 
-                !Buffer.TYPED_ARRAY_SUPPORT) for (var i = 0; i < size; ++i) that[i] = 0;
-                return that;
-            }
-            function fromString(that, string, encoding) {
-                if ("string" == typeof encoding && "" !== encoding || (encoding = "utf8"), !Buffer.isEncoding(encoding)) throw new TypeError('"encoding" must be a valid string encoding');
-                var length = 0 | byteLength(string, encoding);
-                that = createBuffer(that, length);
-                var actual = that.write(string, encoding);
-                // Writing a hex string, for example, that contains invalid characters will
-                // cause everything after the first invalid character to be ignored. (e.g.
-                // 'abxxcd' will be treated as 'ab')
-                return actual !== length && (that = that.slice(0, actual)), that;
-            }
-            function fromArrayLike(that, array) {
-                var length = array.length < 0 ? 0 : 0 | checked(array.length);
-                that = createBuffer(that, length);
-                for (var i = 0; i < length; i += 1) that[i] = 255 & array[i];
-                return that;
-            }
-            function fromArrayBuffer(that, array, byteOffset, length) {
-                // this throws if `array` is not a valid ArrayBuffer
-                if (array.byteLength, byteOffset < 0 || array.byteLength < byteOffset) throw new RangeError("'offset' is out of bounds");
-                if (array.byteLength < byteOffset + (length || 0)) throw new RangeError("'length' is out of bounds");
-                // Return an augmented `Uint8Array` instance, for best performance
-                // Fallback: Return an object instance of the Buffer class
-                return array = void 0 === byteOffset && void 0 === length ? new Uint8Array(array) : void 0 === length ? new Uint8Array(array, byteOffset) : new Uint8Array(array, byteOffset, length), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (that = array, that.__proto__ = Buffer.prototype) : that = fromArrayLike(that, array), 
-                that;
-            }
-            function fromObject(that, obj) {
-                if (Buffer.isBuffer(obj)) {
-                    var len = 0 | checked(obj.length);
-                    return that = createBuffer(that, len), 0 === that.length ? that : (obj.copy(that, 0, 0, len), 
-                    that);
-                }
-                if (obj) {
-                    if ("undefined" != typeof ArrayBuffer && obj.buffer instanceof ArrayBuffer || "length" in obj) return "number" != typeof obj.length || isnan(obj.length) ? createBuffer(that, 0) : fromArrayLike(that, obj);
-                    if ("Buffer" === obj.type && isArray(obj.data)) return fromArrayLike(that, obj.data);
-                }
-                throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
-            }
-            function checked(length) {
-                // Note: cannot use `length < kMaxLength()` here because that fails when
-                // length is NaN (which is otherwise coerced to zero.)
-                if (length >= kMaxLength()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + kMaxLength().toString(16) + " bytes");
-                return 0 | length;
-            }
-            function SlowBuffer(length) {
-                // eslint-disable-line eqeqeq
-                return +length != length && (length = 0), Buffer.alloc(+length);
-            }
-            function byteLength(string, encoding) {
-                if (Buffer.isBuffer(string)) return string.length;
-                if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) return string.byteLength;
-                "string" != typeof string && (string = "" + string);
-                var len = string.length;
-                if (0 === len) return 0;
-                for (// Use a for loop to avoid recursion
-                var loweredCase = !1; ;) switch (encoding) {
-                  case "ascii":
-                  case "latin1":
-                  case "binary":
-                    return len;
+        // false -> Array#indexOf
+        // true  -> Array#includes
+        var toIObject = __webpack_require__(19), toLength = __webpack_require__(69), toIndex = __webpack_require__(68);
+        module.exports = function(IS_INCLUDES) {
+            return function($this, el, fromIndex) {
+                var value, O = toIObject($this), length = toLength(O.length), index = toIndex(fromIndex, length);
+                // Array#includes uses SameValueZero equality algorithm
+                if (IS_INCLUDES && el != el) {
+                    for (;length > index; ) if (value = O[index++], value != value) return !0;
+                } else for (;length > index; index++) if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
+                return !IS_INCLUDES && -1;
+            };
+        };
+    }, /* 53 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // optional / simple context binding
+        var aFunction = __webpack_require__(50);
+        module.exports = function(fn, that, length) {
+            if (aFunction(fn), void 0 === that) return fn;
+            switch (length) {
+              case 1:
+                return function(a) {
+                    return fn.call(that, a);
+                };
 
-                  case "utf8":
-                  case "utf-8":
-                  case void 0:
-                    return utf8ToBytes(string).length;
+              case 2:
+                return function(a, b) {
+                    return fn.call(that, a, b);
+                };
 
-                  case "ucs2":
-                  case "ucs-2":
-                  case "utf16le":
-                  case "utf-16le":
-                    return 2 * len;
+              case 3:
+                return function(a, b, c) {
+                    return fn.call(that, a, b, c);
+                };
+            }
+            return function() {
+                return fn.apply(that, arguments);
+            };
+        };
+    }, /* 54 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var global = __webpack_require__(2), core = __webpack_require__(5), ctx = __webpack_require__(53), hide = __webpack_require__(6), PROTOTYPE = "prototype", $export = function(type, name, source) {
+            var key, own, out, IS_FORCED = type & $export.F, IS_GLOBAL = type & $export.G, IS_STATIC = type & $export.S, IS_PROTO = type & $export.P, IS_BIND = type & $export.B, IS_WRAP = type & $export.W, exports = IS_GLOBAL ? core : core[name] || (core[name] = {}), expProto = exports[PROTOTYPE], target = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE];
+            IS_GLOBAL && (source = name);
+            for (key in source) // contains in native
+            own = !IS_FORCED && target && void 0 !== target[key], own && key in exports || (// export native or passed
+            out = own ? target[key] : source[key], // prevent global pollution for namespaces
+            exports[key] = IS_GLOBAL && "function" != typeof target[key] ? source[key] : IS_BIND && own ? ctx(out, global) : IS_WRAP && target[key] == out ? function(C) {
+                var F = function(a, b, c) {
+                    if (this instanceof C) {
+                        switch (arguments.length) {
+                          case 0:
+                            return new C();
 
-                  case "hex":
-                    return len >>> 1;
-
-                  case "base64":
-                    return base64ToBytes(string).length;
-
-                  default:
-                    if (loweredCase) return utf8ToBytes(string).length;
-                    // assume utf8
-                    encoding = ("" + encoding).toLowerCase(), loweredCase = !0;
-                }
-            }
-            function slowToString(encoding, start, end) {
-                var loweredCase = !1;
-                // Return early if start > this.length. Done here to prevent potential uint32
-                // coercion fail below.
-                if (// No need to verify that "this.length <= MAX_UINT32" since it's a read-only
-                // property of a typed array.
-                // This behaves neither like String nor Uint8Array in that we set start/end
-                // to their upper/lower bounds if the value passed is out of range.
-                // undefined is handled specially as per ECMA-262 6th Edition,
-                // Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
-                (void 0 === start || start < 0) && (start = 0), start > this.length) return "";
-                if ((void 0 === end || end > this.length) && (end = this.length), end <= 0) return "";
-                if (// Force coersion to uint32. This will also coerce falsey/NaN values to 0.
-                end >>>= 0, start >>>= 0, end <= start) return "";
-                for (encoding || (encoding = "utf8"); ;) switch (encoding) {
-                  case "hex":
-                    return hexSlice(this, start, end);
-
-                  case "utf8":
-                  case "utf-8":
-                    return utf8Slice(this, start, end);
-
-                  case "ascii":
-                    return asciiSlice(this, start, end);
-
-                  case "latin1":
-                  case "binary":
-                    return latin1Slice(this, start, end);
-
-                  case "base64":
-                    return base64Slice(this, start, end);
-
-                  case "ucs2":
-                  case "ucs-2":
-                  case "utf16le":
-                  case "utf-16le":
-                    return utf16leSlice(this, start, end);
-
-                  default:
-                    if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
-                    encoding = (encoding + "").toLowerCase(), loweredCase = !0;
-                }
-            }
-            function swap(b, n, m) {
-                var i = b[n];
-                b[n] = b[m], b[m] = i;
-            }
-            // Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
-            // OR the last index of `val` in `buffer` at offset <= `byteOffset`.
-            //
-            // Arguments:
-            // - buffer - a Buffer to search
-            // - val - a string, Buffer, or number
-            // - byteOffset - an index into `buffer`; will be clamped to an int32
-            // - encoding - an optional encoding, relevant is val is a string
-            // - dir - true for indexOf, false for lastIndexOf
-            function bidirectionalIndexOf(buffer, val, byteOffset, encoding, dir) {
-                // Empty buffer means no match
-                if (0 === buffer.length) return -1;
-                if (// Normalize byteOffset
-                "string" == typeof byteOffset ? (encoding = byteOffset, byteOffset = 0) : byteOffset > 2147483647 ? byteOffset = 2147483647 : byteOffset < -2147483648 && (byteOffset = -2147483648), 
-                byteOffset = +byteOffset, // Coerce to Number.
-                isNaN(byteOffset) && (// byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
-                byteOffset = dir ? 0 : buffer.length - 1), // Normalize byteOffset: negative offsets start from the end of the buffer
-                byteOffset < 0 && (byteOffset = buffer.length + byteOffset), byteOffset >= buffer.length) {
-                    if (dir) return -1;
-                    byteOffset = buffer.length - 1;
-                } else if (byteOffset < 0) {
-                    if (!dir) return -1;
-                    byteOffset = 0;
-                }
-                // Finally, search either indexOf (if dir is true) or lastIndexOf
-                if (// Normalize val
-                "string" == typeof val && (val = Buffer.from(val, encoding)), Buffer.isBuffer(val)) // Special case: looking for empty string/buffer always fails
-                // Special case: looking for empty string/buffer always fails
-                return 0 === val.length ? -1 : arrayIndexOf(buffer, val, byteOffset, encoding, dir);
-                if ("number" == typeof val) // Search for a byte value [0-255]
-                // Search for a byte value [0-255]
-                return val &= 255, Buffer.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? dir ? Uint8Array.prototype.indexOf.call(buffer, val, byteOffset) : Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset) : arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir);
-                throw new TypeError("val must be string, number or Buffer");
-            }
-            function arrayIndexOf(arr, val, byteOffset, encoding, dir) {
-                function read(buf, i) {
-                    return 1 === indexSize ? buf[i] : buf.readUInt16BE(i * indexSize);
-                }
-                var indexSize = 1, arrLength = arr.length, valLength = val.length;
-                if (void 0 !== encoding && (encoding = String(encoding).toLowerCase(), "ucs2" === encoding || "ucs-2" === encoding || "utf16le" === encoding || "utf-16le" === encoding)) {
-                    if (arr.length < 2 || val.length < 2) return -1;
-                    indexSize = 2, arrLength /= 2, valLength /= 2, byteOffset /= 2;
-                }
-                var i;
-                if (dir) {
-                    var foundIndex = -1;
-                    for (i = byteOffset; i < arrLength; i++) if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
-                        if (foundIndex === -1 && (foundIndex = i), i - foundIndex + 1 === valLength) return foundIndex * indexSize;
-                    } else foundIndex !== -1 && (i -= i - foundIndex), foundIndex = -1;
-                } else for (byteOffset + valLength > arrLength && (byteOffset = arrLength - valLength), 
-                i = byteOffset; i >= 0; i--) {
-                    for (var found = !0, j = 0; j < valLength; j++) if (read(arr, i + j) !== read(val, j)) {
-                        found = !1;
-                        break;
-                    }
-                    if (found) return i;
-                }
-                return -1;
-            }
-            function hexWrite(buf, string, offset, length) {
-                offset = Number(offset) || 0;
-                var remaining = buf.length - offset;
-                length ? (length = Number(length), length > remaining && (length = remaining)) : length = remaining;
-                // must be an even number of digits
-                var strLen = string.length;
-                if (strLen % 2 !== 0) throw new TypeError("Invalid hex string");
-                length > strLen / 2 && (length = strLen / 2);
-                for (var i = 0; i < length; ++i) {
-                    var parsed = parseInt(string.substr(2 * i, 2), 16);
-                    if (isNaN(parsed)) return i;
-                    buf[offset + i] = parsed;
-                }
-                return i;
-            }
-            function utf8Write(buf, string, offset, length) {
-                return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
-            }
-            function asciiWrite(buf, string, offset, length) {
-                return blitBuffer(asciiToBytes(string), buf, offset, length);
-            }
-            function latin1Write(buf, string, offset, length) {
-                return asciiWrite(buf, string, offset, length);
-            }
-            function base64Write(buf, string, offset, length) {
-                return blitBuffer(base64ToBytes(string), buf, offset, length);
-            }
-            function ucs2Write(buf, string, offset, length) {
-                return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length);
-            }
-            function base64Slice(buf, start, end) {
-                return 0 === start && end === buf.length ? base64.fromByteArray(buf) : base64.fromByteArray(buf.slice(start, end));
-            }
-            function utf8Slice(buf, start, end) {
-                end = Math.min(buf.length, end);
-                for (var res = [], i = start; i < end; ) {
-                    var firstByte = buf[i], codePoint = null, bytesPerSequence = firstByte > 239 ? 4 : firstByte > 223 ? 3 : firstByte > 191 ? 2 : 1;
-                    if (i + bytesPerSequence <= end) {
-                        var secondByte, thirdByte, fourthByte, tempCodePoint;
-                        switch (bytesPerSequence) {
                           case 1:
-                            firstByte < 128 && (codePoint = firstByte);
-                            break;
+                            return new C(a);
 
                           case 2:
-                            secondByte = buf[i + 1], 128 === (192 & secondByte) && (tempCodePoint = (31 & firstByte) << 6 | 63 & secondByte, 
-                            tempCodePoint > 127 && (codePoint = tempCodePoint));
-                            break;
-
-                          case 3:
-                            secondByte = buf[i + 1], thirdByte = buf[i + 2], 128 === (192 & secondByte) && 128 === (192 & thirdByte) && (tempCodePoint = (15 & firstByte) << 12 | (63 & secondByte) << 6 | 63 & thirdByte, 
-                            tempCodePoint > 2047 && (tempCodePoint < 55296 || tempCodePoint > 57343) && (codePoint = tempCodePoint));
-                            break;
-
-                          case 4:
-                            secondByte = buf[i + 1], thirdByte = buf[i + 2], fourthByte = buf[i + 3], 128 === (192 & secondByte) && 128 === (192 & thirdByte) && 128 === (192 & fourthByte) && (tempCodePoint = (15 & firstByte) << 18 | (63 & secondByte) << 12 | (63 & thirdByte) << 6 | 63 & fourthByte, 
-                            tempCodePoint > 65535 && tempCodePoint < 1114112 && (codePoint = tempCodePoint));
+                            return new C(a, b);
                         }
+                        return new C(a, b, c);
                     }
-                    null === codePoint ? (// we did not generate a valid codePoint so insert a
-                    // replacement char (U+FFFD) and advance only 1 byte
-                    codePoint = 65533, bytesPerSequence = 1) : codePoint > 65535 && (// encode to utf16 (surrogate pair dance)
-                    codePoint -= 65536, res.push(codePoint >>> 10 & 1023 | 55296), codePoint = 56320 | 1023 & codePoint), 
-                    res.push(codePoint), i += bytesPerSequence;
-                }
-                return decodeCodePointsArray(res);
-            }
-            function decodeCodePointsArray(codePoints) {
-                var len = codePoints.length;
-                if (len <= MAX_ARGUMENTS_LENGTH) return String.fromCharCode.apply(String, codePoints);
-                for (// Decode in chunks to avoid "call stack size exceeded".
-                var res = "", i = 0; i < len; ) res += String.fromCharCode.apply(String, codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH));
-                return res;
-            }
-            function asciiSlice(buf, start, end) {
-                var ret = "";
-                end = Math.min(buf.length, end);
-                for (var i = start; i < end; ++i) ret += String.fromCharCode(127 & buf[i]);
-                return ret;
-            }
-            function latin1Slice(buf, start, end) {
-                var ret = "";
-                end = Math.min(buf.length, end);
-                for (var i = start; i < end; ++i) ret += String.fromCharCode(buf[i]);
-                return ret;
-            }
-            function hexSlice(buf, start, end) {
-                var len = buf.length;
-                (!start || start < 0) && (start = 0), (!end || end < 0 || end > len) && (end = len);
-                for (var out = "", i = start; i < end; ++i) out += toHex(buf[i]);
-                return out;
-            }
-            function utf16leSlice(buf, start, end) {
-                for (var bytes = buf.slice(start, end), res = "", i = 0; i < bytes.length; i += 2) res += String.fromCharCode(bytes[i] + 256 * bytes[i + 1]);
-                return res;
-            }
-            /*
-	 * Need to make sure that buffer isn't trying to write out of bounds.
-	 */
-            function checkOffset(offset, ext, length) {
-                if (offset % 1 !== 0 || offset < 0) throw new RangeError("offset is not uint");
-                if (offset + ext > length) throw new RangeError("Trying to access beyond buffer length");
-            }
-            function checkInt(buf, value, offset, ext, max, min) {
-                if (!Buffer.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance');
-                if (value > max || value < min) throw new RangeError('"value" argument is out of bounds');
-                if (offset + ext > buf.length) throw new RangeError("Index out of range");
-            }
-            function objectWriteUInt16(buf, value, offset, littleEndian) {
-                value < 0 && (value = 65535 + value + 1);
-                for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; ++i) buf[offset + i] = (value & 255 << 8 * (littleEndian ? i : 1 - i)) >>> 8 * (littleEndian ? i : 1 - i);
-            }
-            function objectWriteUInt32(buf, value, offset, littleEndian) {
-                value < 0 && (value = 4294967295 + value + 1);
-                for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; ++i) buf[offset + i] = value >>> 8 * (littleEndian ? i : 3 - i) & 255;
-            }
-            function checkIEEE754(buf, value, offset, ext, max, min) {
-                if (offset + ext > buf.length) throw new RangeError("Index out of range");
-                if (offset < 0) throw new RangeError("Index out of range");
-            }
-            function writeFloat(buf, value, offset, littleEndian, noAssert) {
-                return noAssert || checkIEEE754(buf, value, offset, 4, 3.4028234663852886e38, -3.4028234663852886e38), 
-                ieee754.write(buf, value, offset, littleEndian, 23, 4), offset + 4;
-            }
-            function writeDouble(buf, value, offset, littleEndian, noAssert) {
-                return noAssert || checkIEEE754(buf, value, offset, 8, 1.7976931348623157e308, -1.7976931348623157e308), 
-                ieee754.write(buf, value, offset, littleEndian, 52, 8), offset + 8;
-            }
-            function base64clean(str) {
-                // Node converts strings with length < 2 to ''
-                if (// Node strips out invalid characters like \n and \t from the string, base64-js does not
-                str = stringtrim(str).replace(INVALID_BASE64_RE, ""), str.length < 2) return "";
-                // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
-                for (;str.length % 4 !== 0; ) str += "=";
-                return str;
-            }
-            function stringtrim(str) {
-                return str.trim ? str.trim() : str.replace(/^\s+|\s+$/g, "");
-            }
-            function toHex(n) {
-                return n < 16 ? "0" + n.toString(16) : n.toString(16);
-            }
-            function utf8ToBytes(string, units) {
-                units = units || 1 / 0;
-                for (var codePoint, length = string.length, leadSurrogate = null, bytes = [], i = 0; i < length; ++i) {
-                    // is surrogate component
-                    if (codePoint = string.charCodeAt(i), codePoint > 55295 && codePoint < 57344) {
-                        // last char was a lead
-                        if (!leadSurrogate) {
-                            // no lead yet
-                            if (codePoint > 56319) {
-                                // unexpected trail
-                                (units -= 3) > -1 && bytes.push(239, 191, 189);
-                                continue;
-                            }
-                            if (i + 1 === length) {
-                                // unpaired lead
-                                (units -= 3) > -1 && bytes.push(239, 191, 189);
-                                continue;
-                            }
-                            // valid lead
-                            leadSurrogate = codePoint;
-                            continue;
-                        }
-                        // 2 leads in a row
-                        if (codePoint < 56320) {
-                            (units -= 3) > -1 && bytes.push(239, 191, 189), leadSurrogate = codePoint;
-                            continue;
-                        }
-                        // valid surrogate pair
-                        codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
-                    } else leadSurrogate && (units -= 3) > -1 && bytes.push(239, 191, 189);
-                    // encode utf8
-                    if (leadSurrogate = null, codePoint < 128) {
-                        if ((units -= 1) < 0) break;
-                        bytes.push(codePoint);
-                    } else if (codePoint < 2048) {
-                        if ((units -= 2) < 0) break;
-                        bytes.push(codePoint >> 6 | 192, 63 & codePoint | 128);
-                    } else if (codePoint < 65536) {
-                        if ((units -= 3) < 0) break;
-                        bytes.push(codePoint >> 12 | 224, codePoint >> 6 & 63 | 128, 63 & codePoint | 128);
-                    } else {
-                        if (!(codePoint < 1114112)) throw new Error("Invalid code point");
-                        if ((units -= 4) < 0) break;
-                        bytes.push(codePoint >> 18 | 240, codePoint >> 12 & 63 | 128, codePoint >> 6 & 63 | 128, 63 & codePoint | 128);
-                    }
-                }
-                return bytes;
-            }
-            function asciiToBytes(str) {
-                for (var byteArray = [], i = 0; i < str.length; ++i) // Node's code seems to be doing this and not & 0x7F..
-                byteArray.push(255 & str.charCodeAt(i));
-                return byteArray;
-            }
-            function utf16leToBytes(str, units) {
-                for (var c, hi, lo, byteArray = [], i = 0; i < str.length && !((units -= 2) < 0); ++i) c = str.charCodeAt(i), 
-                hi = c >> 8, lo = c % 256, byteArray.push(lo), byteArray.push(hi);
-                return byteArray;
-            }
-            function base64ToBytes(str) {
-                return base64.toByteArray(base64clean(str));
-            }
-            function blitBuffer(src, dst, offset, length) {
-                for (var i = 0; i < length && !(i + offset >= dst.length || i >= src.length); ++i) dst[i + offset] = src[i];
-                return i;
-            }
-            function isnan(val) {
-                return val !== val;
-            }
-            var base64 = __webpack_require__(21), ieee754 = __webpack_require__(29), isArray = __webpack_require__(30);
-            exports.Buffer = Buffer, exports.SlowBuffer = SlowBuffer, exports.INSPECT_MAX_BYTES = 50, 
-            /**
-	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
-	 *   === true    Use Uint8Array implementation (fastest)
-	 *   === false   Use Object implementation (most compatible, even IE6)
-	 *
-	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
-	 * Opera 11.6+, iOS 4.2+.
-	 *
-	 * Due to various browser bugs, sometimes the Object implementation will be used even
-	 * when the browser supports typed arrays.
-	 *
-	 * Note:
-	 *
-	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
-	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
-	 *
-	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
-	 *
-	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
-	 *     incorrect length in some situations.
-	
-	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
-	 * get the Object implementation, which is slower but behaves correctly.
-	 */
-            Buffer.TYPED_ARRAY_SUPPORT = void 0 !== global.TYPED_ARRAY_SUPPORT ? global.TYPED_ARRAY_SUPPORT : typedArraySupport(), 
-            /*
-	 * Export kMaxLength after typed array support is determined.
-	 */
-            exports.kMaxLength = kMaxLength(), Buffer.poolSize = 8192, // not used by this implementation
-            // TODO: Legacy, not needed anymore. Remove in next major version.
-            Buffer._augment = function(arr) {
-                return arr.__proto__ = Buffer.prototype, arr;
-            }, /**
-	 * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
-	 * if value is a number.
-	 * Buffer.from(str[, encoding])
-	 * Buffer.from(array)
-	 * Buffer.from(buffer)
-	 * Buffer.from(arrayBuffer[, byteOffset[, length]])
-	 **/
-            Buffer.from = function(value, encodingOrOffset, length) {
-                return from(null, value, encodingOrOffset, length);
-            }, Buffer.TYPED_ARRAY_SUPPORT && (Buffer.prototype.__proto__ = Uint8Array.prototype, 
-            Buffer.__proto__ = Uint8Array, "undefined" != typeof Symbol && Symbol.species && Buffer[Symbol.species] === Buffer && // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
-            Object.defineProperty(Buffer, Symbol.species, {
-                value: null,
-                configurable: !0
-            })), /**
-	 * Creates a new filled Buffer instance.
-	 * alloc(size[, fill[, encoding]])
-	 **/
-            Buffer.alloc = function(size, fill, encoding) {
-                return alloc(null, size, fill, encoding);
-            }, /**
-	 * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
-	 * */
-            Buffer.allocUnsafe = function(size) {
-                return allocUnsafe(null, size);
-            }, /**
-	 * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
-	 */
-            Buffer.allocUnsafeSlow = function(size) {
-                return allocUnsafe(null, size);
-            }, Buffer.isBuffer = function(b) {
-                return !(null == b || !b._isBuffer);
-            }, Buffer.compare = function(a, b) {
-                if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) throw new TypeError("Arguments must be Buffers");
-                if (a === b) return 0;
-                for (var x = a.length, y = b.length, i = 0, len = Math.min(x, y); i < len; ++i) if (a[i] !== b[i]) {
-                    x = a[i], y = b[i];
-                    break;
-                }
-                return x < y ? -1 : y < x ? 1 : 0;
-            }, Buffer.isEncoding = function(encoding) {
-                switch (String(encoding).toLowerCase()) {
-                  case "hex":
-                  case "utf8":
-                  case "utf-8":
-                  case "ascii":
-                  case "latin1":
-                  case "binary":
-                  case "base64":
-                  case "ucs2":
-                  case "ucs-2":
-                  case "utf16le":
-                  case "utf-16le":
-                    return !0;
-
-                  default:
-                    return !1;
-                }
-            }, Buffer.concat = function(list, length) {
-                if (!isArray(list)) throw new TypeError('"list" argument must be an Array of Buffers');
-                if (0 === list.length) return Buffer.alloc(0);
-                var i;
-                if (void 0 === length) for (length = 0, i = 0; i < list.length; ++i) length += list[i].length;
-                var buffer = Buffer.allocUnsafe(length), pos = 0;
-                for (i = 0; i < list.length; ++i) {
-                    var buf = list[i];
-                    if (!Buffer.isBuffer(buf)) throw new TypeError('"list" argument must be an Array of Buffers');
-                    buf.copy(buffer, pos), pos += buf.length;
-                }
-                return buffer;
-            }, Buffer.byteLength = byteLength, // The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
-            // Buffer instances.
-            Buffer.prototype._isBuffer = !0, Buffer.prototype.swap16 = function() {
-                var len = this.length;
-                if (len % 2 !== 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
-                for (var i = 0; i < len; i += 2) swap(this, i, i + 1);
-                return this;
-            }, Buffer.prototype.swap32 = function() {
-                var len = this.length;
-                if (len % 4 !== 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
-                for (var i = 0; i < len; i += 4) swap(this, i, i + 3), swap(this, i + 1, i + 2);
-                return this;
-            }, Buffer.prototype.swap64 = function() {
-                var len = this.length;
-                if (len % 8 !== 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
-                for (var i = 0; i < len; i += 8) swap(this, i, i + 7), swap(this, i + 1, i + 6), 
-                swap(this, i + 2, i + 5), swap(this, i + 3, i + 4);
-                return this;
-            }, Buffer.prototype.toString = function() {
-                var length = 0 | this.length;
-                return 0 === length ? "" : 0 === arguments.length ? utf8Slice(this, 0, length) : slowToString.apply(this, arguments);
-            }, Buffer.prototype.equals = function(b) {
-                if (!Buffer.isBuffer(b)) throw new TypeError("Argument must be a Buffer");
-                return this === b || 0 === Buffer.compare(this, b);
-            }, Buffer.prototype.inspect = function() {
-                var str = "", max = exports.INSPECT_MAX_BYTES;
-                return this.length > 0 && (str = this.toString("hex", 0, max).match(/.{2}/g).join(" "), 
-                this.length > max && (str += " ... ")), "<Buffer " + str + ">";
-            }, Buffer.prototype.compare = function(target, start, end, thisStart, thisEnd) {
-                if (!Buffer.isBuffer(target)) throw new TypeError("Argument must be a Buffer");
-                if (void 0 === start && (start = 0), void 0 === end && (end = target ? target.length : 0), 
-                void 0 === thisStart && (thisStart = 0), void 0 === thisEnd && (thisEnd = this.length), 
-                start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) throw new RangeError("out of range index");
-                if (thisStart >= thisEnd && start >= end) return 0;
-                if (thisStart >= thisEnd) return -1;
-                if (start >= end) return 1;
-                if (start >>>= 0, end >>>= 0, thisStart >>>= 0, thisEnd >>>= 0, this === target) return 0;
-                for (var x = thisEnd - thisStart, y = end - start, len = Math.min(x, y), thisCopy = this.slice(thisStart, thisEnd), targetCopy = target.slice(start, end), i = 0; i < len; ++i) if (thisCopy[i] !== targetCopy[i]) {
-                    x = thisCopy[i], y = targetCopy[i];
-                    break;
-                }
-                return x < y ? -1 : y < x ? 1 : 0;
-            }, Buffer.prototype.includes = function(val, byteOffset, encoding) {
-                return this.indexOf(val, byteOffset, encoding) !== -1;
-            }, Buffer.prototype.indexOf = function(val, byteOffset, encoding) {
-                return bidirectionalIndexOf(this, val, byteOffset, encoding, !0);
-            }, Buffer.prototype.lastIndexOf = function(val, byteOffset, encoding) {
-                return bidirectionalIndexOf(this, val, byteOffset, encoding, !1);
-            }, Buffer.prototype.write = function(string, offset, length, encoding) {
-                // Buffer#write(string)
-                if (void 0 === offset) encoding = "utf8", length = this.length, offset = 0; else if (void 0 === length && "string" == typeof offset) encoding = offset, 
-                length = this.length, offset = 0; else {
-                    if (!isFinite(offset)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
-                    offset |= 0, isFinite(length) ? (length |= 0, void 0 === encoding && (encoding = "utf8")) : (encoding = length, 
-                    length = void 0);
-                }
-                var remaining = this.length - offset;
-                if ((void 0 === length || length > remaining) && (length = remaining), string.length > 0 && (length < 0 || offset < 0) || offset > this.length) throw new RangeError("Attempt to write outside buffer bounds");
-                encoding || (encoding = "utf8");
-                for (var loweredCase = !1; ;) switch (encoding) {
-                  case "hex":
-                    return hexWrite(this, string, offset, length);
-
-                  case "utf8":
-                  case "utf-8":
-                    return utf8Write(this, string, offset, length);
-
-                  case "ascii":
-                    return asciiWrite(this, string, offset, length);
-
-                  case "latin1":
-                  case "binary":
-                    return latin1Write(this, string, offset, length);
-
-                  case "base64":
-                    // Warning: maxLength not taken into account in base64Write
-                    return base64Write(this, string, offset, length);
-
-                  case "ucs2":
-                  case "ucs-2":
-                  case "utf16le":
-                  case "utf-16le":
-                    return ucs2Write(this, string, offset, length);
-
-                  default:
-                    if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
-                    encoding = ("" + encoding).toLowerCase(), loweredCase = !0;
-                }
-            }, Buffer.prototype.toJSON = function() {
-                return {
-                    type: "Buffer",
-                    data: Array.prototype.slice.call(this._arr || this, 0)
+                    return C.apply(this, arguments);
                 };
-            };
-            // Based on http://stackoverflow.com/a/22747272/680742, the browser with
-            // the lowest limit is Chrome, with 0x10000 args.
-            // We go 1 magnitude less, for safety
-            var MAX_ARGUMENTS_LENGTH = 4096;
-            Buffer.prototype.slice = function(start, end) {
-                var len = this.length;
-                start = ~~start, end = void 0 === end ? len : ~~end, start < 0 ? (start += len, 
-                start < 0 && (start = 0)) : start > len && (start = len), end < 0 ? (end += len, 
-                end < 0 && (end = 0)) : end > len && (end = len), end < start && (end = start);
-                var newBuf;
-                if (Buffer.TYPED_ARRAY_SUPPORT) newBuf = this.subarray(start, end), newBuf.__proto__ = Buffer.prototype; else {
-                    var sliceLen = end - start;
-                    newBuf = new Buffer(sliceLen, void 0);
-                    for (var i = 0; i < sliceLen; ++i) newBuf[i] = this[i + start];
-                }
-                return newBuf;
-            }, Buffer.prototype.readUIntLE = function(offset, byteLength, noAssert) {
-                offset |= 0, byteLength |= 0, noAssert || checkOffset(offset, byteLength, this.length);
-                for (var val = this[offset], mul = 1, i = 0; ++i < byteLength && (mul *= 256); ) val += this[offset + i] * mul;
-                return val;
-            }, Buffer.prototype.readUIntBE = function(offset, byteLength, noAssert) {
-                offset |= 0, byteLength |= 0, noAssert || checkOffset(offset, byteLength, this.length);
-                for (var val = this[offset + --byteLength], mul = 1; byteLength > 0 && (mul *= 256); ) val += this[offset + --byteLength] * mul;
-                return val;
-            }, Buffer.prototype.readUInt8 = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 1, this.length), this[offset];
-            }, Buffer.prototype.readUInt16LE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 2, this.length), this[offset] | this[offset + 1] << 8;
-            }, Buffer.prototype.readUInt16BE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 2, this.length), this[offset] << 8 | this[offset + 1];
-            }, Buffer.prototype.readUInt32LE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), (this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16) + 16777216 * this[offset + 3];
-            }, Buffer.prototype.readUInt32BE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), 16777216 * this[offset] + (this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3]);
-            }, Buffer.prototype.readIntLE = function(offset, byteLength, noAssert) {
-                offset |= 0, byteLength |= 0, noAssert || checkOffset(offset, byteLength, this.length);
-                for (var val = this[offset], mul = 1, i = 0; ++i < byteLength && (mul *= 256); ) val += this[offset + i] * mul;
-                return mul *= 128, val >= mul && (val -= Math.pow(2, 8 * byteLength)), val;
-            }, Buffer.prototype.readIntBE = function(offset, byteLength, noAssert) {
-                offset |= 0, byteLength |= 0, noAssert || checkOffset(offset, byteLength, this.length);
-                for (var i = byteLength, mul = 1, val = this[offset + --i]; i > 0 && (mul *= 256); ) val += this[offset + --i] * mul;
-                return mul *= 128, val >= mul && (val -= Math.pow(2, 8 * byteLength)), val;
-            }, Buffer.prototype.readInt8 = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 1, this.length), 128 & this[offset] ? (255 - this[offset] + 1) * -1 : this[offset];
-            }, Buffer.prototype.readInt16LE = function(offset, noAssert) {
-                noAssert || checkOffset(offset, 2, this.length);
-                var val = this[offset] | this[offset + 1] << 8;
-                return 32768 & val ? 4294901760 | val : val;
-            }, Buffer.prototype.readInt16BE = function(offset, noAssert) {
-                noAssert || checkOffset(offset, 2, this.length);
-                var val = this[offset + 1] | this[offset] << 8;
-                return 32768 & val ? 4294901760 | val : val;
-            }, Buffer.prototype.readInt32LE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
-            }, Buffer.prototype.readInt32BE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), this[offset] << 24 | this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3];
-            }, Buffer.prototype.readFloatLE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), ieee754.read(this, offset, !0, 23, 4);
-            }, Buffer.prototype.readFloatBE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 4, this.length), ieee754.read(this, offset, !1, 23, 4);
-            }, Buffer.prototype.readDoubleLE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 8, this.length), ieee754.read(this, offset, !0, 52, 8);
-            }, Buffer.prototype.readDoubleBE = function(offset, noAssert) {
-                return noAssert || checkOffset(offset, 8, this.length), ieee754.read(this, offset, !1, 52, 8);
-            }, Buffer.prototype.writeUIntLE = function(value, offset, byteLength, noAssert) {
-                if (value = +value, offset |= 0, byteLength |= 0, !noAssert) {
-                    var maxBytes = Math.pow(2, 8 * byteLength) - 1;
-                    checkInt(this, value, offset, byteLength, maxBytes, 0);
-                }
-                var mul = 1, i = 0;
-                for (this[offset] = 255 & value; ++i < byteLength && (mul *= 256); ) this[offset + i] = value / mul & 255;
-                return offset + byteLength;
-            }, Buffer.prototype.writeUIntBE = function(value, offset, byteLength, noAssert) {
-                if (value = +value, offset |= 0, byteLength |= 0, !noAssert) {
-                    var maxBytes = Math.pow(2, 8 * byteLength) - 1;
-                    checkInt(this, value, offset, byteLength, maxBytes, 0);
-                }
-                var i = byteLength - 1, mul = 1;
-                for (this[offset + i] = 255 & value; --i >= 0 && (mul *= 256); ) this[offset + i] = value / mul & 255;
-                return offset + byteLength;
-            }, Buffer.prototype.writeUInt8 = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 1, 255, 0), 
-                Buffer.TYPED_ARRAY_SUPPORT || (value = Math.floor(value)), this[offset] = 255 & value, 
-                offset + 1;
-            }, Buffer.prototype.writeUInt16LE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 2, 65535, 0), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = 255 & value, this[offset + 1] = value >>> 8) : objectWriteUInt16(this, value, offset, !0), 
-                offset + 2;
-            }, Buffer.prototype.writeUInt16BE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 2, 65535, 0), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = value >>> 8, this[offset + 1] = 255 & value) : objectWriteUInt16(this, value, offset, !1), 
-                offset + 2;
-            }, Buffer.prototype.writeUInt32LE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 4, 4294967295, 0), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset + 3] = value >>> 24, this[offset + 2] = value >>> 16, 
-                this[offset + 1] = value >>> 8, this[offset] = 255 & value) : objectWriteUInt32(this, value, offset, !0), 
-                offset + 4;
-            }, Buffer.prototype.writeUInt32BE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 4, 4294967295, 0), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = value >>> 24, this[offset + 1] = value >>> 16, 
-                this[offset + 2] = value >>> 8, this[offset + 3] = 255 & value) : objectWriteUInt32(this, value, offset, !1), 
-                offset + 4;
-            }, Buffer.prototype.writeIntLE = function(value, offset, byteLength, noAssert) {
-                if (value = +value, offset |= 0, !noAssert) {
-                    var limit = Math.pow(2, 8 * byteLength - 1);
-                    checkInt(this, value, offset, byteLength, limit - 1, -limit);
-                }
-                var i = 0, mul = 1, sub = 0;
-                for (this[offset] = 255 & value; ++i < byteLength && (mul *= 256); ) value < 0 && 0 === sub && 0 !== this[offset + i - 1] && (sub = 1), 
-                this[offset + i] = (value / mul >> 0) - sub & 255;
-                return offset + byteLength;
-            }, Buffer.prototype.writeIntBE = function(value, offset, byteLength, noAssert) {
-                if (value = +value, offset |= 0, !noAssert) {
-                    var limit = Math.pow(2, 8 * byteLength - 1);
-                    checkInt(this, value, offset, byteLength, limit - 1, -limit);
-                }
-                var i = byteLength - 1, mul = 1, sub = 0;
-                for (this[offset + i] = 255 & value; --i >= 0 && (mul *= 256); ) value < 0 && 0 === sub && 0 !== this[offset + i + 1] && (sub = 1), 
-                this[offset + i] = (value / mul >> 0) - sub & 255;
-                return offset + byteLength;
-            }, Buffer.prototype.writeInt8 = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 1, 127, -128), 
-                Buffer.TYPED_ARRAY_SUPPORT || (value = Math.floor(value)), value < 0 && (value = 255 + value + 1), 
-                this[offset] = 255 & value, offset + 1;
-            }, Buffer.prototype.writeInt16LE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 2, 32767, -32768), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = 255 & value, this[offset + 1] = value >>> 8) : objectWriteUInt16(this, value, offset, !0), 
-                offset + 2;
-            }, Buffer.prototype.writeInt16BE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 2, 32767, -32768), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = value >>> 8, this[offset + 1] = 255 & value) : objectWriteUInt16(this, value, offset, !1), 
-                offset + 2;
-            }, Buffer.prototype.writeInt32LE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 4, 2147483647, -2147483648), 
-                Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = 255 & value, this[offset + 1] = value >>> 8, 
-                this[offset + 2] = value >>> 16, this[offset + 3] = value >>> 24) : objectWriteUInt32(this, value, offset, !0), 
-                offset + 4;
-            }, Buffer.prototype.writeInt32BE = function(value, offset, noAssert) {
-                return value = +value, offset |= 0, noAssert || checkInt(this, value, offset, 4, 2147483647, -2147483648), 
-                value < 0 && (value = 4294967295 + value + 1), Buffer.TYPED_ARRAY_SUPPORT ? (this[offset] = value >>> 24, 
-                this[offset + 1] = value >>> 16, this[offset + 2] = value >>> 8, this[offset + 3] = 255 & value) : objectWriteUInt32(this, value, offset, !1), 
-                offset + 4;
-            }, Buffer.prototype.writeFloatLE = function(value, offset, noAssert) {
-                return writeFloat(this, value, offset, !0, noAssert);
-            }, Buffer.prototype.writeFloatBE = function(value, offset, noAssert) {
-                return writeFloat(this, value, offset, !1, noAssert);
-            }, Buffer.prototype.writeDoubleLE = function(value, offset, noAssert) {
-                return writeDouble(this, value, offset, !0, noAssert);
-            }, Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
-                return writeDouble(this, value, offset, !1, noAssert);
-            }, // copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-            Buffer.prototype.copy = function(target, targetStart, start, end) {
-                // Copy 0 bytes; we're done
-                if (start || (start = 0), end || 0 === end || (end = this.length), targetStart >= target.length && (targetStart = target.length), 
-                targetStart || (targetStart = 0), end > 0 && end < start && (end = start), end === start) return 0;
-                if (0 === target.length || 0 === this.length) return 0;
-                // Fatal error conditions
-                if (targetStart < 0) throw new RangeError("targetStart out of bounds");
-                if (start < 0 || start >= this.length) throw new RangeError("sourceStart out of bounds");
-                if (end < 0) throw new RangeError("sourceEnd out of bounds");
-                // Are we oob?
-                end > this.length && (end = this.length), target.length - targetStart < end - start && (end = target.length - targetStart + start);
-                var i, len = end - start;
-                if (this === target && start < targetStart && targetStart < end) // descending copy from end
-                for (i = len - 1; i >= 0; --i) target[i + targetStart] = this[i + start]; else if (len < 1e3 || !Buffer.TYPED_ARRAY_SUPPORT) // ascending copy from start
-                for (i = 0; i < len; ++i) target[i + targetStart] = this[i + start]; else Uint8Array.prototype.set.call(target, this.subarray(start, start + len), targetStart);
-                return len;
-            }, // Usage:
-            //    buffer.fill(number[, offset[, end]])
-            //    buffer.fill(buffer[, offset[, end]])
-            //    buffer.fill(string[, offset[, end]][, encoding])
-            Buffer.prototype.fill = function(val, start, end, encoding) {
-                // Handle string cases:
-                if ("string" == typeof val) {
-                    if ("string" == typeof start ? (encoding = start, start = 0, end = this.length) : "string" == typeof end && (encoding = end, 
-                    end = this.length), 1 === val.length) {
-                        var code = val.charCodeAt(0);
-                        code < 256 && (val = code);
-                    }
-                    if (void 0 !== encoding && "string" != typeof encoding) throw new TypeError("encoding must be a string");
-                    if ("string" == typeof encoding && !Buffer.isEncoding(encoding)) throw new TypeError("Unknown encoding: " + encoding);
-                } else "number" == typeof val && (val &= 255);
-                // Invalid ranges are not set to a default, so can range check early.
-                if (start < 0 || this.length < start || this.length < end) throw new RangeError("Out of range index");
-                if (end <= start) return this;
-                start >>>= 0, end = void 0 === end ? this.length : end >>> 0, val || (val = 0);
-                var i;
-                if ("number" == typeof val) for (i = start; i < end; ++i) this[i] = val; else {
-                    var bytes = Buffer.isBuffer(val) ? val : utf8ToBytes(new Buffer(val, encoding).toString()), len = bytes.length;
-                    for (i = 0; i < end - start; ++i) this[i + start] = bytes[i % len];
-                }
-                return this;
-            };
-            // HELPER FUNCTIONS
-            // ================
-            var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g;
-        }).call(exports, function() {
-            return this;
-        }());
-    }, /* 23 */
+                return F[PROTOTYPE] = C[PROTOTYPE], F;
+            }(out) : IS_PROTO && "function" == typeof out ? ctx(Function.call, out) : out, // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+            IS_PROTO && ((exports.virtual || (exports.virtual = {}))[key] = out, // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+            type & $export.R && expProto && !expProto[key] && hide(expProto, key, out)));
+        };
+        // type bitmap
+        $export.F = 1, // forced
+        $export.G = 2, // global
+        $export.S = 4, // static
+        $export.P = 8, // proto
+        $export.B = 16, // bind
+        $export.W = 32, // wrap
+        $export.U = 64, // safe
+        $export.R = 128, // real proto method for `library` 
+        module.exports = $export;
+    }, /* 55 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(3)(void 0), // imports
+        module.exports = __webpack_require__(2).document && document.documentElement;
+    }, /* 56 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = !__webpack_require__(10) && !__webpack_require__(27)(function() {
+            return 7 != Object.defineProperty(__webpack_require__(25)("div"), "a", {
+                get: function() {
+                    return 7;
+                }
+            }).a;
+        });
+    }, /* 57 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // fallback for non-array-like ES3 and non-enumerable old V8 strings
+        var cof = __webpack_require__(24);
+        module.exports = Object("z").propertyIsEnumerable(0) ? Object : function(it) {
+            return "String" == cof(it) ? it.split("") : Object(it);
+        };
+    }, /* 58 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        var create = __webpack_require__(61), descriptor = __webpack_require__(29), setToStringTag = __webpack_require__(30), IteratorPrototype = {};
+        // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+        __webpack_require__(6)(IteratorPrototype, __webpack_require__(1)("iterator"), function() {
+            return this;
+        }), module.exports = function(Constructor, NAME, next) {
+            Constructor.prototype = create(IteratorPrototype, {
+                next: descriptor(1, next)
+            }), setToStringTag(Constructor, NAME + " Iterator");
+        };
+    }, /* 59 */
+    /***/
+    function(module, exports) {
+        module.exports = function(done, value) {
+            return {
+                value: value,
+                done: !!done
+            };
+        };
+    }, /* 60 */
+    /***/
+    function(module, exports) {
+        module.exports = !0;
+    }, /* 61 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+        var anObject = __webpack_require__(9), dPs = __webpack_require__(62), enumBugKeys = __webpack_require__(26), IE_PROTO = __webpack_require__(17)("IE_PROTO"), Empty = function() {}, PROTOTYPE = "prototype", createDict = function() {
+            // Thrash, waste and sodomy: IE GC bug
+            var iframeDocument, iframe = __webpack_require__(25)("iframe"), i = enumBugKeys.length, lt = "<", gt = ">";
+            for (iframe.style.display = "none", __webpack_require__(55).appendChild(iframe), 
+            iframe.src = "javascript:", // eslint-disable-line no-script-url
+            // createDict = iframe.contentWindow.Object;
+            // html.removeChild(iframe);
+            iframeDocument = iframe.contentWindow.document, iframeDocument.open(), iframeDocument.write(lt + "script" + gt + "document.F=Object" + lt + "/script" + gt), 
+            iframeDocument.close(), createDict = iframeDocument.F; i--; ) delete createDict[PROTOTYPE][enumBugKeys[i]];
+            return createDict();
+        };
+        module.exports = Object.create || function(O, Properties) {
+            var result;
+            // add "__proto__" for Object.getPrototypeOf polyfill
+            return null !== O ? (Empty[PROTOTYPE] = anObject(O), result = new Empty(), Empty[PROTOTYPE] = null, 
+            result[IE_PROTO] = O) : result = createDict(), void 0 === Properties ? result : dPs(result, Properties);
+        };
+    }, /* 62 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var dP = __webpack_require__(16), anObject = __webpack_require__(9), getKeys = __webpack_require__(65);
+        module.exports = __webpack_require__(10) ? Object.defineProperties : function(O, Properties) {
+            anObject(O);
+            for (var P, keys = getKeys(Properties), length = keys.length, i = 0; length > i; ) dP.f(O, P = keys[i++], Properties[P]);
+            return O;
+        };
+    }, /* 63 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+        var has = __webpack_require__(11), toObject = __webpack_require__(70), IE_PROTO = __webpack_require__(17)("IE_PROTO"), ObjectProto = Object.prototype;
+        module.exports = Object.getPrototypeOf || function(O) {
+            return O = toObject(O), has(O, IE_PROTO) ? O[IE_PROTO] : "function" == typeof O.constructor && O instanceof O.constructor ? O.constructor.prototype : O instanceof Object ? ObjectProto : null;
+        };
+    }, /* 64 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var has = __webpack_require__(11), toIObject = __webpack_require__(19), arrayIndexOf = __webpack_require__(52)(!1), IE_PROTO = __webpack_require__(17)("IE_PROTO");
+        module.exports = function(object, names) {
+            var key, O = toIObject(object), i = 0, result = [];
+            for (key in O) key != IE_PROTO && has(O, key) && result.push(key);
+            // Don't enum bug & hidden keys
+            for (;names.length > i; ) has(O, key = names[i++]) && (~arrayIndexOf(result, key) || result.push(key));
+            return result;
+        };
+    }, /* 65 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 19.1.2.14 / 15.2.3.14 Object.keys(O)
+        var $keys = __webpack_require__(64), enumBugKeys = __webpack_require__(26);
+        module.exports = Object.keys || function(O) {
+            return $keys(O, enumBugKeys);
+        };
+    }, /* 66 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        module.exports = __webpack_require__(6);
+    }, /* 67 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var toInteger = __webpack_require__(18), defined = __webpack_require__(14);
+        // true  -> String#at
+        // false -> String#codePointAt
+        module.exports = function(TO_STRING) {
+            return function(that, pos) {
+                var a, b, s = String(defined(that)), i = toInteger(pos), l = s.length;
+                return i < 0 || i >= l ? TO_STRING ? "" : void 0 : (a = s.charCodeAt(i), a < 55296 || a > 56319 || i + 1 === l || (b = s.charCodeAt(i + 1)) < 56320 || b > 57343 ? TO_STRING ? s.charAt(i) : a : TO_STRING ? s.slice(i, i + 2) : (a - 55296 << 10) + (b - 56320) + 65536);
+            };
+        };
+    }, /* 68 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var toInteger = __webpack_require__(18), max = Math.max, min = Math.min;
+        module.exports = function(index, length) {
+            return index = toInteger(index), index < 0 ? max(index + length, 0) : min(index, length);
+        };
+    }, /* 69 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 7.1.15 ToLength
+        var toInteger = __webpack_require__(18), min = Math.min;
+        module.exports = function(it) {
+            return it > 0 ? min(toInteger(it), 9007199254740991) : 0;
+        };
+    }, /* 70 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 7.1.13 ToObject(argument)
+        var defined = __webpack_require__(14);
+        module.exports = function(it) {
+            return Object(defined(it));
+        };
+    }, /* 71 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        // 7.1.1 ToPrimitive(input [, PreferredType])
+        var isObject = __webpack_require__(15);
+        // instead of the ES6 spec version, we didn't implement @@toPrimitive case
+        // and the second argument - flag - preferred type is a string
+        module.exports = function(it, S) {
+            if (!isObject(it)) return it;
+            var fn, val;
+            if (S && "function" == typeof (fn = it.toString) && !isObject(val = fn.call(it))) return val;
+            if ("function" == typeof (fn = it.valueOf) && !isObject(val = fn.call(it))) return val;
+            if (!S && "function" == typeof (fn = it.toString) && !isObject(val = fn.call(it))) return val;
+            throw TypeError("Can't convert object to primitive value");
+        };
+    }, /* 72 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var classof = __webpack_require__(23), ITERATOR = __webpack_require__(1)("iterator"), Iterators = __webpack_require__(7);
+        module.exports = __webpack_require__(5).getIteratorMethod = function(it) {
+            if (void 0 != it) return it[ITERATOR] || it["@@iterator"] || Iterators[classof(it)];
+        };
+    }, /* 73 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var anObject = __webpack_require__(9), get = __webpack_require__(72);
+        module.exports = __webpack_require__(5).getIterator = function(it) {
+            var iterFn = get(it);
+            if ("function" != typeof iterFn) throw TypeError(it + " is not iterable!");
+            return anObject(iterFn.call(it));
+        };
+    }, /* 74 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var classof = __webpack_require__(23), ITERATOR = __webpack_require__(1)("iterator"), Iterators = __webpack_require__(7);
+        module.exports = __webpack_require__(5).isIterable = function(it) {
+            var O = Object(it);
+            return void 0 !== O[ITERATOR] || "@@iterator" in O || Iterators.hasOwnProperty(classof(O));
+        };
+    }, /* 75 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        "use strict";
+        var addToUnscopables = __webpack_require__(51), step = __webpack_require__(59), Iterators = __webpack_require__(7), toIObject = __webpack_require__(19);
+        // 22.1.3.4 Array.prototype.entries()
+        // 22.1.3.13 Array.prototype.keys()
+        // 22.1.3.29 Array.prototype.values()
+        // 22.1.3.30 Array.prototype[@@iterator]()
+        module.exports = __webpack_require__(28)(Array, "Array", function(iterated, kind) {
+            this._t = toIObject(iterated), // target
+            this._i = 0, // next index
+            this._k = kind;
+        }, function() {
+            var O = this._t, kind = this._k, index = this._i++;
+            return !O || index >= O.length ? (this._t = void 0, step(1)) : "keys" == kind ? step(0, index) : "values" == kind ? step(0, O[index]) : step(0, [ index, O[index] ]);
+        }, "values"), // argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+        Iterators.Arguments = Iterators.Array, addToUnscopables("keys"), addToUnscopables("values"), 
+        addToUnscopables("entries");
+    }, /* 76 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        exports = module.exports = __webpack_require__(12)(void 0), // imports
         // module
         exports.push([ module.id, ".ReactVirtualized__Table__headerRow{font-weight:700;text-transform:uppercase}.ReactVirtualized__Table__headerRow,.ReactVirtualized__Table__row{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;flex-direction:row;-ms-flex-align:center;-webkit-box-align:center;align-items:center}.ReactVirtualized__Table__headerTruncatedText{display:inline-block;max-width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.ReactVirtualized__Table__headerColumn,.ReactVirtualized__Table__rowColumn{margin-right:10px;min-width:0}.ReactVirtualized__Table__rowColumn{text-overflow:ellipsis;white-space:nowrap}.ReactVirtualized__Table__headerColumn:first-of-type,.ReactVirtualized__Table__rowColumn:first-of-type{margin-left:10px}.ReactVirtualized__Table__sortableHeaderColumn{cursor:pointer}.ReactVirtualized__Table__sortableHeaderIconContainer{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-align:center;-webkit-box-align:center;align-items:center}.ReactVirtualized__Table__sortableHeaderIcon{-ms-flex:0 0 24px;-webkit-box-flex:0;flex:0 0 24px;height:1em;width:1em;fill:currentColor}", "" ]);
-    }, /* 24 */
+    }, /* 77 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(3)(void 0), // imports
+        exports = module.exports = __webpack_require__(12)(void 0), // imports
         // module
         exports.push([ module.id, '.rst__rowWrapper{padding:10px 10px 10px 0;height:100%;box-sizing:border-box}.rst__row{height:100%;white-space:nowrap;display:-webkit-box;display:-ms-flexbox;display:flex}.rst__row>*{box-sizing:border-box}.rst__rowCancelPad,.rst__rowLandingPad{border:none!important;box-shadow:none!important;outline:none!important}.rst__rowCancelPad *,.rst__rowLandingPad *{opacity:0!important}.rst__rowCancelPad:before,.rst__rowLandingPad:before{background-color:#add8e6;border:3px dashed #fff;content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1}.rst__rowCancelPad:before{background-color:#e6a8ad}.rst__rowSearchMatch{outline:3px solid #0080ff}.rst__rowSearchFocus{outline:3px solid #fc6421}.rst__loadingHandle,.rst__moveHandle,.rst__rowContents,.rst__rowLabel,.rst__rowLabel_NoFlex,.rst__rowToolbar,.rst__rowToolbar_NoFlex,.rst__toolbarButton{display:inline-block;vertical-align:middle}.rst__rowContents{position:relative;height:100%;border:1px solid #bbb;border-left:none;box-shadow:0 2px 2px -2px;padding:0 5px 0 10px;border-radius:2px;min-width:230px;-webkit-box-flex:1;-ms-flex:1 0 auto;flex:1 0 auto;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;background-color:#fff}.rst__rowContentsDragDisabled{border-left:1px solid #bbb}.rst__rowLabel{padding-right:20px}.rst__rowLabel,.rst__rowToolbar{-webkit-box-flex:0;-ms-flex:0 1 auto;flex:0 1 auto}.rst__rowToolbar{display:-webkit-box;display:-ms-flexbox;display:flex}.rst__loadingHandle,.rst__moveHandle{height:100%;width:44px;background:#d9d9d9 url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PGcgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIuOSIgPjxwYXRoIGQ9Ik0xNCAxNS43aDE0LjQiLz48cGF0aCBkPSJNMTQgMjEuNGgxNC40Ii8+PHBhdGggZD0iTTE0IDI3LjFoMTQuNCIvPjwvZz4KPC9zdmc+") no-repeat 50%;border:1px solid #aaa;box-shadow:0 2px 2px -2px;cursor:move;border-radius:1px;z-index:1}.rst__loadingHandle{cursor:default;background:#d9d9d9}@-webkit-keyframes rst__pointFade{0%,19.999%,to{opacity:0}20%{opacity:1}}@keyframes rst__pointFade{0%,19.999%,to{opacity:0}20%{opacity:1}}.rst__loadingCircle{width:80%;height:80%;margin:10%;position:relative}.rst__loadingCirclePoint{width:100%;height:100%;position:absolute;left:0;top:0}.rst__loadingCirclePoint:before{content:"";display:block;margin:0 auto;width:11%;height:30%;background-color:#fff;border-radius:30%;-webkit-animation:rst__pointFade .8s infinite ease-in-out both;animation:rst__pointFade .8s infinite ease-in-out both}.rst__loadingCirclePoint:first-of-type{-webkit-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg)}.rst__loadingCirclePoint:first-of-type:before,.rst__loadingCirclePoint:nth-of-type(7):before{-webkit-animation-delay:-.8s;animation-delay:-.8s}.rst__loadingCirclePoint:nth-of-type(2){-webkit-transform:rotate(30deg);-ms-transform:rotate(30deg);transform:rotate(30deg)}.rst__loadingCirclePoint:nth-of-type(8){-webkit-transform:rotate(210deg);-ms-transform:rotate(210deg);transform:rotate(210deg)}.rst__loadingCirclePoint:nth-of-type(2):before,.rst__loadingCirclePoint:nth-of-type(8):before{-webkit-animation-delay:-666.66667ms;animation-delay:-666.66667ms}.rst__loadingCirclePoint:nth-of-type(3){-webkit-transform:rotate(60deg);-ms-transform:rotate(60deg);transform:rotate(60deg)}.rst__loadingCirclePoint:nth-of-type(9){-webkit-transform:rotate(240deg);-ms-transform:rotate(240deg);transform:rotate(240deg)}.rst__loadingCirclePoint:nth-of-type(3):before,.rst__loadingCirclePoint:nth-of-type(9):before{-webkit-animation-delay:-.53333333s;animation-delay:-.53333333s}.rst__loadingCirclePoint:nth-of-type(4){-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}.rst__loadingCirclePoint:nth-of-type(10){-webkit-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}.rst__loadingCirclePoint:nth-of-type(4):before,.rst__loadingCirclePoint:nth-of-type(10):before{-webkit-animation-delay:-.4s;animation-delay:-.4s}.rst__loadingCirclePoint:nth-of-type(5){-webkit-transform:rotate(120deg);-ms-transform:rotate(120deg);transform:rotate(120deg)}.rst__loadingCirclePoint:nth-of-type(11){-webkit-transform:rotate(300deg);-ms-transform:rotate(300deg);transform:rotate(300deg)}.rst__loadingCirclePoint:nth-of-type(5):before,.rst__loadingCirclePoint:nth-of-type(11):before{-webkit-animation-delay:-.26666667s;animation-delay:-.26666667s}.rst__loadingCirclePoint:nth-of-type(6){-webkit-transform:rotate(150deg);-ms-transform:rotate(150deg);transform:rotate(150deg)}.rst__loadingCirclePoint:nth-of-type(12){-webkit-transform:rotate(330deg);-ms-transform:rotate(330deg);transform:rotate(330deg)}.rst__loadingCirclePoint:nth-of-type(6):before,.rst__loadingCirclePoint:nth-of-type(12):before{-webkit-animation-delay:-.13333333s;animation-delay:-.13333333s}.rst__loadingCirclePoint:nth-of-type(7){-webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg)}.rst__loadingCirclePoint:nth-of-type(13){-webkit-transform:rotate(1turn);-ms-transform:rotate(1turn);transform:rotate(1turn)}.rst__loadingCirclePoint:nth-of-type(7):before,.rst__loadingCirclePoint:nth-of-type(13):before{-webkit-animation-delay:0ms;animation-delay:0ms}.rst__rowTitle{font-weight:700}.rst__rowTitleWithSubtitle{font-size:85%;display:block;height:.8rem}.rst__rowSubtitle{font-size:70%;line-height:1}.rst__collapseButton,.rst__expandButton{-webkit-appearance:none;-moz-appearance:none;appearance:none;border:none;position:absolute;border-radius:100%;box-shadow:0 0 0 1px #000;width:16px;height:16px;top:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);cursor:pointer}.rst__collapseButton:focus,.rst__expandButton:focus{outline:none;box-shadow:0 0 0 1px #000,0 0 1px 3px #83bef9}.rst__collapseButton:hover:not(:active),.rst__expandButton:hover:not(:active){background-size:24px;height:20px;width:20px}.rst__collapseButton{background:#fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGNpcmNsZSBjeD0iOSIgY3k9IjkiIHI9IjgiIGZpbGw9IiNGRkYiLz48ZyBzdHJva2U9IiM5ODk4OTgiIHN0cm9rZS13aWR0aD0iMS45IiA+PHBhdGggZD0iTTQuNSA5aDkiLz48L2c+Cjwvc3ZnPg==") no-repeat 50%}.rst__expandButton{background:#fff url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGNpcmNsZSBjeD0iOSIgY3k9IjkiIHI9IjgiIGZpbGw9IiNGRkYiLz48ZyBzdHJva2U9IiM5ODk4OTgiIHN0cm9rZS13aWR0aD0iMS45IiA+PHBhdGggZD0iTTQuNSA5aDkiLz48cGF0aCBkPSJNOSA0LjV2OSIvPjwvZz4KPC9zdmc+") no-repeat 50%}.rst__row_NoFlex:before,.rst__rowContents_NoFlex:before{content:"";display:inline-block;vertical-align:middle;height:100%}.rst__rowContents_NoFlex{display:inline-block}.rst__rowContents_NoFlex:after{content:"";display:inline-block;width:100%}.rst__rowLabel_NoFlex{width:50%}.rst__rowToolbar_NoFlex{text-align:right;width:50%}.rst__lineChildren{height:100%;display:inline-block;position:absolute}.rst__lineChildren:after{content:"";position:absolute;background-color:#000;width:1px;left:50%;bottom:0;height:10px}', "" ]), 
         // exports
@@ -3328,23 +2815,23 @@
             rowContents_NoFlex: "rst__rowContents_NoFlex",
             lineChildren: "rst__lineChildren"
         };
-    }, /* 25 */
+    }, /* 78 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(3)(void 0), // imports
+        exports = module.exports = __webpack_require__(12)(void 0), // imports
         // module
-        exports.push([ module.id, ".rst__tree{/*! This comment keeps Sass from deleting the empty rule */}.rst__virtualScrollOverride *{box-sizing:border-box}.ReactVirtualized__Grid__innerScrollContainer{overflow:visible!important}.ReactVirtualized__Grid{outline:none}", "" ]), 
+        exports.push([ module.id, ".rst__tree{/*! This comment keeps Sass from deleting the empty rule */}.rst__virtualScrollOverride{overflow:auto!important}.rst__virtualScrollOverride *{box-sizing:border-box}.ReactVirtualized__Grid__innerScrollContainer{overflow:visible!important}.ReactVirtualized__Grid{outline:none}", "" ]), 
         // exports
         exports.locals = {
             tree: "rst__tree",
             virtualScrollOverride: "rst__virtualScrollOverride"
         };
-    }, /* 26 */
+    }, /* 79 */
     /***/
     function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(3)(void 0), // imports
+        exports = module.exports = __webpack_require__(12)(void 0), // imports
         // module
-        exports.push([ module.id, '.rst__node{min-width:100%;white-space:nowrap;position:relative}.rst__nodeContent{position:absolute;top:0;bottom:0}.rst__absoluteLineBlock,.rst__lineBlock{height:100%;position:relative;display:inline-block}.rst__absoluteLineBlock{position:absolute;top:0}.rst__lineFullVertical:after,.rst__lineHalfHorizontalRight:before,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{position:absolute;content:"";background-color:#000}.rst__lineHalfHorizontalRight:before{height:1px;top:50%;right:0;width:50%}.rst__lineFullVertical:after,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{width:1px;left:50%;top:0;height:100%}.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{top:0;height:50%}.rst__lineHalfVerticalBottom:after{top:auto;bottom:0}.rst__highlightLineVertical{z-index:3}.rst__highlightLineVertical:before{position:absolute;content:"";background-color:#36c2f6;width:8px;margin-left:-4px;left:50%;top:0;height:100%}@-webkit-keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}@keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}.rst__highlightLineVertical:after{content:"";position:absolute;height:0;margin-left:-4px;left:50%;top:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #fff;-webkit-animation:rst__arrow-pulse 1s infinite linear both;animation:rst__arrow-pulse 1s infinite linear both}.rst__highlightTopLeftCorner:before{z-index:3;content:"";position:absolute;border-top:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(50% + 4px);top:50%;margin-top:-4px;right:0;width:calc(50% + 4px)}.rst__highlightBottomLeftCorner{z-index:3}.rst__highlightBottomLeftCorner:before{content:"";position:absolute;border-bottom:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(100% + 4px);top:0;right:12px;width:calc(50% - 8px)}.rst__highlightBottomLeftCorner:after{content:"";position:absolute;height:0;right:0;top:100%;margin-top:-12px;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:12px solid #36c2f6}', "" ]), 
+        exports.push([ module.id, '.rst__node{min-width:100%;white-space:nowrap;position:relative;text-align:left}.rst__nodeContent{position:absolute;top:0;bottom:0}.rst__absoluteLineBlock,.rst__lineBlock{height:100%;position:relative;display:inline-block}.rst__absoluteLineBlock{position:absolute;top:0}.rst__lineFullVertical:after,.rst__lineHalfHorizontalRight:before,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{position:absolute;content:"";background-color:#000}.rst__lineHalfHorizontalRight:before{height:1px;top:50%;right:0;width:50%}.rst__lineFullVertical:after,.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{width:1px;left:50%;top:0;height:100%}.rst__lineHalfVerticalBottom:after,.rst__lineHalfVerticalTop:after{top:0;height:50%}.rst__lineHalfVerticalBottom:after{top:auto;bottom:0}.rst__highlightLineVertical{z-index:3}.rst__highlightLineVertical:before{position:absolute;content:"";background-color:#36c2f6;width:8px;margin-left:-4px;left:50%;top:0;height:100%}@-webkit-keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}@keyframes rst__arrow-pulse{0%{-webkit-transform:translate(0);transform:translate(0);opacity:0}30%{-webkit-transform:translateY(300%);transform:translateY(300%);opacity:1}70%{-webkit-transform:translateY(700%);transform:translateY(700%);opacity:1}to{-webkit-transform:translateY(1000%);transform:translateY(1000%);opacity:0}}.rst__highlightLineVertical:after{content:"";position:absolute;height:0;margin-left:-4px;left:50%;top:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #fff;-webkit-animation:rst__arrow-pulse 1s infinite linear both;animation:rst__arrow-pulse 1s infinite linear both}.rst__highlightTopLeftCorner:before{z-index:3;content:"";position:absolute;border-top:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(50% + 4px);top:50%;margin-top:-4px;right:0;width:calc(50% + 4px)}.rst__highlightBottomLeftCorner{z-index:3}.rst__highlightBottomLeftCorner:before{content:"";position:absolute;border-bottom:8px solid #36c2f6;border-left:8px solid #36c2f6;box-sizing:border-box;height:calc(100% + 4px);top:0;right:12px;width:calc(50% - 8px)}.rst__highlightBottomLeftCorner:after{content:"";position:absolute;height:0;right:0;top:100%;margin-top:-12px;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:12px solid #36c2f6}', "" ]), 
         // exports
         exports.locals = {
             node: "rst__node",
@@ -3360,7 +2847,7 @@
             highlightTopLeftCorner: "rst__highlightTopLeftCorner",
             highlightBottomLeftCorner: "rst__highlightBottomLeftCorner"
         };
-    }, /* 27 */
+    }, /* 80 */
     /***/
     function(module, exports) {
         "use strict";
@@ -3368,7 +2855,7 @@
             value: !0
         }), exports.default = !("undefined" == typeof window || !window.document || !window.document.createElement), 
         module.exports = exports.default;
-    }, /* 28 */
+    }, /* 81 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -3388,126 +2875,57 @@
             }
             return size;
         };
-        var _inDOM = __webpack_require__(27), _inDOM2 = _interopRequireDefault(_inDOM), size = void 0;
+        var _inDOM = __webpack_require__(80), _inDOM2 = _interopRequireDefault(_inDOM), size = void 0;
         module.exports = exports.default;
-    }, /* 29 */
-    /***/
-    function(module, exports) {
-        exports.read = function(buffer, offset, isLE, mLen, nBytes) {
-            var e, m, eLen = 8 * nBytes - mLen - 1, eMax = (1 << eLen) - 1, eBias = eMax >> 1, nBits = -7, i = isLE ? nBytes - 1 : 0, d = isLE ? -1 : 1, s = buffer[offset + i];
-            for (i += d, e = s & (1 << -nBits) - 1, s >>= -nBits, nBits += eLen; nBits > 0; e = 256 * e + buffer[offset + i], 
-            i += d, nBits -= 8) ;
-            for (m = e & (1 << -nBits) - 1, e >>= -nBits, nBits += mLen; nBits > 0; m = 256 * m + buffer[offset + i], 
-            i += d, nBits -= 8) ;
-            if (0 === e) e = 1 - eBias; else {
-                if (e === eMax) return m ? NaN : (s ? -1 : 1) * (1 / 0);
-                m += Math.pow(2, mLen), e -= eBias;
-            }
-            return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
-        }, exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
-            var e, m, c, eLen = 8 * nBytes - mLen - 1, eMax = (1 << eLen) - 1, eBias = eMax >> 1, rt = 23 === mLen ? Math.pow(2, -24) - Math.pow(2, -77) : 0, i = isLE ? 0 : nBytes - 1, d = isLE ? 1 : -1, s = value < 0 || 0 === value && 1 / value < 0 ? 1 : 0;
-            for (value = Math.abs(value), isNaN(value) || value === 1 / 0 ? (m = isNaN(value) ? 1 : 0, 
-            e = eMax) : (e = Math.floor(Math.log(value) / Math.LN2), value * (c = Math.pow(2, -e)) < 1 && (e--, 
-            c *= 2), value += e + eBias >= 1 ? rt / c : rt * Math.pow(2, 1 - eBias), value * c >= 2 && (e++, 
-            c /= 2), e + eBias >= eMax ? (m = 0, e = eMax) : e + eBias >= 1 ? (m = (value * c - 1) * Math.pow(2, mLen), 
-            e += eBias) : (m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen), e = 0)); mLen >= 8; buffer[offset + i] = 255 & m, 
-            i += d, m /= 256, mLen -= 8) ;
-            for (e = e << mLen | m, eLen += mLen; eLen > 0; buffer[offset + i] = 255 & e, i += d, 
-            e /= 256, eLen -= 8) ;
-            buffer[offset + i - d] |= 128 * s;
-        };
-    }, /* 30 */
-    /***/
-    function(module, exports) {
-        var toString = {}.toString;
-        module.exports = Array.isArray || function(arr) {
-            return "[object Array]" == toString.call(arr);
-        };
-    }, /* 31 */
+    }, /* 82 */
     /***/
     function(module, exports, __webpack_require__) {
-        /**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-        "use strict";
-        /**
-	 * Assert that the values match with the type specs.
-	 * Error messages are memorized and will only be shown once.
-	 *
-	 * @param {object} typeSpecs Map of name to a ReactPropType
-	 * @param {object} values Runtime values that need to be type-checked
-	 * @param {string} location e.g. "prop", "context", "child context"
-	 * @param {string} componentName Name of the component for error messages.
-	 * @param {?Function} getStack Returns the component stack.
-	 * @private
-	 */
-        function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-        }
-        __webpack_require__(10), __webpack_require__(11), __webpack_require__(12);
-        module.exports = checkPropTypes;
-    }, /* 32 */
+        var content = __webpack_require__(76), insertCss = __webpack_require__(13);
+        "string" == typeof content && (content = [ [ module.id, content, "" ] ]), module.exports = content.locals || {}, 
+        module.exports._getContent = function() {
+            return content;
+        }, module.exports._getCss = function() {
+            return content.toString();
+        }, module.exports._insertCss = function(options) {
+            return insertCss(content, options);
+        };
+    }, /* 83 */
     /***/
     function(module, exports, __webpack_require__) {
-        /**
-	 * Copyright 2013-present, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-        "use strict";
-        var invariant = (__webpack_require__(9), __webpack_require__(10)), checkPropTypes = (__webpack_require__(11), 
-        __webpack_require__(12), __webpack_require__(31));
-        module.exports = function(isValidElement) {
-            /*eslint-enable no-self-compare*/
-            /**
-	   * We use an Error-like object for backward compatibility as people may call
-	   * PropTypes directly and inspect their output. However, we don't use real
-	   * Errors anymore. We don't inspect their stack anyway, and creating them
-	   * is prohibitively expensive if they are created too often, such as what
-	   * happens in oneOfType() for any type before the one that matched.
-	   */
-            function PropTypeError(message) {
-                this.message = message, this.stack = "";
-            }
-            /* global Symbol */
-            var ReactPropTypes, productionTypeChecker = ("function" == typeof Symbol && Symbol.iterator, 
-            function() {
-                invariant(!1, "React.PropTypes type checking code is stripped in production.");
-            });
-            productionTypeChecker.isRequired = productionTypeChecker;
-            var getProductionTypeChecker = function() {
-                return productionTypeChecker;
-            };
-            // Keep in sync with development version above
-            // Make `instanceof Error` still work for returned errors.
-            return ReactPropTypes = {
-                array: productionTypeChecker,
-                bool: productionTypeChecker,
-                func: productionTypeChecker,
-                number: productionTypeChecker,
-                object: productionTypeChecker,
-                string: productionTypeChecker,
-                symbol: productionTypeChecker,
-                any: productionTypeChecker,
-                arrayOf: getProductionTypeChecker,
-                element: productionTypeChecker,
-                instanceOf: getProductionTypeChecker,
-                node: productionTypeChecker,
-                objectOf: getProductionTypeChecker,
-                oneOf: getProductionTypeChecker,
-                oneOfType: getProductionTypeChecker,
-                shape: getProductionTypeChecker
-            }, PropTypeError.prototype = Error.prototype, ReactPropTypes.checkPropTypes = checkPropTypes, 
-            ReactPropTypes.PropTypes = ReactPropTypes, ReactPropTypes;
+        var content = __webpack_require__(77), insertCss = __webpack_require__(13);
+        "string" == typeof content && (content = [ [ module.id, content, "" ] ]), module.exports = content.locals || {}, 
+        module.exports._getContent = function() {
+            return content;
+        }, module.exports._getCss = function() {
+            return content.toString();
+        }, module.exports._insertCss = function(options) {
+            return insertCss(content, options);
         };
-    }, /* 33 */
+    }, /* 84 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var content = __webpack_require__(78), insertCss = __webpack_require__(13);
+        "string" == typeof content && (content = [ [ module.id, content, "" ] ]), module.exports = content.locals || {}, 
+        module.exports._getContent = function() {
+            return content;
+        }, module.exports._getCss = function() {
+            return content.toString();
+        }, module.exports._insertCss = function(options) {
+            return insertCss(content, options);
+        };
+    }, /* 85 */
+    /***/
+    function(module, exports, __webpack_require__) {
+        var content = __webpack_require__(79), insertCss = __webpack_require__(13);
+        "string" == typeof content && (content = [ [ module.id, content, "" ] ]), module.exports = content.locals || {}, 
+        module.exports._getContent = function() {
+            return content;
+        }, module.exports._getCss = function() {
+            return content.toString();
+        }, module.exports._insertCss = function(options) {
+            return insertCss(content, options);
+        };
+    }, /* 86 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -3549,8 +2967,8 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _propTypes = __webpack_require__(5), _react = (_interopRequireDefault(_propTypes), 
-        __webpack_require__(1)), _react2 = _interopRequireDefault(_react), _detectElementResize = __webpack_require__(45), _detectElementResize2 = _interopRequireDefault(_detectElementResize), AutoSizer = function(_PureComponent) {
+        }(), _propTypes = __webpack_require__(8), _react = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(3)), _react2 = _interopRequireDefault(_react), _detectElementResize = __webpack_require__(98), _detectElementResize2 = _interopRequireDefault(_detectElementResize), AutoSizer = function(_PureComponent) {
             function AutoSizer(props) {
                 _classCallCheck(this, AutoSizer);
                 var _this = _possibleConstructorReturn(this, (AutoSizer.__proto__ || Object.getPrototypeOf(AutoSizer)).call(this, props));
@@ -3563,12 +2981,13 @@
             return _inherits(AutoSizer, _PureComponent), _createClass(AutoSizer, [ {
                 key: "componentDidMount",
                 value: function() {
+                    var nonce = this.props.nonce;
                     // Delay access of parentNode until mount.
                     // This handles edge-cases where the component has already been unmounted before its ref has been set,
                     // As well as libraries like react-lite which have a slightly different lifecycle.
                     this._parentNode = this._autoSizer.parentNode, // Defer requiring resize handler in order to support server-side rendering.
                     // See issue #41
-                    this._detectElementResize = (0, _detectElementResize2.default)(), this._detectElementResize.addResizeListener(this._parentNode, this._onResize), 
+                    this._detectElementResize = (0, _detectElementResize2.default)(nonce), this._detectElementResize.addResizeListener(this._parentNode, this._onResize), 
                     this._onResize();
                 }
             }, {
@@ -3624,7 +3043,7 @@
         AutoSizer.defaultProps = {
             onResize: function() {}
         }, exports.default = AutoSizer;
-    }, /* 34 */
+    }, /* 87 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -3636,9 +3055,9 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.AutoSizer = exports.default = void 0;
-        var _AutoSizer2 = __webpack_require__(33), _AutoSizer3 = _interopRequireDefault(_AutoSizer2);
+        var _AutoSizer2 = __webpack_require__(86), _AutoSizer3 = _interopRequireDefault(_AutoSizer2);
         exports.default = _AutoSizer3.default, exports.AutoSizer = _AutoSizer3.default;
-    }, /* 35 */
+    }, /* 88 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -3686,8 +3105,8 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _react = __webpack_require__(1), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(5), _classnames = (_interopRequireDefault(_propTypes), 
-        __webpack_require__(8)), _classnames2 = _interopRequireDefault(_classnames), _calculateSizeAndPositionDataAndUpdateScrollOffset = __webpack_require__(40), _calculateSizeAndPositionDataAndUpdateScrollOffset2 = _interopRequireDefault(_calculateSizeAndPositionDataAndUpdateScrollOffset), _ScalingCellSizeAndPositionManager = __webpack_require__(39), _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(_ScalingCellSizeAndPositionManager), _createCallbackMemoizer = __webpack_require__(44), _createCallbackMemoizer2 = _interopRequireDefault(_createCallbackMemoizer), _defaultOverscanIndicesGetter = __webpack_require__(14), _defaultOverscanIndicesGetter2 = _interopRequireDefault(_defaultOverscanIndicesGetter), _updateScrollIndexHelper = __webpack_require__(41), _updateScrollIndexHelper2 = _interopRequireDefault(_updateScrollIndexHelper), _defaultCellRangeRenderer = __webpack_require__(13), _defaultCellRangeRenderer2 = _interopRequireDefault(_defaultCellRangeRenderer), _scrollbarSize = __webpack_require__(28), _scrollbarSize2 = _interopRequireDefault(_scrollbarSize), DEFAULT_SCROLLING_RESET_TIME_INTERVAL = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150, SCROLL_POSITION_CHANGE_REASONS = {
+        }(), _react = __webpack_require__(3), _react2 = _interopRequireDefault(_react), _propTypes = __webpack_require__(8), _classnames = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(22)), _classnames2 = _interopRequireDefault(_classnames), _calculateSizeAndPositionDataAndUpdateScrollOffset = __webpack_require__(93), _calculateSizeAndPositionDataAndUpdateScrollOffset2 = _interopRequireDefault(_calculateSizeAndPositionDataAndUpdateScrollOffset), _ScalingCellSizeAndPositionManager = __webpack_require__(92), _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(_ScalingCellSizeAndPositionManager), _createCallbackMemoizer = __webpack_require__(97), _createCallbackMemoizer2 = _interopRequireDefault(_createCallbackMemoizer), _defaultOverscanIndicesGetter = __webpack_require__(36), _defaultOverscanIndicesGetter2 = _interopRequireDefault(_defaultOverscanIndicesGetter), _updateScrollIndexHelper = __webpack_require__(94), _updateScrollIndexHelper2 = _interopRequireDefault(_updateScrollIndexHelper), _defaultCellRangeRenderer = __webpack_require__(35), _defaultCellRangeRenderer2 = _interopRequireDefault(_defaultCellRangeRenderer), _scrollbarSize = __webpack_require__(81), _scrollbarSize2 = _interopRequireDefault(_scrollbarSize), DEFAULT_SCROLLING_RESET_TIME_INTERVAL = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150, SCROLL_POSITION_CHANGE_REASONS = {
             OBSERVED: "observed",
             REQUESTED: "requested"
         }, Grid = function(_PureComponent) {
@@ -3915,7 +3334,9 @@
                     // Special case when either cols or rows were 0
                     // This would prevent any cells from rendering
                     // So we need to reset row scroll if cols changed from 0 (and vice versa)
-                    0 !== columnCount && 0 !== rowCount || (columnCount = 0, rowCount = 0), // Update scroll offsets if the size or number of cells have changed, invalidating the previous value
+                    0 !== columnCount && 0 !== rowCount || (columnCount = 0, rowCount = 0), // If scrolling is controlled outside this component, clear cache when scrolling stops
+                    nextProps.autoHeight && nextProps.isScrolling === !1 && this.props.isScrolling === !0 && this._resetStyleCache(), 
+                    // Update scroll offsets if the size or number of cells have changed, invalidating the previous value
                     (0, _calculateSizeAndPositionDataAndUpdateScrollOffset2.default)({
                         cellCount: columnCount,
                         cellSize: this.props.columnWidth,
@@ -4065,21 +3486,7 @@
             }, {
                 key: "_debounceScrollEndedCallback",
                 value: function() {
-                    this._disablePointerEventsTimeoutId = null;
-                    var styleCache = this._styleCache;
-                    // Reset cell and style caches once scrolling stops.
-                    // This makes Grid simpler to use (since cells commonly change).
-                    // And it keeps the caches from growing too large.
-                    // Performance is most sensitive when a user is scrolling.
-                    this._cellCache = {}, this._styleCache = {};
-                    // Copy over the visible cell styles so avoid unnecessary re-render.
-                    for (var rowIndex = this._rowStartIndex; rowIndex <= this._rowStopIndex; rowIndex++) for (var columnIndex = this._columnStartIndex; columnIndex <= this._columnStopIndex; columnIndex++) {
-                        var key = rowIndex + "-" + columnIndex;
-                        this._styleCache[key] = styleCache[key];
-                    }
-                    this.setState({
-                        isScrolling: !1
-                    });
+                    this._disablePointerEventsTimeoutId = null, this._resetStyleCache();
                 }
             }, {
                 key: "_getEstimatedColumnSize",
@@ -4215,6 +3622,24 @@
                     }
                 }
             }, {
+                key: "_resetStyleCache",
+                value: function() {
+                    var styleCache = this._styleCache;
+                    // Reset cell and style caches once scrolling stops.
+                    // This makes Grid simpler to use (since cells commonly change).
+                    // And it keeps the caches from growing too large.
+                    // Performance is most sensitive when a user is scrolling.
+                    this._cellCache = {}, this._styleCache = {};
+                    // Copy over the visible cell styles so avoid unnecessary re-render.
+                    for (var rowIndex = this._rowStartIndex; rowIndex <= this._rowStopIndex; rowIndex++) for (var columnIndex = this._columnStartIndex; columnIndex <= this._columnStopIndex; columnIndex++) {
+                        var key = rowIndex + "-" + columnIndex;
+                        this._styleCache[key] = styleCache[key];
+                    }
+                    this.setState({
+                        isScrolling: !1
+                    });
+                }
+            }, {
                 key: "_updateScrollTopForScrollToRow",
                 value: function() {
                     var props = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : this.props, state = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : this.state, scrollTop = state.scrollTop, calculatedScrollTop = this._getCalculatedScrollTop(props, state);
@@ -4286,7 +3711,7 @@
             style: {},
             tabIndex: 0
         }, exports.default = Grid;
-    }, /* 36 */
+    }, /* 89 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4324,7 +3749,7 @@
         }), exports.default = defaultOverscanIndicesGetter;
         var SCROLL_DIRECTION_BACKWARD = exports.SCROLL_DIRECTION_BACKWARD = -1, SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_FORWARD = 1;
         exports.SCROLL_DIRECTION_HORIZONTAL = "horizontal", exports.SCROLL_DIRECTION_VERTICAL = "vertical";
-    }, /* 37 */
+    }, /* 90 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -4336,10 +3761,10 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.defaultOverscanIndicesGetter = exports.defaultCellRangeRenderer = exports.accessibilityOverscanIndicesGetter = exports.Grid = exports.default = void 0;
-        var _Grid2 = __webpack_require__(35), _Grid3 = _interopRequireDefault(_Grid2), _accessibilityOverscanIndicesGetter2 = __webpack_require__(36), _accessibilityOverscanIndicesGetter3 = _interopRequireDefault(_accessibilityOverscanIndicesGetter2), _defaultCellRangeRenderer2 = __webpack_require__(13), _defaultCellRangeRenderer3 = _interopRequireDefault(_defaultCellRangeRenderer2), _defaultOverscanIndicesGetter2 = __webpack_require__(14), _defaultOverscanIndicesGetter3 = _interopRequireDefault(_defaultOverscanIndicesGetter2);
+        var _Grid2 = __webpack_require__(88), _Grid3 = _interopRequireDefault(_Grid2), _accessibilityOverscanIndicesGetter2 = __webpack_require__(89), _accessibilityOverscanIndicesGetter3 = _interopRequireDefault(_accessibilityOverscanIndicesGetter2), _defaultCellRangeRenderer2 = __webpack_require__(35), _defaultCellRangeRenderer3 = _interopRequireDefault(_defaultCellRangeRenderer2), _defaultOverscanIndicesGetter2 = __webpack_require__(36), _defaultOverscanIndicesGetter3 = _interopRequireDefault(_defaultOverscanIndicesGetter2);
         exports.default = _Grid3.default, exports.Grid = _Grid3.default, exports.accessibilityOverscanIndicesGetter = _accessibilityOverscanIndicesGetter3.default, 
         exports.defaultCellRangeRenderer = _defaultCellRangeRenderer3.default, exports.defaultOverscanIndicesGetter = _defaultOverscanIndicesGetter3.default;
-    }, /* 38 */
+    }, /* 91 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4530,7 +3955,7 @@
             } ]), CellSizeAndPositionManager;
         }();
         exports.default = CellSizeAndPositionManager;
-    }, /* 39 */
+    }, /* 92 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -4562,7 +3987,7 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _CellSizeAndPositionManager = __webpack_require__(38), _CellSizeAndPositionManager2 = _interopRequireDefault(_CellSizeAndPositionManager), DEFAULT_MAX_SCROLL_SIZE = exports.DEFAULT_MAX_SCROLL_SIZE = 15e5, ScalingCellSizeAndPositionManager = function() {
+        }(), _CellSizeAndPositionManager = __webpack_require__(91), _CellSizeAndPositionManager2 = _interopRequireDefault(_CellSizeAndPositionManager), DEFAULT_MAX_SCROLL_SIZE = exports.DEFAULT_MAX_SCROLL_SIZE = 15e5, ScalingCellSizeAndPositionManager = function() {
             function ScalingCellSizeAndPositionManager(_ref) {
                 var _ref$maxScrollSize = _ref.maxScrollSize, maxScrollSize = void 0 === _ref$maxScrollSize ? DEFAULT_MAX_SCROLL_SIZE : _ref$maxScrollSize, params = _objectWithoutProperties(_ref, [ "maxScrollSize" ]);
                 _classCallCheck(this, ScalingCellSizeAndPositionManager), // Favor composition over inheritance to simplify IE10 support
@@ -4689,7 +4114,7 @@
             } ]), ScalingCellSizeAndPositionManager;
         }();
         exports.default = ScalingCellSizeAndPositionManager;
-    }, /* 40 */
+    }, /* 93 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4718,7 +4143,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.default = calculateSizeAndPositionDataAndUpdateScrollOffset;
-    }, /* 41 */
+    }, /* 94 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4746,7 +4171,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.default = updateScrollIndexHelper;
-    }, /* 42 */
+    }, /* 95 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -4799,8 +4224,8 @@
                 return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), 
                 Constructor;
             };
-        }(), _Grid = __webpack_require__(37), _Grid2 = _interopRequireDefault(_Grid), _propTypes = __webpack_require__(5), _react = (_interopRequireDefault(_propTypes), 
-        __webpack_require__(1)), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(8), _classnames2 = _interopRequireDefault(_classnames), List = function(_PureComponent) {
+        }(), _Grid = __webpack_require__(90), _Grid2 = _interopRequireDefault(_Grid), _propTypes = __webpack_require__(8), _react = (_interopRequireDefault(_propTypes), 
+        __webpack_require__(3)), _react2 = _interopRequireDefault(_react), _classnames = __webpack_require__(22), _classnames2 = _interopRequireDefault(_classnames), List = function(_PureComponent) {
             function List(props, context) {
                 _classCallCheck(this, List);
                 var _this = _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props, context));
@@ -4926,7 +4351,7 @@
             scrollToIndex: -1,
             style: {}
         }, exports.default = List;
-    }, /* 43 */
+    }, /* 96 */
     /***/
     function(module, exports, __webpack_require__) {
         "use strict";
@@ -4938,9 +4363,9 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.List = exports.default = void 0;
-        var _List2 = __webpack_require__(42), _List3 = _interopRequireDefault(_List2);
+        var _List2 = __webpack_require__(95), _List3 = _interopRequireDefault(_List2);
         exports.default = _List3.default, exports.List = _List3.default;
-    }, /* 44 */
+    }, /* 97 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4963,7 +4388,7 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.default = createCallbackMemoizer;
-    }, /* 45 */
+    }, /* 98 */
     /***/
     function(module, exports) {
         "use strict";
@@ -4976,8 +4401,9 @@
 	 * 1) Guard against unsafe 'window' and 'document' references (to support SSR).
 	 * 2) Defer initialization code via a top-level function wrapper (to support SSR).
 	 * 3) Avoid unnecessary reflows by not measuring size for scroll events bubbling from children.
+	 * 4) Add nonce for style element.
 	 **/
-        function createDetectElementResize() {
+        function createDetectElementResize(nonce) {
             // Check `document` and `window` in case of server-side rendering
             var _window;
             _window = "undefined" != typeof window ? window : "undefined" != typeof self ? self : this;
@@ -5025,7 +4451,8 @@
                 if (!document.getElementById("detectElementResize")) {
                     //opacity:0 works around a chrome bug https://code.google.com/p/chromium/issues/detail?id=286360
                     var css = (animationKeyframes ? animationKeyframes : "") + ".resize-triggers { " + (animationStyle ? animationStyle : "") + 'visibility: hidden; opacity: 0; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: " "; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; z-index: -1; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }', head = document.head || document.getElementsByTagName("head")[0], style = document.createElement("style");
-                    style.id = "detectElementResize", style.type = "text/css", style.styleSheet ? style.styleSheet.cssText = css : style.appendChild(document.createTextNode(css)), 
+                    style.id = "detectElementResize", style.type = "text/css", null != nonce && style.setAttribute("nonce", nonce), 
+                    style.styleSheet ? style.styleSheet.cssText = css : style.appendChild(document.createTextNode(css)), 
                     head.appendChild(style);
                 }
             }, addResizeListener = function(element, fn) {
@@ -5061,110 +4488,22 @@
         Object.defineProperty(exports, "__esModule", {
             value: !0
         }), exports.default = createDetectElementResize;
-    }, /* 46 */
+    }, /* 99 */
     /***/
     function(module, exports) {
-        /**
-	 * When source maps are enabled, `style-loader` uses a link element with a data-uri to
-	 * embed the css on the page. This breaks all relative urls because now they are relative to a
-	 * bundle instead of the current page.
-	 *
-	 * One solution is to only use full urls, but that may be impossible.
-	 *
-	 * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
-	 *
-	 * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
-	 *
-	 */
-        module.exports = function(css) {
-            // get current location
-            var location = "undefined" != typeof window && window.location;
-            if (!location) throw new Error("fixUrls requires window.location");
-            // blank or null?
-            if (!css || "string" != typeof css) return css;
-            var baseUrl = location.protocol + "//" + location.host, currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/"), fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-                // strip quotes (if they exist)
-                var unquotedOrigUrl = origUrl.trim().replace(/^"(.*)"$/, function(o, $1) {
-                    return $1;
-                }).replace(/^'(.*)'$/, function(o, $1) {
-                    return $1;
-                });
-                // already a full url? no change
-                if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) return fullMatch;
-                // convert the url to a full url
-                var newUrl;
-                // send back the fixed url(...)
-                //TODO: should we add protocol?
-                return newUrl = 0 === unquotedOrigUrl.indexOf("//") ? unquotedOrigUrl : 0 === unquotedOrigUrl.indexOf("/") ? baseUrl + unquotedOrigUrl : currentDir + unquotedOrigUrl.replace(/^\.\//, ""), 
-                "url(" + JSON.stringify(newUrl) + ")";
-            });
-            // send back the fixed css
-            return fixedCss;
-        };
-    }, /* 47 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        // style-loader: Adds some css to the DOM by adding a <style> tag
-        // load the styles
-        var content = __webpack_require__(23);
-        "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
-        // add the styles to the DOM
-        __webpack_require__(4)(content, {
-            insertAt: "top"
-        });
-        content.locals && (module.exports = content.locals);
-    }, /* 48 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        // style-loader: Adds some css to the DOM by adding a <style> tag
-        // load the styles
-        var content = __webpack_require__(24);
-        "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
-        // add the styles to the DOM
-        __webpack_require__(4)(content, {
-            insertAt: "top"
-        });
-        content.locals && (module.exports = content.locals);
-    }, /* 49 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        // style-loader: Adds some css to the DOM by adding a <style> tag
-        // load the styles
-        var content = __webpack_require__(25);
-        "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
-        // add the styles to the DOM
-        __webpack_require__(4)(content, {
-            insertAt: "top"
-        });
-        content.locals && (module.exports = content.locals);
-    }, /* 50 */
-    /***/
-    function(module, exports, __webpack_require__) {
-        // style-loader: Adds some css to the DOM by adding a <style> tag
-        // load the styles
-        var content = __webpack_require__(26);
-        "string" == typeof content && (content = [ [ module.id, content, "" ] ]);
-        // add the styles to the DOM
-        __webpack_require__(4)(content, {
-            insertAt: "top"
-        });
-        content.locals && (module.exports = content.locals);
-    }, /* 51 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_99__;
+    }, /* 100 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_51__;
-    }, /* 52 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_100__;
+    }, /* 101 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_52__;
-    }, /* 53 */
+        module.exports = __WEBPACK_EXTERNAL_MODULE_101__;
+    }, /* 102 */
     /***/
     function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_53__;
-    }, /* 54 */
-    /***/
-    function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE_54__;
+        module.exports = __WEBPACK_EXTERNAL_MODULE_102__;
     } ]);
 });
 //# sourceMappingURL=react-sortable-tree.js.map

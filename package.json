@@ -63,6 +63,7 @@
     "file-loader": "^0.9.0",
     "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.22.0",
+    "isomorphic-style-loader": "^2.0.0",
     "jasmine-core": "^2.4.1",
     "jasmine-enzyme": "^2.0.0",
     "json-loader": "^0.5.4",

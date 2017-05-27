@@ -36,7 +36,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loaders: [
-                    'style-loader?insertAt=top',
+                    'isomorphic-style-loader?insertAt=top',
                     'css-loader?modules&-autoprefixer&importLoaders=1&localIdentName=rst__[local]',
                     'postcss-loader',
                     'sass-loader',
@@ -46,7 +46,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 loaders: [
-                    'style-loader?insertAt=top',
+                    'isomorphic-style-loader?insertAt=top',
                     'css-loader?-autoprefixer',
                     'postcss-loader',
                 ],
